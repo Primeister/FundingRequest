@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>Fund X</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Link to your title icon (favicon) -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fund X</title>
         <link rel="icon" type="image/png" href="images/">
-        <!-- Link to your CSS stylesheet -->
         <link type="text/css" rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
-            
+        <script src="script.js" defer></script>
     </head>
 
     <body>
         <header class="nav1">
-            <img src="images/FundXWF.png" onclick="Gohome()"> 
+            <img src="images/FundXWF.png" onclick="Gohome()" alt="logo"> 
 
-            <a href="#" style="text-decoration: none; color: #f8faf9;float: right;margin-top: 55px;margin-right: 2%;">
+            <a href="#" class="signup--button">
                 <button onclick="Signup()">Sign Up</button>
             </a>
-            <a href="#" style="text-decoration: none; color: #f8faf9;float: left;margin-top: 55px;margin-left: 2%;">
+            <a href="#" class="login--button">
                 <button onclick="signin()">Sign In</button>
             </a>
         </header><br><br><br>
@@ -27,25 +24,25 @@
         <main id="mainLanding">
             <section class="blocks">
                 <section class="blocks-img">
-                    <img src="images/young.png"  style="height: 100%;float: right;">
+                    <img src="images/young.png" class="pic--1" alt="pic--1">
                 </section>
 
                 <section class="blocks-intro">
-                    <h1 style="font-size: larger;">Welcome to Fund X</h1>
+                    <h1 class="large-font-size">Welcome to Fund X</h1>
 
-                    <p style="font-size: larger; padding:10px;">
+                    <p class="intro-paragraph">
                         Where dreams meet opportunity and aspirations become reality. In our vibrant online community, passionate funders and ambitious people converge to 
                         create a dynamic platform for collaboration and empowerment. Whether you're a visionary student, an entrepreneur with a
                         groundbreaking project or a generous funder eager to make a meaningful impact, Fund X provides the perfect avenue to connect, collaborate, and catalyze change.
                         Join us as we revolutionize the way dreams are funded and futures are forged. 
                         Together, let's unlock the potential of tomorrow, one investment at a time.
-                        Welcome to Fund X –
+                        Welcome to Fund X 
                         where innovation meets investment, and dreams take flight.
                     </p>   
                 </section>
 
                 <section class="blocks-img">
-                        <img src="images/old.png" style="height: 100%;float: left;">
+                        <img src="images/old.png" class="pic--2" alt="pic--2">
                 </section>
             </section>
         </main><br>
@@ -53,10 +50,10 @@
         <main id="mainSignup">
 
             <center>
-                <fieldset style="width: 40%;border-radius: 10px;">
-                    <legend style="font-size: large;">Fill in this form to Sign Up!</legend>
+                <fieldset>
+                    <legend>Fill in this form to Sign Up!</legend>
                     <br>
-                    <img src="images/user.png" style="height: 50px;"><br><br>
+                    <img src="images/user.png" alt="user--png"><br><br>
                     <form id="Signup-form">
                         <input type="text" name="name1" id="name1" placeholder="Name" required><br><br>
                         <input type="text" name="surname1" id="surname1" placeholder="Surname"><br><br>
@@ -64,20 +61,13 @@
                         <input type="text" name="username1" id="username1" placeholder="Username" required><br><br>
                         <input type="password" name="password1" id="password1" placeholder="Password" required><br><br>
                         <input type="password" name="VerifyPassword" id="VerifyPassword" placeholder="Verify Password" required><br><br>
-                        <label for="userType" style="font-size: large;">Sign up as</label><br><br>
-                        <select name="userType1" id="userType1" style="font-size: large;"><br>
+                        <label for="userType" class="large-font-size">Sign up as</label><br><br>
+                        <select name="userType1" id="userType1" class="large-font-size"><br>
                             <option value="void">please Choose</option>
                             <option value="applicant">Applicant</option>
                             <option value="funder">Fund Manager</option>
                         </select><br><br>
-                        <input type="submit" id="submit" value="submit" style="width: 100px;
-                        height: 50px;
-                        background-color: black;
-                        border: solid 2px #f8faf9;
-                        color: #f8faf9;
-                        border-radius: 10px;
-                        cursor: pointer;
-                        transition: all 0.3s ease;">
+                        <input type="submit" class="submit" value="submit">
                 </form><br><br><br><br>
             </fieldset><br><br><br><br>
         </center>
@@ -85,29 +75,22 @@
 
         <main id="mainLogin">
             <center>
-            <fieldset style="width: 40%;border-radius: 10px;">
-                <legend style="font-size: large;">Fill in this form to Sign In!</legend>
+            <fieldset>
+                <legend class="large-font-size">Fill in this form to Sign In!</legend>
                 <br>
-                <img src="images/user.png" style="height: 50px;">
+                <img src="images/user.png" alt="user--png">
                 <br><br>
                 <form id="login-form">
                     <input type="text" name="username2" id="username2" placeholder="Username" required><br><br><br>
                     <input type="password" name="password2" id="password2" placeholder="Password" required><br><br><br>
                     <label for="userType2">Sign in as</label><br><br>
-                    <select name="userType2" id="userType2" style="font-size: large;">
+                    <select name="userType2" id="userType2" class="large-font-size">
                         <option value="void">please choose</option>
                         <option value="applicant">Applicant</option>
                         <option value="funder">Fund manager</option>
                         <option value="admin">Admin</option>
                     </select><br><br>
-                    <input type="submit" id="submit" value="Sign In" style="width: 100px;
-                    height: 50px;
-                    background-color: black;
-                    border: solid 2px #f8faf9;
-                    color: #f8faf9;
-                    border-radius: 10px;
-                    cursor: pointer;
-                    transition: all 0.3s ease;">
+                    <input type="submit" class="submit" value="Sign In">
                 </form><br><br>
             </fieldset><br><br><br><br><br><br>
             </center>

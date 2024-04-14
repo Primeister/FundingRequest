@@ -1,3 +1,5 @@
+const verifyPasswordEl = document.getElementById("VerifyPassword");
+const emailEl = document.getElementById("email1");
 const apiRegister = "https://fundreq.azurewebsites.net/register";
 const apiLogin = "https://fundreq.azurewebsites.net/login";
 
@@ -25,13 +27,19 @@ function Signup()
             "surname": document.getElementById("surname1").value,
             "username": document.getElementById("username1").value,
             "password": document.getElementById("password1").value,
+            "passwordVerification": document.getElementById("VerifyPassword").value,
             "userType": document.getElementById("userType1").value + 's',
             "email": document.getElementById("email1").value
         };
-        console.log(data);
-        
-        register(data);
-        Gohome();
+
+        if(data.passwordVerification === data.password){
+            verifyPasswordEl.style.borderColor = "black";
+            register(data);
+        }
+        else{
+            verifyPasswordEl.style.borderColor = "red";
+        }
+            
         
     });
 
@@ -42,10 +50,8 @@ function Signup()
             "password": document.getElementById("password2").value,
             "userType": document.getElementById("userType2").value + 's',
         };
-        console.log(data);
         
         login(data);
-        Gohome();
         
     });
 
@@ -72,7 +78,12 @@ async function register(data) {
     });
     let result = await response.json();
     console.log(result);
-    alert(result.message);
+    if(result.message === "User registered successfully")Gohome();
+    else if(result.error === "Email already used, try signing in."){
+        emailEl.style.borderColor = "red";
+        alert(result.error);
+    }
+    else {alert(result.error);}
 }
 
 async function login(data) {
@@ -89,5 +100,6 @@ async function login(data) {
     });
     let result = await response.json();
     console.log(result);
-    alert(result.message);
+    if(result.message === "Login successful")Gohome();
+    else{alert(result.error);}
 }

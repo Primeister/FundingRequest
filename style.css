@@ -133,3 +133,52 @@ input
     border-radius: 10px;
     font-size: large;
 }
+.signup--button{
+    text-decoration: none;
+    color: #f8faf9;
+    float: right;
+    margin-top: 55px;
+    margin-right: 2%;
+}
+.login--button{
+    text-decoration: none; 
+    color: #f8faf9;
+    float: left;
+    margin-top: 55px;
+    margin-left: 2%;
+}
+.pic--1{
+    height: 100%;
+    float: right;
+}
+.pic--2{
+    height: 100%;float: left;
+}
+
+.large-font-size{
+    font-size: larger;
+}
+fieldset{
+    width: 40%;
+    border-radius: 10px;
+}
+legend{
+    font-size: large;
+}
+fieldset img{
+    height: 50px;
+}
+.submit{
+    width: 100px;
+    height: 50px;
+    background-color: black;
+    border: solid 2px #f8faf9;
+    color: #f8faf9;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.intro-paragraph{
+    font-size: larger;
+    padding:10px;
+}
