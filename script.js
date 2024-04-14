@@ -1,4 +1,5 @@
 const apiRegister = "https://fundreq.azurewebsites.net/register";
+const apiLogin = "https://fundreq.azurewebsites.net/login";
 
 function signin()
 {
@@ -15,20 +16,35 @@ function Signup()
 
     //grabbing the signup info from the form
     var signupForm = document.getElementById("Signup-form");
+    var loginForm = document.getElementById("login-form");
     
     signupForm.addEventListener("submit", function(event) {
         event.preventDefault();
         data = {
-            "name": document.getElementById("name").value,
-            "surname": document.getElementById("surname").value,
-            "username": document.getElementById("username").value,
-            "password": document.getElementById("password").value,
-            "userType": document.getElementById("userType").value + 's',
-            "email": document.getElementById("email").value
+            "name": document.getElementById("name1").value,
+            "surname": document.getElementById("surname1").value,
+            "username": document.getElementById("username1").value,
+            "password": document.getElementById("password1").value,
+            "userType": document.getElementById("userType1").value + 's',
+            "email": document.getElementById("email1").value
         };
         console.log(data);
         
         register(data);
+        Gohome();
+        
+    });
+
+    loginForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        data = {
+            "username": document.getElementById("username2").value,
+            "password": document.getElementById("password2").value,
+            "userType": document.getElementById("userType2").value + 's',
+        };
+        console.log(data);
+        
+        login(data);
         Gohome();
         
     });
@@ -56,4 +72,22 @@ async function register(data) {
     });
     let result = await response.json();
     console.log(result);
+    alert(result.message);
+}
+
+async function login(data) {
+    let bodyContent = JSON.stringify(data);
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json"
+       }
+    let response = await fetch(apiLogin, {
+        method: "POST",
+        mode: "cors",
+        headers: headersList,
+        body: bodyContent
+    });
+    let result = await response.json();
+    console.log(result);
+    alert(result.message);
 }
