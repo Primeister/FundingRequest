@@ -89,5 +89,5 @@ async function login(data) {
     });
     let result = await response.json();
     console.log(result);
-    alert(result[0]);
+    alert(result.message);
 }
