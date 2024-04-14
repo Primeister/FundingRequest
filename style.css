@@ -1,15 +1,44 @@
-body
-{
+*{
+    box-sizing: border-box;
+}
+@media only screen and (min-width:500px) and (max-width:600px) {
+    .nav1{
+        width:auto;
+        height:auto;
+    }
+    .nav1 button{
+        width:auto;
+        height:auto;
+    }
+    
+}
+@media only screen and (max-width: 900px) {
+    .blocks-img img, .blocks-intro{
+        max-height: 100%; 
+        max-width: 100%;
+        width:auto;
+        height:auto;
+        overflow: auto;
+    }
+    .blocks-intro p{
+        max-width:100%;
+    }
+    .blocks-intro::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, and Opera */
+    }
+
+}
+body{
     background-color: #f8faf9;
     scroll-behavior: smooth;
 }
-.nav1
-{
+.nav1{
     background-color: black;
     width: 100%;
     height: 150px;
     border-radius: 10px;
     text-align: center;
+    top:0;
 }
 .nav1 img
 {
@@ -44,10 +73,31 @@ body
 
 #mainLanding
 {
+    display:flex;
+    flex-direction:column;
     background-color:transparent;
-    width: 100%;
+    max-width: 100%;
     height: relative;
     display: block;
+    padding-top:20px;
+    padding-bottom:20px;
+
+}
+.blocks{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.blocks-img{
+    height:500px;
+    width:35%;
+}
+.blocks-intro{
+    height: 500px;
+    width: 30%;
+    background-color: black;
+    text-align: center;
+    color: #f8faf9;
 }
 #mainSignup
 {
@@ -66,26 +116,20 @@ body
 }
 footer
 {
+    display:flex;
     background-color: black;
     color: #f8faf9;
-    height: 100px;
+    height: 50px;
     width: 100%;
     border-radius: 10px;
     text-align: center;
-    padding: 20px 0;
+    justify-content:center;
     /* stick at bottom */
     bottom: 0;
-    
 }
 input
 {
     border: solid 2px black;
     border-radius: 10px;
     font-size: large;
-}
-
-.blocks{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }

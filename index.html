@@ -1,86 +1,62 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>
-            Fund X
-        </title>
+        <title>Fund X</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Link to your title icon (favicon) -->
-    <link rel="icon" type="image/png" href="images/">
-    <!-- Link to your CSS stylesheet -->
-    <link type="text/css" rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/png" href="images/">
+        <!-- Link to your CSS stylesheet -->
+        <link type="text/css" rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+            
+    </head>
 
-    <script src="script.js">
-
-    </script>
-<style>
-
-</style>    
-
-</head>
     <body>
         <header class="nav1">
-
             <img src="images/FundXWF.png" onclick="Gohome()"> 
 
             <a href="#" style="text-decoration: none; color: #f8faf9;float: right;margin-top: 55px;margin-right: 2%;">
-                <button onclick="Signup()">
-                    sign up
-                </button>
+                <button onclick="Signup()">Sign Up</button>
             </a>
             <a href="#" style="text-decoration: none; color: #f8faf9;float: left;margin-top: 55px;margin-left: 2%;">
-                <button onclick="signin()">
-                    sign in
-                </button>
+                <button onclick="signin()">Sign In</button>
             </a>
-            
         </header><br><br><br>
 
         <main id="mainLanding">
             <section class="blocks">
-                
-                    <section style="height: 500px;width: 500px;">
-                    
-                        <img src="images/young.png" style="height: 100%;float: right;">
-                    
+                <section class="blocks-img">
+                    <img src="images/young.png"  style="height: 100%;float: right;">
                 </section>
 
-                <section style="height: 500px;width: 500px;background-color: black;text-align: center;color: #f8faf9;">
-                    
+                <section class="blocks-intro">
+                    <h1 style="font-size: larger;">Welcome to Fund X</h1>
 
-                        <h1>Welcome to Fund X</h1>
-                        <br>
-                        <p style="width: 100%;">
-                            where dreams meet opportunity and aspirations become reality. In our vibrant online community, passionate funders and ambitious people converge to 
-                            create a dynamic platform for collaboration and empowerment. Whether you're a visionary student, an entrepreneur with a
-                             groundbreaking project or a generous funder eager to make a meaningful impact, Fund X provides the perfect avenue to connect, collaborate, and catalyze change.
-                             Join us as we revolutionize the way dreams are funded and futures are forged. 
-                            Together, let's unlock the potential of tomorrow, one investment at a time.
-                             Welcome to Fund X –
-                             where innovation meets investment, and dreams take flight.
-                        </p>
-
-
-
-                    
+                    <p style="font-size: larger; padding:10px;">
+                        Where dreams meet opportunity and aspirations become reality. In our vibrant online community, passionate funders and ambitious people converge to 
+                        create a dynamic platform for collaboration and empowerment. Whether you're a visionary student, an entrepreneur with a
+                        groundbreaking project or a generous funder eager to make a meaningful impact, Fund X provides the perfect avenue to connect, collaborate, and catalyze change.
+                        Join us as we revolutionize the way dreams are funded and futures are forged. 
+                        Together, let's unlock the potential of tomorrow, one investment at a time.
+                        Welcome to Fund X –
+                        where innovation meets investment, and dreams take flight.
+                    </p>   
                 </section>
 
-                <section style="height: 500px;width: 500px;">
-                    
+                <section class="blocks-img">
                         <img src="images/old.png" style="height: 100%;float: left;">
-                    
                 </section>
-
-        </section>
-
+            </section>
         </main><br>
+
         <main id="mainSignup">
 
             <center>
                 <fieldset style="width: 40%;border-radius: 10px;">
                     <legend style="font-size: large;">Fill in this form to Sign Up!</legend>
                     <br>
-                    <img src="images/user.png" style="height: 50px;">
-                    <br><br>
+                    <img src="images/user.png" style="height: 50px;"><br><br>
                     <form id="Signup-form">
                         <input type="text" name="name1" id="name1" placeholder="Name" required><br><br>
                         <input type="text" name="surname1" id="surname1" placeholder="Surname"><br><br>
@@ -88,9 +64,9 @@
                         <input type="text" name="username1" id="username1" placeholder="Username" required><br><br>
                         <input type="password" name="password1" id="password1" placeholder="Password" required><br><br>
                         <input type="password" name="VerifyPassword" id="VerifyPassword" placeholder="Verify Password" required><br><br>
-                        <label for="userType1" style="font-size: large;">Sign up as</label><br><br>
+                        <label for="userType" style="font-size: large;">Sign up as</label><br><br>
                         <select name="userType1" id="userType1" style="font-size: large;"><br>
-                            <option value="void">please choose</option>
+                            <option value="void">please Choose</option>
                             <option value="applicant">Applicant</option>
                             <option value="funder">Fund Manager</option>
                         </select><br><br>
@@ -102,25 +78,19 @@
                         border-radius: 10px;
                         cursor: pointer;
                         transition: all 0.3s ease;">
-            
-                    </form>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                </fieldset>
-                <br><br><br><br>
-
+                </form><br><br><br><br>
+            </fieldset><br><br><br><br>
+        </center>
         </main><br>
-        <main id="mainLogin">
 
-<center>
+        <main id="mainLogin">
+            <center>
             <fieldset style="width: 40%;border-radius: 10px;">
                 <legend style="font-size: large;">Fill in this form to Sign In!</legend>
                 <br>
                 <img src="images/user.png" style="height: 50px;">
                 <br><br>
-                <form id = "login-form">
+                <form id="login-form">
            
                     <input type="text" name="username2" id="username2" placeholder="Username" required><br><br>
                     <br>
@@ -141,26 +111,14 @@
                     border-radius: 10px;
                     cursor: pointer;
                     transition: all 0.3s ease;">
-        
-                </form>
-
-                <br>
-                <br>
-            </fieldset>
-            <br><br><br><br><br><br>
-    </center>
-
+                </form><br><br>
+            </fieldset><br><br><br><br><br><br>
+            </center>
         </main>
 
-
-
-
-
-
+        
     </body>
     <footer>
         <p>&copy; 2024 Fund X</p>
     </footer>
-
-    
 </html>
