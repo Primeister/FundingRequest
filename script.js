@@ -1,28 +1,18 @@
-
-
-function signin()
-{
-    document.getElementById('mainSignup').style.display="none";
-    document.getElementById('mainLanding').style.display="none";
-    document.getElementById('mainLogin').style.display="block";
+function signinPage(){
+    document.getElementById('Signin-form').style.display="none";
+    document.getElementById('Signup-form').style.display="block";
 }
-function Signup()
-{
-    document.getElementById('mainSignup').style.display="block";
-    document.getElementById('mainLanding').style.display="none";
-    document.getElementById('mainLogin').style.display="none";
+function loginPage(){
+    document.getElementById('Signin-form').style.display="block";
+    document.getElementById('Signup-form').style.display="none";
+}
+function homepage(data) {
+    let { username, name, surname, email, password, userType } = data;
 
+    if (userType === "applicants") window.location.href = "applicants.html";
 
-    //grabbing the signup info from the form
+    if (userType === "funders") window.location.href = "fundmanagers.html";
+
+    if (userType === "admins") window.location.href = "admin.html";
 
 }
-function Gohome()
-{
-    document.getElementById('mainSignup').style.display="none";
-    document.getElementById('mainLanding').style.display="block";
-    document.getElementById('mainLogin').style.display="none";
-}
-
-
-
-

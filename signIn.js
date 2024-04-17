@@ -2,12 +2,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const apiLogin = "https://fundreq.azurewebsites.net/login";
 
-    var loginForm = document.getElementById("login-form");
+    var loginForm = document.getElementById("Signin-form");
 
     loginForm.addEventListener("submit", function(event) {
         event.preventDefault();
         data = {
-            "username": document.getElementById("username2").value,
+            "email": document.getElementById("email2").value,
             "password": document.getElementById("password2").value,
             "userType": document.getElementById("userType2").value + 's',
         };
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         let result = await response.json();
         console.log(result);
-        if(result.message === "Login successful")Gohome();
+        if(result.message === "Login successful")homepage(data);
         else{alert(result.error);}
     }
     

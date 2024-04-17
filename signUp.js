@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         let result = await response.json();
         console.log(result);
-        if(result.message === "User registered successfully")Gohome();
+        if(result.message === "User registered successfully")homepage(data);
         else if(result.error === "Email already used, try signing in."){
             emailEl.style.borderColor = "red";
             alert(result.error);

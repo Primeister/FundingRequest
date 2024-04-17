@@ -1,104 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Fund X</title>
-        <link rel="icon" type="image/png" href="images/">
-        <link type="text/css" rel="stylesheet" href="style.css">
-        <script src="script.js" defer></script>
-        <script src= "signIn.js" defer></script>
-        <script src= "signUp.js" defer></script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="images/FundXW.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Fund X</title>
+    <script src="script.js" defer></script>
+    <script src="signIn.js" defer></script>
+    <script src="signUp.js" defer></script>
+</head>
+<body>
+    <main id="mainSignup">
+        <div class="about">
+            <span class="align"><img src="/images/FundXWF.png" alt="logo" class="logo"></span>
+            <p>
+                Fund X is an online platform that brings together passionate funders and ambitious individuals to collaborate and empower each other. It offers a dynamic space for students, entrepreneurs, and generous funders to connect, collaborate, and make a meaningful impact. Fund X aims to revolutionize the funding of dreams and the creation of futures by unlocking tomorrow's potential through investments. It's where innovation meets investment, and dreams are given the opportunity to take flight.
+            </p>
+        </div>
+        <div class="form-wrap">
+            <form id="Signup-form">
+                <h1 class="title">Sign up</h1>
+                <div class="form-floating">
+                    <input type="text" name="name1" class="form-control" placeholder="" id="name1" required>
+                    <label for="name1" class="form-control-placeholder">Name</label>
+                </div>
 
-    <body>
-        <header class="nav1">
-            <img src="images/FundXWF.png" onclick="Gohome()" alt="logo"> 
+                <div class="form-floating">
+                    <input type="text" name="surname1" class="form-control" id="surname1" placeholder="">
+                    <label for="surname1" class="form-control-placeholder">Surname</label>
+                </div>
 
-            <a href="#" class="signup--button">
-                <button onclick="Signup()">Sign Up</button>
-            </a>
-            <a href="#" class="login--button">
-                <button onclick="signin()">Sign In</button>
-            </a>
-        </header><br><br><br>
-
-        <main id="mainLanding">
-            <section class="blocks">
-                <section class="blocks-img">
-                    <img src="images/young.png" class="pic--1" alt="pic--1">
-                </section>
-
-                <section class="blocks-intro">
-                    <h1 class="large-font-size">Welcome to Fund X</h1>
-
-                    <p class="intro-paragraph">
-                        Where dreams meet opportunity and aspirations become reality. In our vibrant online community, passionate funders and ambitious people converge to 
-                        create a dynamic platform for collaboration and empowerment. Whether you're a visionary student, an entrepreneur with a
-                        groundbreaking project or a generous funder eager to make a meaningful impact, Fund X provides the perfect avenue to connect, collaborate, and catalyze change.
-                        Join us as we revolutionize the way dreams are funded and futures are forged. 
-                        Together, let's unlock the potential of tomorrow, one investment at a time.
-                        Welcome to Fund X 
-                        where innovation meets investment, and dreams take flight.
-                    </p>   
-                </section>
-
-                <section class="blocks-img">
-                        <img src="images/old.png" class="pic--2" alt="pic--2">
-                </section>
-            </section>
-        </main><br>
-
-        <main id="mainSignup">
-
-            <center>
-                <fieldset>
-                    <legend>Fill in this form to Sign Up!</legend>
-                    <br>
-                    <img src="images/user.png" alt="user--png"><br><br>
-                    <form id="Signup-form">
-                        <input type="text" name="name1" id="name1" placeholder="Name" required><br><br>
-                        <input type="text" name="surname1" id="surname1" placeholder="Surname"><br><br>
-                        <input type="email" name="email1" id="email1" placeholder="email" required><br><br>
-                        <input type="text" name="username1" id="username1" placeholder="Username" required><br><br>
-                        <input type="password" name="password1" id="password1" placeholder="Password" required><br><br>
-                        <input type="password" name="VerifyPassword" id="VerifyPassword" placeholder="Verify Password" required><br><br>
-                        <label for="userType" class="large-font-size">Sign up as</label><br><br>
-                        <select name="userType1" id="userType1" class="large-font-size"><br>
-                            <option value="void">please Choose</option>
-                            <option value="applicant">Applicant</option>
-                            <option value="funder">Fund Manager</option>
-                        </select><br><br>
-                        <input type="submit" class="submit" value="submit">
-                </form><br><br><br><br>
-            </fieldset><br><br><br><br>
-        </center>
-        </main><br>
-
-        <main id="mainLogin">
-            <center>
-            <fieldset>
-                <legend class="large-font-size">Fill in this form to Sign In!</legend>
-                <br>
-                <img src="images/user.png" alt="user--png">
-                <br><br>
-                <form id="login-form">
-                    <input type="text" name="username2" id="username2" placeholder="Username" required><br><br><br>
-                    <input type="password" name="password2" id="password2" placeholder="Password" required><br><br><br>
-                    <label for="userType2">Sign in as</label><br><br>
-                    <select name="userType2" id="userType2" class="large-font-size">
-                        <option value="void">please choose</option>
-                        <option value="applicant">Applicant</option>
-                        <option value="funder">Fund manager</option>
-                        <option value="admin">Admin</option>
-                    </select><br><br>
-                    <input type="submit" class="submit" value="Sign In">
-                </form><br><br>
-            </fieldset><br><br><br><br><br><br>
-            </center>
-        </main>  
-    </body>
-    <footer>
-        <p>&copy; 2024 Fund X</p>
-    </footer>
+                <div class="form-floating">
+                    <input type="email" name="email1" class="form-control" id="email1" placeholder="" required>
+                    <label for="email1" class="form-control-placeholder">Email Address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" name="username1" id="username1" 
+                    class="form-control"placeholder="" required>
+                    <label for="username1" class="form-control-placeholder">Username</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" name="password1" id="password1" class="form-control" placeholder="" required>
+                    <label for="password1" class="form-control-placeholder">Password</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" name="VerifyPassword" id="VerifyPassword" class="form-control" placeholder="" required>
+                    <label for="VerifyPassword" class="form-control-placeholder">Verify Password</label>
+                </div>
+                <select name="userType1" id="userType1" class="large-font-size"><br>
+                    <option value="void">Sign up as</option>
+                    <option value="applicant">Applicant</option>
+                    <option value="funder">Fund Manager</option>
+                </select>
+                <input type="submit" class="submit" value="Create Account">
+                <div class="signin-link">Already have an Account? <a onclick="loginPage()">Sign In</a></div>
+            </form>
+            <form id="Signin-form">
+                <h1 class="title">Sign in</h1>
+                <div class="form-floating">
+                    <input type="email" name="email2" class="form-control" id="email2" placeholder="" required>
+                    <label for="email2" class="form-control-placeholder">Email Address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" name="password2" id="password2" class="form-control" placeholder="" required>
+                    <label for="password2" class="form-control-placeholder">Password</label>
+                </div>
+                <select name="userType2" id="userType2" class="large-font-size"><br>
+                    <option value="void">Log in as</option>
+                    <option value="applicant">Applicant</option>
+                    <option value="funder">Fund Manager</option>
+                </select>
+                <input type="submit" class="submit" value="Log in">
+                <div class="signin-link">Don't have an Account? <a onclick="signinPage()">Sign up</a></div>
+            </form>
+        </div>
+    </main>
+</body>
 </html>
