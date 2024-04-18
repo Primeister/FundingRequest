@@ -9,6 +9,10 @@ function loginPage(){
 function homepage(data) {
     let { username, name, surname, email, password, userType } = data;
 
+    sessionStorage.setItem('username', username);
+    sessionStorage.setItem('email', email);
+
+
     if (userType === "applicants") window.location.href = "applicants.html";
 
     if (userType === "funders") window.location.href = "fundmanagers.html";
