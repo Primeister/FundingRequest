@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  background-image: url(images/backgroundImage.jpg);
+  background-position: center;
+  background-size: cover; /*cover the whole page*/ 
+  /*background:linear-gradient(to bottom,white, violet, purple, violet, violet);*/
+}
+/*header style*/
+.nav1{
+  background:linear-gradient(to right,white, violet, purple, violet, violet);
+  width: 100%;
+  height: 80px;
+  text-align: center;
+  top:0;
+}
+.nav1 img
+{
+  height: 80%;
+  float: none;
+  margin-left: 2%;
+  margin: 1%;
+  cursor: pointer;
+  display: inline;
+  transition: all 0.3s ease;
+}
+.nav1 img:hover
+{
+  transform: scale(0.9);
+}
+
+.header {
+  width: 100%; /*full width too*/
+  height: 100vh-50px; /*full pg*/
+}
+
+.sideNav {
+  /*to hide sideBar*/
+  width: 110px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 10px 15px; /*Put **/
+
+  /*Sidebar menu background and making it blur */
+  background: rgba(165, 118, 158, 0.2);
+  backdrop-filter: blur(5px);
+  transition: width 0.5s;
+}
+
+.user {
+  align-items: center;
+  justify-content: space-between;
+  width: 60px;
+  overflow: hidden;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+/*hidding content of user*/
+.user nav {
+  display: none;
+}
+
+.user p {
+  font-size: 15px;
+  /*not bold 4 now font-weight: 600;   //That khumoetsile font*/
+
+  white-space: nowrap; /*straignt linewhite-space: nowrap;*/
+}
+
+.userImage {
+  width: 40px;
+  border-radius: 50%; /*circle*/
+  margin: auto;
+  margin-right: 10px; /*space betwn image and text*/
+}
+ul {
+  list-style: none;
+  padding: 0 15px;
+}
+ul li {
+  margin: 30px 0;
+  display: flex; /*icon&txt inline*/
+  align-items: center;
+  /*start to the left*/
+  justify-content: flex-start;
+  cursor: pointer;
+}
+ul li:hover{
+  color: blueviolet;
+}
+
+/*icon&desc inline*/
+ul li img {
+  width: 25px;
+  margin-right: 10px; /*space betwn image and text*/
+}
+
+ul li p {
+  white-space: nowrap;
+  /*hidding content of user*/
+  display: none;
+  font-size: 12px;
+}
+/*Adding hower*/
+
+.sideNav:hover {
+  width: 250px;
+}
+.sideNav:hover.user {
+  width: 100%;
+}
+
+.sideNav:hover ul li p {
+  display: block;
+}
+
+h1,h2,h3{
+  font-size: 20px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.classMain{
+  height:100vh;
+  display: flex;
+  flex-direction: column;
+  flex:1;
+  /*
+  background-image: url(images/backgroundImage.jpg);
+  background-position: center;
+  background-size: cover; /*cover the whole page*/ 
+}
+.classMain-section {
+  flex: 1; /* This allows the section to grow and fill the available space */
+  padding: 10px;
+  width:84%;
+  float:right;
+  height:250px;
+  border-left: solid 5px rgb(27, 26, 26);
+  background-color: white;
+  margin-bottom: 30px;
+}
+
+footer{
+  display:flex;
+  background:linear-gradient(to left, purple, violet, pink, white);
+  color: #060606;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  justify-content:center;
+  bottom: 0;
+  position:static;
+  border-top: solid 1px grey;
+  
+}
