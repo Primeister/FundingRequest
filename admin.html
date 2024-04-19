@@ -7,6 +7,8 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="dashboardStyle.css"/>
     <link rel="icon" type="image/x-icon" href="images/FundXW.png">
+    <script src="approve.js"></script>
+    <script src="admin.js"></script>
   </head>
   <body>
     <header class="nav1">
@@ -16,20 +18,24 @@
     <aside class="header">
         <nav class="sideNav">
             <section class="user">
-                <img src="images/user.png" class="userImage" alt="user-icon"/>
+                <img src="images/user.png" class="userImage" alt="user-icon"/><br>
+                <p id="username">Username</p>
             </section><hr>
           <ul>
             <li class="active"><a href="#"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
             <li><a href="#"><img src="images/manageUsers.png" alt="users-icon"/></a><p>Manage Users</p></li>
-            <li><a href="#"><img src="images/Approve.png" alt="approve-icon"/></a><p>Approve Fund-Managers</p></li>
+            <li onclick="getFundManagers()"><a href="#"><img src="images/Approve.png" alt="approve-icon"/></a><p>Approve Fund-Managers</p></li>
             <li><a href="#"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
             <li><a href="#"><img src="images/setting.png" alt="settings-icon"/></a><p>Settings</p></li>
             <li><a href="#"><img src="images/members.png" alt="members-icon"/></a><p>Switch Account</p></li>
             <li style="bottom:0; position:fixed;"><a href="index.html"><img src="images/logout.png" alt="logout-icon"/></a><p>Logout</p></li>
+            
           </ul>
         </nav>
     </aside>
-    
+
+    <section id="main-section">
+
     <section class="classMain-section" style="margin-top:20px;">
         <h1>QUICK STATS</h1><hr>
         <!--<p>Summary of key metrics</p>
@@ -59,6 +65,8 @@
         <!--<p>If we wanna get feedback we can add this</p>-->
         
     </section>
+
+  </section>
 
     <footer>
         <p>&copy; 2024 Fund X</p>
