@@ -1,13 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <!--icon style link-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="dashboardStyle.css"/>
     <link rel="icon" type="image/x-icon" href="images/FundXW.png">
-    <link rel="stylesheet" href="style.css">
-    <title>Fund X</title>
-</head>
-<body>
-    Admin Home page!
-</body>
+  </head>
+  <body>
+    <header class="nav1">
+        <img src="images/FundXWF.png" onclick="Gohome()" alt="logo"> 
+    </header><hr>
+
+    <aside class="header">
+        <nav class="sideNav">
+            <section class="user">
+                <img src="images/user.png" class="userImage" alt="user-icon"/>
+            </section><hr>
+          <ul>
+            <li class="active"><a href="#"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
+            <li><a href="#"><img src="images/manageUsers.png" alt="users-icon"/></a><p>Manage Users</p></li>
+            <li><a href="#"><img src="images/Approve.png" alt="approve-icon"/></a><p>Approve Fund-Managers</p></li>
+            <li><a href="#"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
+            <li><a href="#"><img src="images/setting.png" alt="settings-icon"/></a><p>Settings</p></li>
+            <li><a href="#"><img src="images/members.png" alt="members-icon"/></a><p>Switch Account</p></li>
+            <li style="bottom:0; position:fixed;"><a href="index.html"><img src="images/logout.png" alt="logout-icon"/></a><p>Logout</p></li>
+          </ul>
+        </nav>
+    </aside>
+    
+    <section class="classMain-section" style="margin-top:20px;">
+        <h1>QUICK STATS</h1><hr>
+        <!--<p>Summary of key metrics</p>
+        <p>Such as total number of users or pending approvals</p>-->
+    </section>
+
+    <section class="classMain-section">
+        <h1>RECENT ACTIVITY FEED</h1><hr>
+        <!--<p>This is where we might wanna display the recent activities or events, such as new user registrations, approved funding opportunities,etc.</p>-->
+        
+    </section>
+
+    <section class="classMain-section">
+        <h1>ALERTS OR NOTIFICATIONS</h1><hr>
+        <!--<p>Alerts of notifications for pending tasks that require the admin's attention</p>-->
+        
+    </section>
+
+    <section class="classMain-section">
+        <h1>ANNOUNCEMENTS</h1><hr>
+        <!--<p>Space for important announcements, updates, or news related to funding management system or the organization</p>-->
+        
+    </section>
+
+    <section class="classMain-section">
+        <h1>FEEDBACK</h1><hr>
+        <!--<p>If we wanna get feedback we can add this</p>-->
+        
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Fund X</p>
+    </footer>
+  </body>
 </html>
