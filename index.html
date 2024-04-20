@@ -9,6 +9,8 @@
     <script src="script.js" defer></script>
     <script src="signIn.js" defer></script>
     <script src="signUp.js" defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="597142915321-piedgs3olepu0k0icr4csmfhunq4k5te.apps.googleusercontent.com">
 </head>
 <body>
     <main id="mainSignup">
@@ -54,6 +56,8 @@
                     <option value="funder">Fund Manager</option>
                 </select>
                 <input type="submit" class="submit" value="Create Account">
+                <hr>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
                 <div class="signin-link">Already have an Account? <a onclick="loginPage()">Sign In</a></div>
             </form>
             <form id="Signin-form">
@@ -66,11 +70,6 @@
                     <input type="password" name="password2" id="password2" class="form-control" placeholder="" required>
                     <label for="password2" class="form-control-placeholder">Password</label>
                 </div>
-                <select name="userType2" id="userType2" class="large-font-size"><br>
-                    <option value="void">Log in as</option>
-                    <option value="applicant">Applicant</option>
-                    <option value="funder">Fund Manager</option>
-                </select>
                 <input type="submit" class="submit" value="Log in">
                 <div class="signin-link">Don't have an Account? <a onclick="signinPage()">Sign up</a></div>
             </form>
