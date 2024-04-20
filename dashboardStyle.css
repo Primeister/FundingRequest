@@ -5,19 +5,71 @@
   font-family: "Poppins", sans-serif;
 }
 body{
-  background-image: url(images/backgroundImage.jpg);
+  background-color: rgb(238, 179, 238);
+  /*background-image: url(images/backgroundImage.jpg);
   background-position: center;
   background-size: cover; /*cover the whole page*/ 
   /*background:linear-gradient(to bottom,white, violet, purple, violet, violet);*/
 }
+
+@media screen and (max-width:750px){
+  /*to make the top nav smaller*/
+  .topNav ul{
+    font-size: 10px;
+  }
+  .classMain-section{
+    width:84%;
+  }
+}
+
 /*header style*/
+.topNav{
+  position: absolute;
+  top:10px;
+  right:0;
+  ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+
+    li{
+      display:inline-block;
+      margin: 20px;
+
+      a{
+        color : white;
+        text-decoration : none;
+        font-size: larger;
+        position: relative;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      }
+    }
+  }
+  ul li a:hover{
+    color:black;
+  }
+}
+
+.topNav li a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s;
+}
+
+.topNav li a:hover::after {
+  width: 100%; /* Added underline on hover */
+}
 .nav1{
-  background:linear-gradient(to right,white, violet, purple, violet, violet);
+  /*background:linear-gradient(to right,white, white, violet, black, violet, white, white);*/
   width: 100%;
   height: 80px;
   text-align: center;
   top:0;
 }
+
 .nav1 img
 {
   height: 80%;
@@ -125,34 +177,26 @@ ul li p {
   display: block;
 }
 
-h1,h2,h3{
+h1{
   font-size: 20px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-.classMain{
-  height:100vh;
-  display: flex;
-  flex-direction: column;
-  flex:1;
-  /*
-  background-image: url(images/backgroundImage.jpg);
-  background-position: center;
-  background-size: cover; /*cover the whole page*/ 
-}
+
 .classMain-section {
   flex: 1; /* This allows the section to grow and fill the available space */
   padding: 10px;
-  width:84%;
+  width:91%;
   float:right;
   height:250px;
-  border-left: solid 5px rgb(27, 26, 26);
+  border-left: solid 5px plum;
+  border-radius: 5px;
   background-color: white;
   margin-bottom: 30px;
 }
 
 footer{
   display:flex;
-  background:linear-gradient(to left, purple, violet, pink, white);
+  background-color: white;
   color: #060606;
   height: 40px;
   width: 100%;
