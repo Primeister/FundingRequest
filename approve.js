@@ -6,18 +6,17 @@ function getFundManagers(){
     mainElement.innerHTML = "";
     var headingSection = document.createElement("section");
     headingSection.style.display = "flex";
-    headingSection.style.flexDirection = "column";
+    headingSection.style.flexDirection = "row";
     headingSection.style.justifyContent = "center";
     var heading = document.createElement('h1');
     heading.textContent = "Approve Fund Managers";
     var line = document.createElement('hr');
     headingSection.appendChild(heading);
-    headingSection.appendChild(line);
+    
     mainElement.appendChild(headingSection);
+    mainElement.appendChild(line);
     var lineBreak = document.createElement("br");
-    mainElement.appendChild(lineBreak);
-    mainElement.appendChild(lineBreak);
-    mainElement.appendChild(lineBreak);
+    
     
     
     fetch('https://fundreq.azurewebsites.net/fundManagers')
@@ -39,6 +38,9 @@ function getFundManagers(){
         newSection.style.display = "flex";
         newSection.style.flexDirection = "row";
         newSection.style.justifyContent = "center";
+        newSection.style.paddingTop = "500px";
+        newSection.style.borderWidth = "5px";
+        
         var innerSection = document.createElement("section");
         innerSection.style.paddingRight = "100px"
     
@@ -46,12 +48,14 @@ function getFundManagers(){
         var approveButton = document.createElement("button");
         approveButton.textContent = "approve"; // Set the button text
         approveButton.style.backgroundColor = "green";
+        approveButton.style.width = "100px";
         let id = approveButtonId.toString();
         approveButton.id = id;
     
         var rejectButton = document.createElement("button");
         rejectButton.textContent = "reject"; // Set the button textlelet 
         rejectButton.style.backgroundColor = "red";
+        rejectButton.style.width = "100px";
         let id2 = rejectButtonId.toString();
         rejectButton.id = id2;
             
