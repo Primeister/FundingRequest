@@ -11,6 +11,7 @@ function getFundManagers(){
     var heading = document.createElement('h1');
     heading.textContent = "Approve Fund Managers";
     var line = document.createElement('hr');
+    line.style.paddingBottom = "100px"
     headingSection.appendChild(heading);
     
     mainElement.appendChild(headingSection);
@@ -38,11 +39,12 @@ function getFundManagers(){
         newSection.style.display = "flex";
         newSection.style.flexDirection = "row";
         newSection.style.justifyContent = "center";
-        newSection.style.paddingTop = "500px";
         newSection.style.borderWidth = "5px";
+        newSection.style.paddingTop = "50px";
         
         var innerSection = document.createElement("section");
         innerSection.style.paddingRight = "100px"
+        innerSection.style.width = "25%";
     
         // Create a new button element
         var approveButton = document.createElement("button");
