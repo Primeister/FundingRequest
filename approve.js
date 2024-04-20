@@ -5,6 +5,8 @@ function getFundManagers(){
     var mainElement = document.getElementById("main-section");
     mainElement.innerHTML = "";
     var headingSection = document.createElement("section");
+    headingSection.style.display = "flex";
+    headingSection.style.flexDirection = "row";
     headingSection.style.justifyContent = "center";
     var heading = document.createElement('h1');
     heading.textContent = "Approve Fund Managers";
@@ -30,6 +32,8 @@ function getFundManagers(){
         
     
         var newSection = document.createElement("section");
+        newSection.style.display = "flex";
+        newSection.style.flexDirection = "row";
         newSection.style.justifyContent = "center";
         var innerSection = document.createElement("section");
     
