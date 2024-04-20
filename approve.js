@@ -11,7 +11,7 @@ function getFundManagers(){
     var heading = document.createElement('h1');
     heading.textContent = "Approve Fund Managers";
     var line = document.createElement('hr');
-    line.style.paddingBottom = "100px"
+    line.style.marginBottom = "100px"
     headingSection.appendChild(heading);
     
     mainElement.appendChild(headingSection);
