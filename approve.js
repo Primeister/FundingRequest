@@ -17,7 +17,7 @@ function getFundManagers(){
     
     
         // Get a reference to the <main> element
-        var mainElement = document.querySelector("main-section");
+        var mainElement = document.getElementById("main-section");
     
         var newSection = document.createElement("section");
         var innerSection = document.createElement("section");
