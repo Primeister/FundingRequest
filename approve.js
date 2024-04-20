@@ -6,7 +6,7 @@ function getFundManagers(){
     mainElement.innerHTML = "";
     var headingSection = document.createElement("section");
     headingSection.style.display = "flex";
-    headingSection.style.flexDirection = "row";
+    headingSection.style.flexDirection = "column";
     headingSection.style.justifyContent = "center";
     var heading = document.createElement('h1');
     heading.textContent = "Approve Fund Managers";
@@ -14,6 +14,10 @@ function getFundManagers(){
     headingSection.appendChild(heading);
     headingSection.appendChild(line);
     mainElement.appendChild(headingSection);
+    var lineBreak = document.createElement("br");
+    mainElement.appendChild(lineBreak);
+    mainElement.appendChild(lineBreak);
+    mainElement.appendChild(lineBreak);
     
     
     fetch('https://fundreq.azurewebsites.net/fundManagers')
@@ -36,6 +40,7 @@ function getFundManagers(){
         newSection.style.flexDirection = "row";
         newSection.style.justifyContent = "center";
         var innerSection = document.createElement("section");
+        innerSection.style.paddingRight = "100px"
     
         // Create a new button element
         var approveButton = document.createElement("button");
