@@ -2,7 +2,17 @@ let apiUpdate = 'https://fundreq.azurewebsites.net/update/status/';
 
 function getFundManagers(){
 
-    document.getElementById("main-section").innerHTML = "";
+    var mainElement = document.getElementById("main-section");
+    mainElement.innerHTML = "";
+    var headingSection = document.createElement("section");
+    headingSection.style.justifyContent = "center";
+    var heading = document.createElement('h1');
+    heading.textContent = "Approve Fund Managers";
+    var line = document.createElement('hr');
+    headingSection.appendChild(heading);
+    headingSection.appendChild(line);
+    mainElement.appendChild(headingSection);
+    
     
     fetch('https://fundreq.azurewebsites.net/fundManagers')
     .then(res => {
@@ -17,9 +27,10 @@ function getFundManagers(){
     
     
         // Get a reference to the <main> element
-        var mainElement = document.getElementById("main-section");
+        
     
         var newSection = document.createElement("section");
+        newSection.style.justifyContent = "center";
         var innerSection = document.createElement("section");
     
         // Create a new button element
@@ -113,7 +124,7 @@ function getFundManagers(){
 
         let result = await response.json;
 
-        if(result.message == "Field updated succesfully"){
+        if(result.message == "Field updated successfully"){
             console.log(result.message);
             alert(result.message);
         }
