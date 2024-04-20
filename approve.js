@@ -71,9 +71,9 @@ function getFundManagers(){
         
     
         var name = document.createElement('p');
-        name = person.name + " " + person.surname;
+        name.textContent = person.name + " " + person.surname;
         var email = document.createElement('p');
-        email = person.email;
+        email.textContent = person.email;
     
         innerSection.appendChild(name);
         innerSection.appendChild(email);
