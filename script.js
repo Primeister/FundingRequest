@@ -1,3 +1,9 @@
+let googleApplicantEl = document.getElementById("google--applicant");
+let googleFundmanagerEl = document.getElementById("google--fundmanager");
+
+googleApplicantEl.innerText = googleApplicantEl.innerText + "as Applicant";
+googleFundmanagerEl.innerText = googleApplicantEl.innerText + "as Fund Manager";
+
 function signinPage(){
     document.getElementById('Signin-form').style.display="none";
     document.getElementById('Signup-form').style.display="block";
@@ -32,12 +38,8 @@ function handleCredentialResponse(response) {
     console.log("Email: " + responsePayload.email);
 }
 function decodeJwtResponse(jwtToken) {
-// Split the token into its parts (header, payload, signature)
+// Split the token into its parts (header, payload->userInfo, signature)
 const parts = jwtToken.split('.');
-
-// Decode the payload (second part)
 const payload = JSON.parse(atob(parts[1]));
-
-// Return the decoded payload
 return payload;
 }
