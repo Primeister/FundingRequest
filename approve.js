@@ -137,7 +137,7 @@ function getFundManagers(){
             body: bodyContent
         });
 
-        let result = await response.json;
+        let result = await response.json();
 
         if(result.message === "Field updated successfully"){
             console.log(result.message);
