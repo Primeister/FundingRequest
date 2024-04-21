@@ -139,7 +139,7 @@ function getFundManagers(){
 
         let result = await response.json;
 
-        if(result.message == "Field updated successfully"){
+        if(result.message === "Field updated successfully"){
             console.log(result.message);
             alert(result.message);
         }
