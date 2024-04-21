@@ -31,3 +31,13 @@ function handleCredentialResponse(response) {
     console.log("Image URL: " + responsePayload.picture);
     console.log("Email: " + responsePayload.email);
 }
+function decodeJwtResponse(jwtToken) {
+// Split the token into its parts (header, payload, signature)
+const parts = jwtToken.split('.');
+
+// Decode the payload (second part)
+const payload = JSON.parse(atob(parts[1]));
+
+// Return the decoded payload
+return payload;
+}
