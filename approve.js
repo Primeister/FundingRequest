@@ -10,7 +10,7 @@ function getFundManagers(){
     headingSection.style.justifyContent = "center";
     var heading = document.createElement('h1');
     heading.textContent = "Approve Fund Managers";
-    headingSection.style.fontSize = "large";
+    headingSection.style.fontSize = "30px";
     var line = document.createElement('hr');
     line.style.marginBottom = "60px"
     headingSection.appendChild(heading);
