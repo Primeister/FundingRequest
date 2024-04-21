@@ -40,7 +40,8 @@ function getFundManagers(){
         newSection.style.flexDirection = "row";
         newSection.style.justifyContent = "center";
         newSection.style.borderWidth = "5px";
-        newSection.style.paddingTop = "50px";
+        newSection.style.marginBottom = "50px";
+        newSection.style.backgroundColor = "white";
         
         var innerSection = document.createElement("section");
         innerSection.style.paddingRight = "100px"
