@@ -10,6 +10,7 @@
     <script src="signIn.js" defer></script>
     <script src="signUp.js" defer></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://accounts.google.com/gsi/client" async></script>
     <meta name="google-signin-client_id" content="597142915321-piedgs3olepu0k0icr4csmfhunq4k5te.apps.googleusercontent.com">
 </head>
 <body>
@@ -57,7 +58,19 @@
                 </select>
                 <input type="submit" class="submit" value="Create Account">
                 <hr>
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div id="g_id_onload"
+                    data-client_id="597142915321-piedgs3olepu0k0icr4csmfhunq4k5te.apps.googleusercontent.com"
+                    data-login_uri="https://witty-wave-04f49ad0f.5.azurestaticapps.net/"
+                    data-auto_prompt="false" data-callback="handleCredentialResponse">
+                </div>
+                <div class="g_id_signin"
+                    data-type="standard"
+                    data-size="large"
+                    data-theme="outline"
+                    data-text="sign_in_with"
+                    data-shape="rectangular"
+                    data-logo_alignment="left">
+                </div>
                 <div class="signin-link">Already have an Account? <a onclick="loginPage()">Sign In</a></div>
             </form>
             <form id="Signin-form">
