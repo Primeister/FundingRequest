@@ -8,6 +8,7 @@ function getFundManagers(){
     headingSection.style.display = "flex";
     headingSection.style.flexDirection = "row";
     headingSection.style.justifyContent = "center";
+    headingSection.style.marginTop = "30px";
     var heading = document.createElement('h1');
     heading.textContent = "Approve Fund Managers";
     heading.style.fontSize = "30px";
@@ -17,7 +18,7 @@ function getFundManagers(){
     
     mainElement.appendChild(headingSection);
     mainElement.appendChild(line);
-    var lineBreak = document.createElement("br");
+    document.querySelector("footer").style.display = "none";
     
     
     
@@ -26,15 +27,14 @@ function getFundManagers(){
         return res.json();
     }).then( data =>{
         
-        let approveButtonId = 0;
+        let newSectionId = 0;
     
         data.forEach(person => {
     
-        let rejectButtonId = approveButtonId + 1;
     
     
         // Get a reference to the <main> element
-        
+        let sectionId = newSectionId.toString(); 
     
         var newSection = document.createElement("section");
         newSection.style.display = "flex";
@@ -43,6 +43,8 @@ function getFundManagers(){
         newSection.style.borderWidth = "5px";
         newSection.style.marginBottom = "50px";
         newSection.style.backgroundColor = "white";
+        newSection.id = newSectionId;
+        
         
         var innerSection = document.createElement("section");
         innerSection.style.paddingRight = "100px"
@@ -53,15 +55,11 @@ function getFundManagers(){
         approveButton.textContent = "approve"; // Set the button text
         approveButton.style.backgroundColor = "green";
         approveButton.style.width = "100px";
-        let id = approveButtonId.toString();
-        approveButton.id = id;
     
         var rejectButton = document.createElement("button");
         rejectButton.textContent = "reject"; // Set the button textlelet 
         rejectButton.style.backgroundColor = "red";
         rejectButton.style.width = "100px";
-        let id2 = rejectButtonId.toString();
-        rejectButton.id = id2;
             
         let personId = person.id.toString();
         // Define the onclick function for the button
@@ -73,8 +71,8 @@ function getFundManagers(){
 
             update(data, personId);
 
-            document.getElementById(id).disabled = true;
-            document.getElementById(id2).disabled = true;
+            document.getElementById(sectionId).remove();
+            
         };
         
 
@@ -86,8 +84,8 @@ function getFundManagers(){
 
             update(data, personId);
 
-            document.getElementById(id).disabled = true;
-            document.getElementById(id2).disabled = true;
+            document.getElementById(sectionId).remove();
+            
             
         };
     
@@ -116,7 +114,7 @@ function getFundManagers(){
         // Append the new section to the main element
         mainElement.appendChild(newSection);
     
-        approveButtonId = approveButtonId + 1;
+        newSection = newSectionId + 1;
         });
     
         
