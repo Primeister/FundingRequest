@@ -13,7 +13,8 @@ function loginPage(){
     document.getElementById('Signup-form').style.display="none";
 }
 function homepage(data) {
-    let { username, name, surname, email, password, userType } = data;
+    let username = data.username;
+    let userType = data.userType;
 
     sessionStorage.setItem('username', username);
     sessionStorage.setItem('email', email);
