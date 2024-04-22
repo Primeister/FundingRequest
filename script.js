@@ -1,5 +1,7 @@
 let googleApplicantEl = document.getElementById("google--applicant");
 let googleFundmanagerEl = document.getElementById("google--fundmanager");
+const apiRegister = "https://fundreq.azurewebsites.net/register";
+
 
 googleApplicantEl.innerText = googleApplicantEl.innerText + "as Applicant";
 googleFundmanagerEl.innerText = googleApplicantEl.innerText + "as Fund Manager";
@@ -51,6 +53,29 @@ function handleCredentialResponse(response) {
     }
     register(data);
 }
+async function register(data) {
+        let bodyContent = JSON.stringify(data);
+        let headersList = {
+            "Accept": "*/*",
+            "Content-Type": "application/json"
+           }
+        let response = await fetch(apiRegister, {
+            method: "POST",
+            mode: "cors",
+            headers: headersList,
+            body: bodyContent
+        });
+        let result = await response.json();
+        console.log(result);
+        if(result.message === "User registered successfully")homepage(data);
+        else if(result.error === "Email already used, try signing in."){
+            emailEl.style.borderColor = "red";
+            alert(result.error);
+        }
+        else {alert(result.error);}
+    }
+    
+});
     
 function decodeJwtResponse(jwtToken) {
 // Split the token into its parts (header, payload->userInfo, signature)
