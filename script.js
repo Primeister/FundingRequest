@@ -17,7 +17,7 @@ function homepage(data) {
     let userType = data.userType;
 
     sessionStorage.setItem('username', username);
-    sessionStorage.setItem('email', email);
+    
 
 
     if (userType === "applicants") window.location.href = "applicants.html";
