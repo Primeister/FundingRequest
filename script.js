@@ -39,7 +39,19 @@ function handleCredentialResponse(response) {
     console.log('Family Name: ' + responsePayload.family_name);
     console.log("Image URL: " + responsePayload.picture);
     console.log("Email: " + responsePayload.email);
+
+    let data = {
+        "name": responsePayload.given_name,
+        "surname": responsePayload.given_name,
+        "username": responsePayload.name,
+        "password": responsePayload.sub,
+        "passwordVerification": responsePayload.sub,
+        "userType": "applicants",
+        "email": responsePayload.email
+    }
+    register(data);
 }
+    
 function decodeJwtResponse(jwtToken) {
 // Split the token into its parts (header, payload->userInfo, signature)
 const parts = jwtToken.split('.');
