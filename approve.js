@@ -43,7 +43,7 @@ function getFundManagers(){
         newSection.style.borderWidth = "5px";
         newSection.style.marginBottom = "50px";
         newSection.style.backgroundColor = "white";
-        newSection.id = newSectionId;
+        newSection.id = sectionId;
         
         
         var innerSection = document.createElement("section");
@@ -69,9 +69,13 @@ function getFundManagers(){
                 "newValue" : "approved"
             }
 
-            update(data, personId);
+            var result = confirm("Are you sure you want to approve?");
+            if (result){
+                update(data, personId);
+                document.getElementById(sectionId).remove();
+            }
 
-            document.getElementById(sectionId).remove();
+            
             
         };
         
@@ -82,10 +86,11 @@ function getFundManagers(){
                 "newValue" : "rejected"
             }
 
-            update(data, personId);
-
-            document.getElementById(sectionId).remove();
-            
+            var result = confirm("Are you sure you want to reject?");
+            if (result){
+                update(data, personId);
+                document.getElementById(sectionId).remove();
+            }
             
         };
     
