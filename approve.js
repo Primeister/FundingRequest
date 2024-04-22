@@ -119,7 +119,7 @@ function getFundManagers(){
         // Append the new section to the main element
         mainElement.appendChild(newSection);
     
-        newSection = newSectionId + 1;
+        newSectionId = newSectionId + 1;
         });
     
         
