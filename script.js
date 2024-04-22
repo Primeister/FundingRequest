@@ -75,7 +75,6 @@ async function register(data) {
         else {alert(result.error);}
     }
     
-});
     
 function decodeJwtResponse(jwtToken) {
 // Split the token into its parts (header, payload->userInfo, signature)
