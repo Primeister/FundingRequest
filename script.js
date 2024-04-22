@@ -15,8 +15,10 @@ function loginPage(){
 function homepage(data) {
     let username = data.username;
     let userType = data.userType;
+    let email = data.email;
 
     sessionStorage.setItem('username', username);
+    sessionStorage.setItem('email', email);
     
 
 
