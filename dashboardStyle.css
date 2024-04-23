@@ -196,14 +196,13 @@ h1{
 
 footer{
   display:flex;
-  background-color: white;
   color: #060606;
   height: 40px;
   width: 100%;
   text-align: center;
   justify-content:center;
   bottom: 0;
-  position:static;
+  /*position:fixed;*/
   border-top: solid 1px grey;
   
 }
