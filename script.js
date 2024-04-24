@@ -82,3 +82,10 @@ const parts = jwtToken.split('.');
 const payload = JSON.parse(atob(parts[1]));
 return payload;
 }
+
+
+function advertAreaShow()
+{
+    document.getElementById('landing-section').style.display="none";
+    document.getElementById('advertiserFormSection').style.display="block";
+}

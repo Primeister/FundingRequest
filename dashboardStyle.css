@@ -206,3 +206,79 @@ footer{
   border-top: solid 1px grey;
   
 }
+#advertiserFormSection
+{
+  height: 1000px;
+  width: 100%;
+  display: none;
+  text-align: center;
+  background-color: transparent;
+}
+
+#advertiserFormSection fieldset
+{
+  width: 40%;
+  border-radius: 10px;
+  border: solid 2px white;
+  background-color: white;
+  box-shadow: 10px 10px 20px black;
+  text-shadow: 5px 5px 5px plum ;
+  
+}
+
+#advertiserFormSection fieldset input
+{
+  width: 40%;
+  height: 40px;
+  text-align: center;
+  border-radius: 10px;
+  border:solid 2px grey;
+  transition: all 0.3s ease;
+
+}
+#advertiserFormSection fieldset select
+{
+  width: 40%;
+  height: 40px;
+  text-align: center;
+  border-radius: 10px;
+  border:solid 2px grey;
+  transition: all 0.3s ease;
+
+}
+#advertiserFormSection fieldset textarea
+{
+  width: 40%;
+  
+  text-align: left;
+  border-radius: 0px 10px 10px 10px;
+  border:solid 2px grey;
+  transition: all 0.3s ease;
+
+}
+#advertiserFormSection fieldset input:hover
+{
+  border: solid 2px plum;
+}
+#advertiserFormSection fieldset select:hover
+{
+  border: solid 2px plum;
+}
+#advertiserFormSection fieldset textarea:hover
+{
+  border: solid 2px plum;
+}
+
+#submitBtn
+{
+  background-color: plum;
+  color: white;
+  border:solid 2px white;
+}
+
+#submitBtn:hover
+{
+    background-color: white;
+    color: plum;
+    font-size: larger;
+}
