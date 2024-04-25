@@ -164,3 +164,11 @@ select option:hover {
         width: 100%;
     }
 }
+.google--applicant{
+    color: black;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    padding-bottom: 15px;
+    justify-content: space-between;
+}   
