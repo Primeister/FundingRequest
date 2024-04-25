@@ -1,7 +1,6 @@
-let googleApplicantEl = document.querySelector(".google--applicant");
-let googleFundmanagerEl = document.querySelector(".google--fundmanager");
+let googleApplicantEl = document.getElementById("google--applicant");
+let googleFundmanagerEl = document.getElementById("google--fundmanager");
 const apiRegister = "https://fundreq.azurewebsites.net/register";
-
 
 
 function signinPage(){
@@ -40,7 +39,7 @@ function handleCredentialResponse(response) {
     console.log("Image URL: " + responsePayload.picture);
     console.log("Email: " + responsePayload.email);
 
-    /*let data = {
+    let data = {
         "name": responsePayload.given_name,
         "surname": responsePayload.given_name,
         "username": responsePayload.name,
@@ -50,7 +49,6 @@ function handleCredentialResponse(response) {
         "email": responsePayload.email
     }
     register(data);
-    */
 }
 async function register(data) {
         let bodyContent = JSON.stringify(data);
@@ -73,18 +71,11 @@ async function register(data) {
         }
         else {alert(result.error);}
     }
-    
+
     
 function decodeJwtResponse(jwtToken) {
 // Split the token into its parts (header, payload->userInfo, signature)
 const parts = jwtToken.split('.');
 const payload = JSON.parse(atob(parts[1]));
 return payload;
-}
-
-
-function advertAreaShow()
-{
-    document.getElementById('landing-section').style.display="none";
-    document.getElementById('advertiserFormSection').style.display="block";
 }
