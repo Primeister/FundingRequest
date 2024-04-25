@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     const apiRegister = "https://fundreq.azurewebsites.net/register";
-    const verifyPasswordEl = document.getElementById("VerifyPassword");
+    /*const verifyPasswordEl = document.getElementById("VerifyPassword");
     const emailEl = document.getElementById("email1");
 
     var signupForm = document.getElementById("Signup-form");
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
         
     });
-    
+    */
     async function register(data) {
         let bodyContent = JSON.stringify(data);
         let headersList = {

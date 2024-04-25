@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var loginForm = document.getElementById("Signin-form");
 
-    loginForm.addEventListener("submit", function(event) {
+    /*loginForm.addEventListener("submit", function(event) {
         event.preventDefault();
         data = {
             "email": document.getElementById("email2").value,
@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         login(data);
         
     });
+    */
 
     async function login(data) {
         let bodyContent = JSON.stringify(data);
