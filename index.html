@@ -24,6 +24,7 @@
         <div class="form-wrap">
             <form id="Signup-form">
                 <h1 class="title">Sign up</h1>
+                <!--
                 <div class="form-floating">
                     <input type="text" name="name1" class="form-control" placeholder="" id="name1" required>
                     <label for="name1" class="form-control-placeholder">Name</label>
@@ -57,32 +58,39 @@
                     <option value="funder">Fund Manager</option>
                 </select>
                 <input type="submit" class="submit" value="Create Account">
-                <hr>
+                -->
                 <div id="g_id_onload"
                     data-client_id="597142915321-piedgs3olepu0k0icr4csmfhunq4k5te.apps.googleusercontent.com"
                     data-login_uri="https://witty-wave-04f49ad0f.5.azurestaticapps.net/"
                     data-auto_prompt="false" data-callback="handleCredentialResponse">
                 </div>
-                <div id="google--applicant" class="g_id_signin"
-                    data-type="standard"
-                    data-size="large"
-                    data-theme="outline"
-                    data-text="signup_with"
-                    data-shape="rectangular"
-                    data-logo_alignment="left">
+                <div class="google--applicant">
+                    <div>Sign up as an Applicant: </div>
+                    <div class="g_id_signin"
+                        data-type="standard"
+                        data-size="large"
+                        data-theme="filled_blue"
+                        data-text="signin"
+                        data-shape="rectangular"
+                        data-logo_alignment="left">
+                    </div>
                 </div>
-                <div id="google--fundmanager" class="g_id_signin"
-                    data-type="standard"
-                    data-size="large"
-                    data-theme="outline"
-                    data-text="signup_with"
-                    data-shape="rectangular"
-                    data-logo_alignment="left">
+                <div class="google--applicant">
+                    <div>Sign up as a Fund Manager: </div>
+                    <div class="g_id_signin"
+                        data-type="standard"
+                        data-size="large"
+                        data-theme="filled_blue"
+                        data-text="signin"
+                        data-shape="rectangular"
+                        data-logo_alignment="left">
+                    </div>
                 </div>
                 <div class="signin-link">Already have an Account? <a onclick="loginPage()">Sign In</a></div>
             </form>
             <form id="Signin-form">
                 <h1 class="title">Sign in</h1>
+                <!--
                 <div class="form-floating">
                     <input type="email" name="email2" class="form-control" id="email2" placeholder="" required>
                     <label for="email2" class="form-control-placeholder">Email Address</label>
@@ -92,6 +100,17 @@
                     <label for="password2" class="form-control-placeholder">Password</label>
                 </div>
                 <input type="submit" class="submit" value="Log in">
+            -->
+                <div class="google--signin">
+                    <div class="g_id_signin"
+                        data-type="standard"
+                        data-size="large"
+                        data-theme="filled_blue"
+                        data-text="continue_with"
+                        data-shape="rectangular"
+                        data-logo_alignment="left">
+                    </div>
+                </div>
                 <div class="signin-link">Don't have an Account? <a onclick="signinPage()">Sign up</a></div>
             </form>
         </div>
