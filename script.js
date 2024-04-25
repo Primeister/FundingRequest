@@ -1,10 +1,8 @@
-let googleApplicantEl = document.getElementById("google--applicant");
-let googleFundmanagerEl = document.getElementById("google--fundmanager");
+let googleApplicantEl = document.querySelector(".google--applicant");
+let googleFundmanagerEl = document.querySelector(".google--fundmanager");
 const apiRegister = "https://fundreq.azurewebsites.net/register";
 
 
-googleApplicantEl.innerText = googleApplicantEl.innerText + "as Applicant";
-googleFundmanagerEl.innerText = googleApplicantEl.innerText + "as Fund Manager";
 
 function signinPage(){
     document.getElementById('Signin-form').style.display="none";
@@ -42,7 +40,7 @@ function handleCredentialResponse(response) {
     console.log("Image URL: " + responsePayload.picture);
     console.log("Email: " + responsePayload.email);
 
-    let data = {
+    /*let data = {
         "name": responsePayload.given_name,
         "surname": responsePayload.given_name,
         "username": responsePayload.name,
@@ -52,6 +50,7 @@ function handleCredentialResponse(response) {
         "email": responsePayload.email
     }
     register(data);
+    */
 }
 async function register(data) {
         let bodyContent = JSON.stringify(data);
