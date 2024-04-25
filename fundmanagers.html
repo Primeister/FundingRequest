@@ -92,7 +92,7 @@
       <br><br>
     <form action="">
 
-      <input type="text" placeholder="Name of funding" required><br>
+      <input type="text" id="fundingName" placeholder="Name of funding" required><br>
       <br><br>
       <select name="fundingType" id="fundingType" class="large-font-size" required>
         <option value="void">Type of funding</option>
@@ -101,13 +101,14 @@
         <option value="education">Education</option>
       </select><br><br><br>
         Description:<br>
-        <textarea name="description" id="" cols="30" rows="4" required></textarea><br><br><br>
+        <textarea name="description" id="description" cols="30" rows="4" required></textarea><br><br><br>
         Requirements:<br>
-        <textarea name="requirements" id="" cols="30" rows="4" required></textarea><br><br><br>
-        <input type="submit" class="submit" value="Post!" style="cursor: pointer;" id="submitBtn">
+        <textarea name="requirements" id="requirements" cols="30" rows="4" required></textarea><br><br><br>
+        <input type="submit" onclick="PostFunding()" class="submit" value="Post!" style="cursor: pointer;" id="submitBtn">
         <br><br><br>
         <caption style="color: grey;"> all submisions are subject to review by admin, <b style="cursor: pointer;">Learn more about review process</b> </caption>
         <br><br><br>
+
     </form>  
     
     

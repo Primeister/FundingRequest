@@ -1,7 +1,8 @@
+let username = sessionStorage.getItem('username');
+let email = sessionStorage.getItem('email');
+
 document.addEventListener("DOMContentLoaded", function() {
 
-    let username = sessionStorage.getItem('username');
-    let email = sessionStorage.getItem('email');
     
     document.getElementById("username").textContent = username;
 
@@ -24,3 +25,32 @@ document.addEventListener("DOMContentLoaded", function() {
         
     });
  });
+
+ function PostFunding(){
+    /*let data = {
+        "name": document.getElementById("fundingName").value,
+        "type": document.getElementById("fundingType").value,
+        "description": document.getElementById("description").value,
+        "requirements": document.getElementById("requirements").value
+    };
+
+    post(data);*/
+    alert(document.getElementById("description").value);
+ }
+
+ async function post(data) {
+    let bodyContent = JSON.stringify(data);
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json"
+       }
+    let response = await fetch("https://fundreq.azurewebsites.net/fundManagers/advert/post/prino", {
+        method: "POST",
+        mode: "cors",
+        headers: headersList,
+        body: bodyContent
+    });
+    let result = await response.json();
+    console.log(result);
+    
+}
