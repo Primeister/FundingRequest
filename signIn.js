@@ -32,9 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(result);
         if(result.message === "Login successful")
         {
-            data.username = result.username;
             data.userType = result.userType ;
-
             homepage(data);
         
             console.log(result);
