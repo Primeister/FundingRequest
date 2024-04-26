@@ -17,7 +17,7 @@ function homepage(data) {
     let userType = data.userType;
     let email = data.email;
 
-    sessionStorage.setItem('username', data.name + ' '+ data.surname);
+    sessionStorage.setItem('username', data.name + ' ' + data.surname);
     sessionStorage.setItem('email', email);
     
 
