@@ -1,8 +1,8 @@
 let googleApplicantEl = document.querySelector(".google--applicant");
 let googleFundmanagerEl = document.querySelector(".google--fundmanager");
 const apiRegister = "https://fundreq.azurewebsites.net/register";
-
-
+let userType;
+let userData;
 
 function signinPage(){
     document.getElementById('Signin-form').style.display="none";
@@ -17,7 +17,7 @@ function homepage(data) {
     let userType = data.userType;
     let email = data.email;
 
-    sessionStorage.setItem('username', username);
+    sessionStorage.setItem('username', data.name + ' '+ data.surname);
     sessionStorage.setItem('email', email);
     
 
@@ -33,25 +33,25 @@ function handleCredentialResponse(response) {
     // to decode the credential response.
     const responsePayload = decodeJwtResponse(response.credential);
 
-    console.log("ID: " + responsePayload.sub);
-    console.log('Full Name: ' + responsePayload.name);
-    console.log('Given Name: ' + responsePayload.given_name);
-    console.log('Family Name: ' + responsePayload.family_name);
-    console.log("Image URL: " + responsePayload.picture);
-    console.log("Email: " + responsePayload.email);
 
-    /*let data = {
+    let data = {
         "name": responsePayload.given_name,
-        "surname": responsePayload.given_name,
-        "username": responsePayload.name,
-        "password": responsePayload.sub,
-        "passwordVerification": responsePayload.sub,
-        "userType": "applicants",
+        "surname": responsePayload.family_name,
         "email": responsePayload.email
     }
-    register(data);
-    */
+   
+    userData = data;
+    register({...data ,"userType": userType});
 }
+
+
+function setApplicant(){
+    userType = "applicants";
+}
+function setFunder(){
+    userType = "funders";
+}
+
 async function register(data) {
         let bodyContent = JSON.stringify(data);
         let headersList = {
