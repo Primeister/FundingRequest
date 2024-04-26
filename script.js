@@ -41,6 +41,7 @@ function handleCredentialResponse(response) {
     }
    
     userData = data;
+    console.log({...data ,"userType": userType})
     register({...data ,"userType": userType});
 }
 
