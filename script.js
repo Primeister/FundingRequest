@@ -1,7 +1,7 @@
 let googleApplicantEl = document.querySelector(".google--applicant");
 let googleFundmanagerEl = document.querySelector(".google--fundmanager");
 const apiRegister = "https://fundreq.azurewebsites.net/register";
-let userType;
+let userType = "applicants";
 let userData;
 
 function signinPage(){
