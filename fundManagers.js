@@ -27,15 +27,14 @@ document.addEventListener("DOMContentLoaded", function() {
  });
 
  function PostFunding(){
-    /*let data = {
+    let data = {
         "name": document.getElementById("fundingName").value,
         "type": document.getElementById("fundingType").value,
         "description": document.getElementById("description").value,
         "requirements": document.getElementById("requirements").value
     };
 
-    post(data);*/
-    alert(document.getElementById("description").value);
+    post(data);
  }
 
  async function post(data) {
@@ -44,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
         "Accept": "*/*",
         "Content-Type": "application/json"
        }
-    let response = await fetch("https://fundreq.azurewebsites.net/fundManagers/advert/post/prino", {
+    let response = await fetch("https://fundreq.azurewebsites.net/fundManagers/advert/post/" + email, {
         method: "POST",
         mode: "cors",
         headers: headersList,
