@@ -172,3 +172,33 @@ select option:hover {
     padding-bottom: 15px;
     justify-content: space-between;
 }   
+
+.google-signin-button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #757575;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+.google-signin-button:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Google Icon */
+.google-icon {
+    background: url('https://developers.google.com/identity/images/g-logo.png') center center no-repeat;
+    background-size: contain;
+    display: inline-block;
+    height: 20px;
+    margin-right: 10px;
+    width: 20px;
+  }

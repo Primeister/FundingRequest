@@ -6,12 +6,11 @@
     <link rel="icon" type="image/x-icon" href="images/FundXW.png">
     <link rel="stylesheet" href="style.css">
     <title>Fund X</title>
+    <script type="module" src="main.js" defer></script>
     <script src="script.js" defer></script>
     <script src="signIn.js" defer></script>
     <script src="signUp.js" defer></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://accounts.google.com/gsi/client" async></script>
-    <meta name="google-signin-client_id" content="597142915321-piedgs3olepu0k0icr4csmfhunq4k5te.apps.googleusercontent.com">
+    
 </head>
 <body>
     <main id="mainSignup">
@@ -23,73 +22,31 @@
         </div>
     </div>
         <div class="form-wrap">
-            <form id="Signup-form">
-                <h1 class="title">Sign up</h1>
-                <div class="google--applicant">
-                    <div>Sign up as an Applicant: </div>
-                    <div id="g_id_onload"
-                        data-client_id="597142915321-piedgs3olepu0k0icr4csmfhunq4k5te.apps.googleusercontent.com"
-                        data-context="signin"
-                        data-callback="handleCredentialResponse"
-                        data-auto_select="true"
-                        data-itp_support="true">
-                    </div>
-
-                    <div class="g_id_signin"
-                        data-type="standard"
-                        data-shape="rectangular"
-                        data-theme="filled_blue"
-                        data-text="signin"
-                        data-size="large"
-                        data-logo_alignment="left"
-                        data-click_listener="setApplicant">
-                    </div>
-                </div>
-                <div class="google--applicant">
-                    <div>Sign up as a Fund Manager: </div>
-                    <div id="g_id_onload"
-                        data-client_id="597142915321-piedgs3olepu0k0icr4csmfhunq4k5te.apps.googleusercontent.com"
-                        data-context="signin"
-                        data-callback="handleCredentialResponse"
-                        data-auto_select="true"
-                        data-itp_support="true">
-                    </div>
-                    <div class="g_id_signin"
-                        data-type="standard"
-                        data-size="large"
-                        data-theme="filled_blue"
-                        data-text="signin"
-                        data-shape="rectangular"
-                        data-logo_alignment="left"
-                        data-click_listener="setFunder">
-                    </div>
+            <form id="Signup-form"
+            <h1 class="title">Sign up</h1>
+            <div class="google--applicant">
+                <button id="google-signin-btn" class="google-signin-button" type="button"><span class="google-icon"></span>Sign up as an Applicant</button>
+            </div>
+            <div class="google--applicant">
+                <button id="google-signin-btn-1" class="google-signin-button" type="button"><span class="google-icon"></span>Sign up as an a Fund Manager</button>
+            </div>
+                    
                 </div>
                 <div class="signin-link">Already have an Account? <a onclick="loginPage()">Sign In</a></div>
             </form>
             <form id="Signin-form">
                 <h1 class="title">Sign in</h1>
                 <div class="google--signin">
-                    <div id="g_id_onload"
-                        data-client_id="597142915321-piedgs3olepu0k0icr4csmfhunq4k5te.apps.googleusercontent.com"
-                        data-context="signin"
-                        data-ux_mode="popup"
-                        data-callback="handleCredentialResponse"
-                        data-auto_select="true"
-                        data-itp_support="true">
+                    <div class="google--applicant">
+                        <button id="google-signin-btn2" class="google-signin-button" type="button"><span class="google-icon"></span>Continue with Google</button>
                     </div>
-                    <div class="g_id_signin"
-                        data-type="standard"
-                        data-size="large"
-                        data-theme="filled_blue"
-                        data-text="continue_with"
-                        data-shape="rectangular"
-                        data-logo_alignment="left"
-                        data-click_listener="setApplicant">
-                    </div>
-                </div>
-                <div class="signin-link">Don't have an Account? <a onclick="signinPage()">Sign up</a></div>
+                    <div class="signin-link">Don't have an Account? <a onclick="signinPage()">Sign up</a></div>
+                </div >
+                
             </form>
         </div>
     </main>
 </body>
+</html>
+
 </html>
