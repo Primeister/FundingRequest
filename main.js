@@ -12,7 +12,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const apiRegister = "https://fundreq.azurewebsites.net/register";
-const apiLogin = "https://fundreq.azurewebsites.net/register";
+const apiLogin = "https://fundreq.azurewebsites.net/login";
 
 function homepage(data) {
     let userType = data.userType;
