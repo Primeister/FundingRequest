@@ -7,6 +7,7 @@
     <title>Applicant Dashboard</title>
     <link rel="stylesheet" href="dashboardStyle.css"/>
     <link rel="icon" type="image/x-icon" href="images/FundXW.png">
+    <script src="applicants.js" defer></script>
   </head>
   <body>
     <header class="nav1">
@@ -37,21 +38,27 @@
       </nav>
     </aside>
   
-    <section class="classMain-section" style="margin-top:20px;">
+    <section class="classMain-section" id="bursaries" style="margin-top:20px;">
       <h1>EDUCATIONAL BURSARIES AND SCHOLARSHIPS</h1><hr>
       <!--<p>This is where applicants view educational funding opportunities</p>-->
-      
+      <div class="opportunities" id="bursary-opp">
+      </div>
+        
     </section>
       
-    <section class="classMain-section">
+    <section class="classMain-section" id="business">
       <h1>BUSINESS FUNDING</h1><hr> 
       <!--<p>This is where applicants view business funding opportunities</p>-->
+      <div class="opportunities" id="business-opp">
+    </div>
       
     </section>
 
-    <section class="classMain-section">
+    <section class="classMain-section" id="events">
       <h1>EVENTS FUNDING</h1><hr>
       <!--<p>This is where applicants view events funding opportunities</p>-->
+      <div class="opportunities" id="event-opp">
+    </div>
       
     </section>
 
