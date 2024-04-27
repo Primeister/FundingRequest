@@ -12,6 +12,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const apiRegister = "https://fundreq.azurewebsites.net/register";
+const apiLogin = "https://fundreq.azurewebsites.net/register";
 
 function homepage(data) {
     let userType = data.userType;
@@ -52,6 +53,31 @@ async function register(data) {
         }
         else {alert(result.error);}
     }
+async function login(data) {
+    let bodyContent = JSON.stringify(data);
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json"
+        }
+    let response = await fetch(apiLogin, {
+        method: "POST",
+        mode: "cors",
+        headers: headersList,
+        body: bodyContent
+    });
+    let result = await response.json();
+    console.log(result);
+    if(result.message === "User logged in successfully")
+    {
+        data.userType = result.userType ;
+
+        homepage(data);
+    
+        console.log(result);
+        alert(result);
+    }
+    else{alert(result.error);}
+}
 
 function advertAreaShow()
 {
@@ -74,7 +100,6 @@ googleSignin.addEventListener("click", () => {
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const user = result.user;
-	console.log(user);
 	let name = (user.displayName).split(" ");
 	let firstName = name[0], surname = name[1];
 	let data = {name: firstName, surname: surname, email: user.email, userType: "applicants"}
@@ -88,7 +113,6 @@ googleSigninFund.addEventListener("click", () => {
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const user = result.user;
-	console.log(user);
 	let name = (user.displayName).split(" ");
 	let firstName = name[0], surname = name[1];
 	let data = {name: firstName, surname: surname, email: user.email, userType: "funders"}
@@ -104,8 +128,8 @@ googleSigninFund.addEventListener("click", () => {
 	console.log(user);
 	let name = (user.displayName).split(" ");
 	let firstName = name[0], surname = name[1];
-	let data = {name: firstName, surname: surname, email: user.email, userType: "applicants"}
-	register(data);
+	let data = {name: firstName, surname: surname, email: user.email}
+	login(data);
   });
   
 });
