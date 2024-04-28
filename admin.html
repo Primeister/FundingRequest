@@ -9,15 +9,16 @@
     <link rel="icon" type="image/x-icon" href="images/FundXW.png">
     <script src="approve.js"></script>
     <script src="admin.js"></script>
+    <script src="dashboardScript.js"></script>
   </head>
   <body>
     <header class="nav1">
       <img src="images/FundXWF.png" alt="logo">
       <nav class="topNav">
         <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="howitworks.html">How It Works</a></li>
-          <li><a href="help.html">Help</a></li>
+          <li><a href="#" id="showPageLink">About</a></li>
+          <li><a href="#" id="showPageLink">How It Works</a></li>
+          <li><a href="#" id="showPageLink">Help</a></li>
         </ul>
       </nav>
   </header>
@@ -29,7 +30,7 @@
                 <img src="images/user.png" class="userImage" alt="user-icon"/><br>
             </section><hr>
           <ul>
-            <li class="active"><a href="#"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
+            <li class="active"><a href="admin.html"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
             <li><a href="#"><img src="images/manageUsers.png" alt="users-icon"/></a><p>Manage Users</p></li>
             <li onclick="getFundManagers()"><a href="#"><img src="images/Approve.png" alt="approve-icon"/></a><p>Approve Fund-Managers</p></li>
             <li><a href="#"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
@@ -40,43 +41,101 @@
           </ul>
         </nav>
     </aside>
+    <main class="classMain">
+      <section id="main-section">
 
-    <section id="main-section">
+        <section class="classMain-section" style="margin-top:20px;">
+            <h1>QUICK STATS</h1><hr>
+            <!--<p>Summary of key metrics</p>
+            <p>Such as total number of users or pending approvals</p>-->
+        </section>
+    
+        <section class="classMain-section">
+            <h1>RECENT ACTIVITY FEED</h1><hr>
+            <!--<p>This is where we might wanna display the recent activities or events, such as new user registrations, approved funding opportunities,etc.</p>-->
+            
+        </section>
+    
+        <section class="classMain-section">
+            <h1>ALERTS OR NOTIFICATIONS</h1><hr>
+            <!--<p>Alerts of notifications for pending tasks that require the admin's attention</p>-->
+            
+        </section>
+    
+        <section class="classMain-section">
+            <h1>ANNOUNCEMENTS</h1><hr>
+            <!--<p>Space for important announcements, updates, or news related to funding management system or the organization</p>-->
+            
+        </section>
+    
+        <section class="classMain-section">
+            <h1>FEEDBACK</h1><hr>
+            <!--<p>If we wanna get feedback we can add this</p>-->
+            
+        </section>
+    
+      </section>
+    </main>
 
-    <section class="classMain-section" style="margin-top:20px;">
-        <h1>QUICK STATS</h1><hr>
-        <!--<p>Summary of key metrics</p>
-        <p>Such as total number of users or pending approvals</p>-->
-    </section>
+    <main id="aboutId" class="aboutClass">
+      <section class="aboutClass-section">
+          <h1>PROJECT OVERVIEW</h1>
+          <p>Our funding requests management project aims to revolutionize the way organizations manage and access funding initiatives. We provide a centralized platform that facilitates the advertising of funding opportunities and the streamlined management of applications. From educational scholarships to business grants and event sponsorships, our platform caters to a diverse range of funding needs, empowering organizations to make a meaningful impact in society.</p>
+      </section>
 
-    <section class="classMain-section">
-        <h1>RECENT ACTIVITY FEED</h1><hr>
-        <!--<p>This is where we might wanna display the recent activities or events, such as new user registrations, approved funding opportunities,etc.</p>-->
-        
-    </section>
+      <section class="aboutClass-section">
+          <h1>Vision and Mission</h1>
+          <img src="images/visionAndMission.jpg" alt="vision">
+          <p>Our vision is to create a world where accessing funding for impactful initiatives is easy, transparent, and efficient. We are on a mission to democratize access to funding opportunities, empowering individuals and organizations to pursue their goals and drive positive change in their communities. Through our platform, we strive to foster innovation, support education, and facilitate collaboration between funders and applicants.</p>
+      </section>
 
-    <section class="classMain-section">
-        <h1>ALERTS OR NOTIFICATIONS</h1><hr>
-        <!--<p>Alerts of notifications for pending tasks that require the admin's attention</p>-->
-        
-    </section>
+      <section class="aboutClass-section">
+          <h1>Objectives and Goals</h1>
+          <img src="images/objectivesAndGoals.jpg" alt="objectives">
+          <p>Provide a centralized platform for advertising funding opportunities and managing applications</p>
+          <p>Ensure transparency, efficiency, and accessibility in the funding process</p>
+          <p>Empower fund managers to make informed decisions and track the progress of funding initiatives</p>
+          <p>Enhance user experience through continuous improvement and innovation</p>
+          <p>Foster collaboration and networking among stakeholders in the funding ecosystem</p>
+      </section>
 
-    <section class="classMain-section">
-        <h1>ANNOUNCEMENTS</h1><hr>
-        <!--<p>Space for important announcements, updates, or news related to funding management system or the organization</p>-->
-        
-    </section>
+      <section class="aboutClass-section">
+          <h1>KEY FEATURES</h1>
+          <img src="images/keyFeatures.png" alt="key">
+          <p>User-friendly interface for advertising funding opportunities and submitting applications</p>
+          <p>Comprehensive user management system with roles for applicants, fund managers, and platform administrators</p>
+          <p>Budgeting tools to track funds and manage allocations effectively</p>
+          <p>Reporting dashboard with real-time insights into funding usage and application data</p>
+          <p>Notifications system to keep users informed about updates and relevant information</p>
+          <p>Bonus feature: Document upload and scanning to streamline the application process</p>
+      </section>
 
-    <section class="classMain-section">
-        <h1>FEEDBACK</h1><hr>
-        <!--<p>If we wanna get feedback we can add this</p>-->
-        
-    </section>
+      <section class="aboutClass-section">
+          <h1>TEAM CONTRIBUTORS</h1>
+          <img src="images/teamContributors.png" alt="team">
+          <p>Our project is led by a dedicated team of developers, designers, and project managers committed to delivering a high-quality and impactful solution. 
+              Meet our team [<a href="#">here</a>] and learn more about our contributors [<a href="#">here</a>].</p>
+      </section>
 
-  </section>
+      <section class="aboutClass-section">
+          <h1>TIMELINE AND PROGRESS</h1>
+          <img src="images/timelineAndProgress.png" alt="timeline">
+          <p>Since its inception, our project has made significant strides in development, with major milestones achieved along the way. We are currently in [development phase/release phase].</p>
+      </section>
+
+      <section class="aboutClass-section">
+          <h1>VALUES AND PRINCIPLES</h1>
+          <img src="images/valuesAndPrinciples.png" alt="values">
+          <p>Transparency: We believe in open communication and accountability throughout the funding process</p>
+          <p>Innovation: We embrace continuous improvement and innovation to deliver the best possible experience for our users</p>
+          <p>Inclusivity: We are committed to creating an inclusive platform that supports diversity and equal access to funding opportunities</p>
+          <p>Impact: We are driven by a desire to create positive change and make a difference in the world through our work</p>
+      </section>
+    </main>
 
     <footer>
         <p>&copy; 2024 Fund X</p>
     </footer>
   </body>
 </html>
+
