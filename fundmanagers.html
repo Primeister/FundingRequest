@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="dashboardStyle.css"/>
     <link rel="icon" type="image/x-icon" href="images/FundXW.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script scr="dashboardScript.js"></script>
+    <script src="dashboardScript.js"></script>
     <script src="fundManagers.js"></script>
     <script src="script.js"></script>
   </head>
@@ -17,9 +17,9 @@
       <img src="images/FundXWF.png" alt="logo">
       <nav class="topNav">
         <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="howitworks.html">How It Works</a></li>
-          <li><a href="help.html">Help</a></li>
+          <li><a href="#" id="showPageLink">About</a></li>
+          <li><a href="howitworks.html" id="showPageLink">How It Works</a></li>
+          <li><a href="help.html" id="showPageLink">Help</a></li>
         </ul>
       </nav>
   </header>
@@ -31,7 +31,7 @@
                 <img src="images/user.png" class="userImage" alt="user-icon"/>
             </section><hr>
           <ul>
-            <li class="active"><a href="#"></a><img src="images/home.png" alt="dashboard-icon"/><p>Dashboard</p></li>
+            <li class="active"><a href="fundmanagers.html"></a><img src="images/home.png" alt="dashboard-icon"/><p>Dashboard</p></li>
             <li onclick="advertAreaShow()"><img src="images/advertise.png" alt="advertise-icon"/><p>Advertise Funding</p></li>
             <li><a href="Fund Managers/fundingOpportunities.html"><img src="images/viewfundopp.png" alt="view-fund-opportunities-icon"></a><p>View Funding Opportunities</p></li>
             <li><a href="#"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
@@ -44,84 +44,138 @@
         </nav>
     </aside>
 
-    <section id="landing-section">
-    <section class="classMain-section" style="margin-top:20px;">
-        <h1>QUICK STATS</h1><hr>
-        <!--
-        <p>Summary of key metrics</p>
-        <p>Such as the number of active funding opportunities, pending applications, and available budget</p>
-        -->
-    </section>
+    <main class="classMain">
+      <section id="landing-section">
+        <section class="classMain-section" style="margin-top:20px;">
+            <h1>QUICK STATS</h1><hr>
+            <!--
+            <p>Summary of key metrics</p>
+            <p>Such as the number of active funding opportunities, pending applications, and available budget</p>
+            -->
+        </section>
+    
+        <section class="classMain-section">
+            <h1>RECENT ACTIVITY FEED</h1><hr>
+            <!--<p>A section displaying recent activities or events within the system, such as newly submitted applications, approved funding opportunities, or messages from applicants,etc.</p> -->
+        </section>
+    
+        <section id="alerts" class="classMain-section">
+            <h1>ALERTS OR NOTIFICATIONS</h1><hr>
+           <!-- <p>Alerts of notifications for pending tasks that require the fund manager's attention</p>-->
+        </section>
+    
+        <section class="classMain-section">
+            <h1>APPLICATIONS MANAGEMENT</h1><hr>
+            <!--<p>Interface to review and manage incoming applications for funding opportunities</p>
+            <p>Options to approve, reject, or request additional information from applicants</p>-->  
+        </section>
+    
+        <section class="classMain-section">
+            <h1>HELP OR SUPPORT RESOURCES</h1><hr>
+            <!--<p>Links to documentation, or support resources to assist the fund managers in using the dashboard or resolving any issues</p>-->
+          </section>
+    
+        <section class="classMain-section">
+            <h1>FEEDBACK</h1><hr>
+            <!--<p>If we wanna get feedback we can add this</p>-->
+        </section>
+      </section>
+    
+      <section id="advertiserFormSection">
+    
+        <br><br><br><br><br><br>
+        <center>
+        <fieldset>
+        <br><br>
+        <img src="images/contract.png" alt="contract" style="height: 100px;">
+        <br><br>
+          <h1 style="font-size: xx-large;">Funding Details</h1>
+          <br><br>
+        <form action="">
+    
+          <input type="text" id="fundingName" placeholder="Name of funding" required><br>
+          <br><br>
+          <select title="fundingType"  name="fundingType" id="fundingType" class="large-font-size" required>
+            <option value="void">Type of funding</option>
+            <option value="business">Business</option>
+            <option value="event">Event</option>
+            <option value="education">Education</option>
+          </select><br><br><br>
+            Description:<br>
+            <textarea name="description" id="description" cols="30" rows="4" placeholder="add description" required></textarea><br><br><br>
+            Requirements:<br>
+            <textarea name="requirements" id="requirements" cols="30" rows="4" placeholder="enter requirements" required></textarea><br><br><br>
+            Deadline:<br>
+            <input type="date" id="deadline" placeholder="enter deadline"><br><br><br>
+            <input type="submit" onclick="PostFunding()" class="submit" value="Post!" style="cursor: pointer;" id="submitBtn">
+            <br><br><br>
+            <caption style="color: grey;"> all submisions are subject to review by admin, <b style="cursor: pointer;">Learn more about review process</b> </caption>
+            
+            <br><br><br>
+    
+        </form>  
+        </fieldset>
+      </center>
+      </section>
+    </main>
 
-    <section class="classMain-section">
-        <h1>RECENT ACTIVITY FEED</h1><hr>
-        <!--<p>A section displaying recent activities or events within the system, such as newly submitted applications, approved funding opportunities, or messages from applicants,etc.</p> -->
-    </section>
-
-    <section id="alerts" class="classMain-section">
-        <h1>ALERTS OR NOTIFICATIONS</h1><hr>
-       <!-- <p>Alerts of notifications for pending tasks that require the fund manager's attention</p>-->
-    </section>
-
-    <section class="classMain-section">
-        <h1>APPLICATIONS MANAGEMENT</h1><hr>
-        <!--<p>Interface to review and manage incoming applications for funding opportunities</p>
-        <p>Options to approve, reject, or request additional information from applicants</p>-->  
-    </section>
-
-    <section class="classMain-section">
-        <h1>HELP OR SUPPORT RESOURCES</h1><hr>
-        <!--<p>Links to documentation, or support resources to assist the fund managers in using the dashboard or resolving any issues</p>-->
+    <main id="aboutId" class="aboutClass">
+      <section class="aboutClass-section">
+          <h1>PROJECT OVERVIEW</h1>
+          <p>Our funding requests management project aims to revolutionize the way organizations manage and access funding initiatives. We provide a centralized platform that facilitates the advertising of funding opportunities and the streamlined management of applications. From educational scholarships to business grants and event sponsorships, our platform caters to a diverse range of funding needs, empowering organizations to make a meaningful impact in society.</p>
       </section>
 
-    <section class="classMain-section">
-        <h1>FEEDBACK</h1><hr>
-        <!--<p>If we wanna get feedback we can add this</p>-->
-    </section>
-  </section>
+      <section class="aboutClass-section">
+          <h1>Vision and Mission</h1>
+          <img src="images/visionAndMission.jpg" alt="vision">
+          <p>Our vision is to create a world where accessing funding for impactful initiatives is easy, transparent, and efficient. We are on a mission to democratize access to funding opportunities, empowering individuals and organizations to pursue their goals and drive positive change in their communities. Through our platform, we strive to foster innovation, support education, and facilitate collaboration between funders and applicants.</p>
+      </section>
 
-  <section id="advertiserFormSection">
+      <section class="aboutClass-section">
+          <h1>Objectives and Goals</h1>
+          <img src="images/objectivesAndGoals.jpg" alt="objectives">
+          <p>Provide a centralized platform for advertising funding opportunities and managing applications</p>
+          <p>Ensure transparency, efficiency, and accessibility in the funding process</p>
+          <p>Empower fund managers to make informed decisions and track the progress of funding initiatives</p>
+          <p>Enhance user experience through continuous improvement and innovation</p>
+          <p>Foster collaboration and networking among stakeholders in the funding ecosystem</p>
+      </section>
 
-    <br><br><br><br><br><br>
-    <center>
-    <fieldset>
-    <br><br>
-    <img src="images/contract.png" style="height: 100px;">
-    <br><br>
-      <h1 style="font-size: xx-large;">Funding Details</h1>
-      <br><br>
-    <form action="">
+      <section class="aboutClass-section">
+          <h1>KEY FEATURES</h1>
+          <img src="images/keyFeatures.png" alt="key">
+          <p>User-friendly interface for advertising funding opportunities and submitting applications</p>
+          <p>Comprehensive user management system with roles for applicants, fund managers, and platform administrators</p>
+          <p>Budgeting tools to track funds and manage allocations effectively</p>
+          <p>Reporting dashboard with real-time insights into funding usage and application data</p>
+          <p>Notifications system to keep users informed about updates and relevant information</p>
+          <p>Bonus feature: Document upload and scanning to streamline the application process</p>
+      </section>
 
-      <input type="text" id="fundingName" placeholder="Name of funding" required><br>
-      <br><br>
-      <select name="fundingType" id="fundingType" class="large-font-size" required>
-        <option value="void">Type of funding</option>
-        <option value="business">Business</option>
-        <option value="event">Event</option>
-        <option value="education">Education</option>
-      </select><br><br><br>
-        Description:<br>
-        <textarea name="description" id="description" cols="30" rows="4" required></textarea><br><br><br>
-        Requirements:<br>
-        <textarea name="requirements" id="requirements" cols="30" rows="4" required></textarea><br><br><br>
-        Deadline:<br>
-        <input type="date" id="deadline"><br><br><br>
-        <input type="submit" onclick="PostFunding()" class="submit" value="Post!" style="cursor: pointer;" id="submitBtn">
-        <br><br><br>
-        <caption style="color: grey;"> all submisions are subject to review by admin, <b style="cursor: pointer;">Learn more about review process</b> </caption>
-        
-        <br><br><br>
+      <section class="aboutClass-section">
+          <h1>TEAM CONTRIBUTORS</h1>
+          <img src="images/teamContributors.png" alt="team">
+          <p>Our project is led by a dedicated team of developers, designers, and project managers committed to delivering a high-quality and impactful solution. 
+              Meet our team [<a href="#">here</a>] and learn more about our contributors [<a href="#">here</a>].</p>
+      </section>
 
-    </form>  
-    
-    
-    
-    
-    </fieldset>
-  </center>
-  </section>
+      <section class="aboutClass-section">
+          <h1>TIMELINE AND PROGRESS</h1>
+          <img src="images/timelineAndProgress.png" alt="timeline">
+          <p>Since its inception, our project has made significant strides in development, with major milestones achieved along the way. We are currently in [development phase/release phase].</p>
+      </section>
 
-    <hr><footer>
+      <section class="aboutClass-section">
+          <h1>VALUES AND PRINCIPLES</h1>
+          <img src="images/valuesAndPrinciples.png" alt="values">
+          <p>Transparency: We believe in open communication and accountability throughout the funding process</p>
+          <p>Innovation: We embrace continuous improvement and innovation to deliver the best possible experience for our users</p>
+          <p>Inclusivity: We are committed to creating an inclusive platform that supports diversity and equal access to funding opportunities</p>
+          <p>Impact: We are driven by a desire to create positive change and make a difference in the world through our work</p>
+      </section>
+    </main>
+
+    <footer>
         <p>&copy; 2024 Fund X</p>
     </footer>
   </body>
