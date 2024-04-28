@@ -58,7 +58,7 @@ popupContent.appendChild(descriptionHeading);
 popupContent.appendChild(descriptionParagraph);
 popupContent.appendChild(reqHeading);
 popupContent.appendChild(reqParagraph);
-popupContent.appendChild(actionButton);
+popupContent.appendChild(applyButton);
 
 // Append the popup content to the popup container
 popupContainer.appendChild(popupContent);
