@@ -2,7 +2,7 @@
 *{
     font-family: "Roboto", sans-serif;
     box-sizing: border-box;
-    /*overflow: hidden; */
+    overflow: hidden; 
 }
 body{
     background-color: #010101;
@@ -141,6 +141,10 @@ select option:hover {
     color: #999;
     margin: 10px auto;
 }
+.signin-link span{
+    color: #999;
+    margin: 10px auto;
+}
 .signin-link a{
     text-decoration: none;
     font-weight: 500;
@@ -174,15 +178,16 @@ select option:hover {
 }   
 
 .google-signin-button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
     color: #757575;
-    cursor: pointer;
-    display: inline-block;
+    cursor: pointer; 
     font-size: 14px;
-    font-weight: bold;
-    margin: 0;
+    font-weight: bolder;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -198,7 +203,8 @@ select option:hover {
     background: url('https://developers.google.com/identity/images/g-logo.png') center center no-repeat;
     background-size: contain;
     display: inline-block;
-    height: 20px;
+    height: 18px;
     margin-right: 10px;
     width: 20px;
+    left: 0px;
   }

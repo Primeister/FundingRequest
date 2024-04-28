@@ -48,9 +48,9 @@ const reqParagraph = document.createElement("p");
 reqParagraph.textContent = "This is the Requirements section of the popup.";
 reqParagraph.classList.add("paragraph");
 // Create the action button element
-const actionButton = document.createElement("button");
-actionButton.id = "actionBtn";
-actionButton.textContent = "Apply Now";
+const applyButton = document.createElement("button");
+applyButton.id = "actionBtn";
+actionapply.textContent = "Apply Now";
 
 // Append elements to the popup content
 popupContent.appendChild(closeButton);
@@ -125,6 +125,8 @@ let response = fetch("https://fundreq.azurewebsites.net/getOpportunity/education
                 popup.style.display = "block";
                 descriptionParagraph.textContent = opp.FundingDescription;
                 reqParagraph.textContent = opp.Requirements;
+                sessionStorage.setItem("FundingName", opp.FundingName);
+                sessionStorage.setItem("id", opp.id);
             });
         });
     
@@ -231,8 +233,10 @@ let event = fetch("https://fundreq.azurewebsites.net/getOpportunity/event", requ
     })
     .catch(error => console.error('Error:', error));
 
-
-
+//Vutshila you must continue from here
+applyButton.addEventListener('click', function() {
+    alert(sessionStorage.getItem("FundingName"));
+});
 
 
 
