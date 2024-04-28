@@ -50,7 +50,7 @@ reqParagraph.classList.add("paragraph");
 // Create the action button element
 const applyButton = document.createElement("button");
 applyButton.id = "actionBtn";
-actionapply.textContent = "Apply Now";
+applyButton.textContent = "Apply Now";
 
 // Append elements to the popup content
 popupContent.appendChild(closeButton);
