@@ -176,6 +176,8 @@ let funding = fetch("https://fundreq.azurewebsites.net/getOpportunity/business",
                 popup.style.display = "block";
                 descriptionParagraph.textContent = opp.FundingDescription;
                 reqParagraph.textContent = opp.Requirements;
+                sessionStorage.setItem("FundingName", opp.FundingName);
+                sessionStorage.setItem("id", opp.id);
             });
         });
     
@@ -225,6 +227,8 @@ let event = fetch("https://fundreq.azurewebsites.net/getOpportunity/event", requ
                 popup.style.display = "block";
                 descriptionParagraph.textContent = opp.FundingDescription;
                 reqParagraph.textContent = opp.Requirements;
+                sessionStorage.setItem("FundingName", opp.FundingName);
+                sessionStorage.setItem("id", opp.id);
             });
         });
     
