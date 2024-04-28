@@ -7,7 +7,7 @@
   font-family: "Poppins", sans-serif;
 }
 body{
-  background-color: rgb(238, 179, 238);
+  background-color: rgb(209, 36, 209);
   /*background-image: url(images/backgroundImage.jpg);
   background-position: center;
   background-size: cover; /*cover the whole page*/ 
@@ -184,17 +184,33 @@ h1{
   font-size: 20px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+.aboutClass{
+  display:none;
+}
+.aboutClass-section, .classMain-section {
+  display:flex;
+  flex-direction: column;
+  border-left: 5px solid violet;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 10px 10px 10px black;
+  background-color: #fff;
+  width:70%;
+  /*height:300px;*/
+  margin-left: 15%;
+  margin-bottom:50px;
+  font-size: 20px;
 
-.classMain-section {
-  flex: 1; /* This allows the section to grow and fill the available space */
-  padding: 10px;
-  width:91%;
-  min-height: 100px;;
-  float:right;
-  border-left: solid 5px plum;
-  border-radius: 5px;
-  background-color: white;
-  margin-bottom: 30px;
+  img{
+      width:100%;
+      height:300px;
+      margin:0;
+      padding:0;
+  }
+  p, ul{
+      font-family: Alegreya;
+  }
 }
 
 footer{
@@ -205,7 +221,6 @@ footer{
   text-align: center;
   justify-content:center;
   bottom: 0;
-  /*position:fixed;*/
   border-top: solid 1px grey;
   
 }
