@@ -32,7 +32,7 @@ async function post(data) {
         "Content-Type": "application/json"
     };
 
-    let response = await fetch("http://localhost:3000/application/post" , {
+    let response = await fetch("https://fundreq.azurewebsites.net/application/post" , {
         method: "POST",
         mode: "cors",
         headers: headersList,
