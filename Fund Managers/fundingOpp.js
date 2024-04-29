@@ -10,7 +10,7 @@ let data = {
 const fundManagerEmail = "athinimgagule03@gmail.com"; // Replace this with the fund manager's email address
 
 // Fetch opportunities for the specified fund manager's email address
-let response = fetch(`https://fundreq.azurewebsites.net/getOpportunityByManager/${encodeURIComponent(fundManagerEmail)}`, requestOptions)
+let response = fetch(`https://fundreq.azurewebsites.net/fundingOpportunities/${encodeURIComponent(fundManagerEmail)}`, requestOptions)
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
