@@ -20,12 +20,12 @@ async function PostForm() {
         
     };
 
-    await post(data);
+    await postData(data);
 
     window.location.href = "applicants.html";
 }
 
-async function post(data) {
+async function postData(data) {
     let bodyContent = JSON.stringify(data);
     let headersList = {
         "Accept": "*/*",
