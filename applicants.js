@@ -239,7 +239,7 @@ let event = fetch("https://fundreq.azurewebsites.net/getOpportunity/event", requ
 
 //Vutshila you must continue from here
 applyButton.addEventListener('click', function() {
-    alert(sessionStorage.getItem("FundingName"));
+    window.location.href = "form.html"
 });
 
 
