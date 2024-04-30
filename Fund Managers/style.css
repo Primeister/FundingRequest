@@ -1,4 +1,10 @@
-.viewClass-section {
+.opportunityClass{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction:row;
+    margin-left: 10%;
+}
+.opportunitySection {
     display:flex;
     flex-direction: column;
     border: 1px solid #ccc;
@@ -9,7 +15,7 @@
     background-color: #fff;
     width:30%;
     height:300px;
-    margin-left: 15%;
+    
 }
 .aboutClass-section {
     display:flex;
@@ -52,9 +58,7 @@
     height:300px;
     margin-left: 15%;
 }
-
 .card-button {
-    /* Existing styles */
     display: inline-block;
     padding: 10px 20px;
     background-color: #ad00b3;
@@ -62,8 +66,6 @@
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s;
-
-    /* Position at the bottom */
     margin-top: auto;
 }
 
@@ -72,8 +74,9 @@
 }
 
 .tableClass{
-    margin-left:15%;
+    margin-left:10%;
     border-collapse: collapse;
+    background-color: white;
 }
 td,th{
     border: 1px solid black;
