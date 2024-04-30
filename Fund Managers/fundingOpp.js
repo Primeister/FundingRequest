@@ -33,50 +33,50 @@ if(email){
         console.log(data);
     
         data.forEach(opp => {
-            let opportunityDiv = document.createElement('div');
-            opportunityDiv.classList.add('opportunity');
+            let opportunityArticle = document.createElement('article');
+            opportunityArticle.classList.add('opportunitySection');
 
-        // Create the inner div with class "title"
-            let titleDiv = document.createElement('div');
-            titleDiv.classList.add('title');
-
-        // Create the h2 element with class "name"
+            // Create the h2 element with class "name"
             let nameHeading = document.createElement('h2');
             nameHeading.classList.add('name');
             nameHeading.textContent = opp.FundingName; // Set text content
 
-        // Create the h4 element with class "deadline"
-            let deadlineHeading = document.createElement('h4');
+            // Create the p element with class "description"
+            let nameDescription = document.createElement('p');
+            nameDescription.classList.add('description');
+            nameDescription.textContent = "Description: " + opp.FundingDecription ;//set text content
+
+
+            // Create the p element with class "deadline"
+            let deadlineHeading = document.createElement('p');
             deadlineHeading.classList.add('deadline');
-            deadlineHeading.textContent = "Closes: " + opp.deadline;// Set text content
+            deadlineHeading.textContent = "Deadline: " + opp.Deadline;// Set text content
 
-        // Create "See More" button
             let seeMoreButton = document.createElement('button');
-            seeMoreButton.classList.add('see-more-button');
-            seeMoreButton.textContent = 'See More';
-            seeMoreButton.addEventListener('click', function() {
-            // Redirect the user to the applications page
-                window.location.href = 'applications.html';
+            seeMoreButton.textContent = "See More";
+            seeMoreButton.classList.add('card-button');
+
+            //onClick it calls the viewApplicant
+            seeMoreButton.addEventListener('click', function () {
+                viewApplicants();
             });
 
-        // Append the "See More" button to the "opportunity" div
-            opportunityDiv.appendChild(seeMoreButton);
+            opportunityArticle.appendChild(nameHeading);
+            opportunityArticle.appendChild(deadlineHeading);
+            opportunityArticle.appendChild(seeMoreButton);
 
-            titleDiv.appendChild(nameHeading);
-            titleDiv.appendChild(deadlineHeading);
-            opportunityDiv.appendChild(titleDiv);
-
-
-        // Append the "opportunity" div to the fundingOpportunitiesSection
-            fundingOpportunitiesSection.appendChild(opportunityDiv);
-
-            opportunityDiv.addEventListener('click', function() {
-            // Your event handler code here
-                descriptionParagraph.textContent = opp.FundingDescription;
-            });
+            fundingOpportunitiesSection.appendChild(opportunityArticle);
         });
     })
     .catch(error => console.error('Error:', error));
 }else {
     console.log("Email not found in session storage.");
+}
+
+function viewApplicants(){
+
+}
+
+function moreDetails(){
+
 }
