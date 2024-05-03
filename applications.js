@@ -16,7 +16,7 @@ async function fetchApplicants(){
         table.classList.add('applicant-table');
 
         let headerRow = table.insertRow();
-        let headers = ['Name', 'ID', 'DOB'];
+        let headers = ['Name', 'DOB', 'CONTACT NUMBER', 'EMAIL', "STATUS", ''];
         headers.forEach(headerText => {
             let headerCell = document.createElement('th');
             headerCell.textContent = headerText;
@@ -27,18 +27,33 @@ async function fetchApplicants(){
             let row = table.insertRow();
             let nameCell = row.insertCell();
             nameCell.textContent = `${application.firstname} ${application.surname}`;
-            let idCell = row.insertCell();
-            idCell.textContent = application.id_number;
             let dobCell = row.insertCell();
             dobCell.textContent = application.dob;
+            let numberCell = row.insertCell();
+            numberCell.textContent = application.mobile;
+            let emailCell = row.insertCell();
+            emailCell.textContent = application.email;
+            let statusCell = row.insertCell();
+            statusCell.textContent = application.status;
+            let modalButtonCell = row.insertCell();
+            let modalButton = document.createElement('button');
+            modalButton.classList.add('modalButtonClass');
+            modalButton.textContent = 'View More';
+
+            modalButton.addEventListener('click', function(){
+                //show modal dialog of each applicant
+                function showModal(application){
+                    
+                }
+
+            });
+            modalButtonCell.appendChild(modalButton);
         });
 
         let fundingOppTable = document.getElementById('fundingOppTable');
         fundingOppTable.innerHTML = ''; // Clear existing table content
         fundingOppTable.appendChild(table);
 
-        // Hide the card container
-        fundingOpportunitiesSection.classList.add('hide');
 
     } catch (error) {
         console.error('Error fetching applicants:', error);
