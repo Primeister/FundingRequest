@@ -1,5 +1,3 @@
-const fundingOpportunitiesSection = document.getElementById('landing-section');
-
 async function fetchData() {
     try {
          //Get the email address from sessionStorage
@@ -57,7 +55,9 @@ async function fetchData() {
             opportunityDiv.appendChild(deadlineParagraph);
             opportunityDiv.appendChild(seeMoreButton);
 
-            document.body.appendChild(opportunityDiv);
+            let fundingOpportunitiesSection = document.getElementById('landing-section');
+            fundingOpportunitiesSection.innerHTML='';
+            fundingOpportunitiesSection.appendChild(opportunityDiv);
         });
     } catch (error) {
         console.error(error);
