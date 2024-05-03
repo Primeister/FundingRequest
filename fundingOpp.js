@@ -56,7 +56,6 @@ async function fetchData() {
             opportunityDiv.appendChild(seeMoreButton);
 
             let fundingOpportunitiesSection = document.getElementById('landing-section');
-            fundingOpportunitiesSection.innerHTML='';
             fundingOpportunitiesSection.appendChild(opportunityDiv);
         });
     } catch (error) {
