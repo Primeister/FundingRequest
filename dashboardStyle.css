@@ -386,6 +386,12 @@ button:hover {
 }
 
 /*this is style for fund manager's view of applications*/
+.opportunityClass{
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction:row;
+  margin-left: 10%;
+}
 .opportunitySection {
   display:flex;
   flex-direction: column;
@@ -393,12 +399,10 @@ button:hover {
   border-radius: 8px;
   padding: 20px;
   margin: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 8px 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   width:30%;
   height:300px;
-  margin-left: 10%;
-
   h1{
     padding-bottom: 10px;
     font-size: 25px;
