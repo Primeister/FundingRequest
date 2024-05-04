@@ -63,3 +63,8 @@ async function fetchData() {
     }
 }
 document.addEventListener("DOMContentLoaded", fetchData);
+
+
+module.exports = {
+    fetchData
+}

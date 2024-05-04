@@ -1,0 +1,61 @@
+{
+  
+  
+  "name": "fundingrequest",
+  
+  
+  "version": "1.0.0",
+  
+  
+  "description": "Funding Requests Management System",
+  
+  
+  "main": "main.js",
+  
+  
+  "directories": {
+  
+  
+    
+  
+  "test": "tests"
+  
+  
+  },
+  
+  
+  "scripts": {
+  
+  
+    
+  
+  "test": "jest  --coverage"
+  
+  
+  },
+  
+  
+  "keywords": [],
+  
+  
+  "author": "",
+  
+  
+  "license": "ISC",
+  
+  
+  "devDependencies": {
+  
+  
+    
+  
+  "jest": "^29.7.0",
+  
+  
+    
+  
+  "jest-environment-jsdom": "^29.7.0"
+  
+  
+  }
+}

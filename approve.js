@@ -1,4 +1,6 @@
+
 let apiUpdate = 'https://fundreq.azurewebsites.net/update/status/';
+
 
 function getFundManagers(){
 

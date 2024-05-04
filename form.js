@@ -42,3 +42,8 @@ async function postData(data) {
     let result = await response.json();
     console.log(result);
 }
+
+module.exports = {
+    PostForm,
+    postData
+}

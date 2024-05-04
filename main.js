@@ -133,3 +133,7 @@ googleSigninFund.addEventListener("click", () => {
   });
   
 });
+
+module.exports = {
+  login
+}

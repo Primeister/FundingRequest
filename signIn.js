@@ -4,18 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var loginForm = document.getElementById("Signin-form");
 
-    /*loginForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-        data = {
-            "email": document.getElementById("email2").value,
-            "password": document.getElementById("password2").value,
-            //"userType": document.getElementById("userType2").value + 's',
-        };
-        
-        login(data);
-        
-    });
-    */
 
     async function login(data) {
         let bodyContent = JSON.stringify(data);

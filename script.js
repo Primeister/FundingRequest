@@ -89,3 +89,14 @@ function advertAreaShow()
     document.getElementById('landing-section').style.display="none";
     document.getElementById('advertiserFormSection').style.display="block";
 }
+
+module.exports = {
+    setApplicant,
+    setFunder,
+    signinPage,
+    loginPage,
+    advertAreaShow,
+    handleCredentialResponse,
+    homepage,
+    register
+}
