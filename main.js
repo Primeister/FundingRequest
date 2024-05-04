@@ -135,5 +135,5 @@ googleSigninFund.addEventListener("click", () => {
 });
 
 module.exports = {
-  login
+  login, register
 }
