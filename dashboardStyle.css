@@ -415,9 +415,6 @@ button:hover {
   background-color: whitesmoke;
 }
 @media screen and (max-width: 750px) {
-  *{
-    width:100%;
-  }
   .opportunityClass {
     margin-left: 5%; /* Reduce left margin */
   }
