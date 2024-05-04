@@ -42,11 +42,12 @@ async function fetchApplicants(){
 
             modalButton.addEventListener('click', function(){
                 //show modal dialog of each applicant
-                function showModal(application){
-                    
-                }
-
+                showModal(application);
+                table.style.display = 'none';
+                const modalContent = document.querySelector('.applicantModalClass');
+                modalContent.style.display = 'block'; // Show the modal content when the button is clicked
             });
+            
             modalButtonCell.appendChild(modalButton);
         });
 
@@ -61,3 +62,102 @@ async function fetchApplicants(){
 }
 
 document.addEventListener("DOMContentLoaded", fetchApplicants);
+
+
+function showModal(application) {
+    let existingModal = document.querySelector('.applicantModalClass');
+    if (existingModal) {
+        existingModal.remove();
+    }
+    const applicantName = `${application.firstname} ${application.surname}`;
+    const applicantMobile = application.mobile;
+    const applicantEmail = application.email;
+    const applicantID = application.id_number;
+    const applicantDOB = application.dob;
+    const applicantCitizen = application.citizenship;
+
+    const applicantArticle = document.createElement('article');
+    applicantArticle.classList.add('applicantModalClass');
+
+    const tabsContainer = document.createElement('div');
+    tabsContainer.classList.add('tabs');
+
+    const sections = [
+        { name: 'Personal Information', content: `
+            <h2 class="titleClass">Personal Information</h2>
+            <p>Name: ${applicantName}</p>
+            <p>Mobile: ${applicantMobile}</p>
+            <p>Email: ${applicantEmail}</p>
+            <p>ID number: ${applicantID}</p>
+            <p>Date of birth: ${applicantDOB}</p>
+            <p>Citizenship: ${applicantCitizen}</p>
+        ` },
+        { name: 'Educational Background', content: `
+            <h2 class="titleClass">Educational Background</h2>
+            <!-- Add educational background fields -->
+        ` },
+        { name: 'Professional Experience', content: `
+            <h2 class="titleClass">Professional Experience</h2>
+            <!-- Add professional experience fields -->
+        ` },
+        { name: 'Project/Proposal Details', content: `
+            <h2 class="titleClass">Project/Proposal Details</h2>
+            <!-- Add project/proposal details fields -->
+        ` },
+        { name: 'Budget and Financial Information', content: `
+            <h2 class="titleClass">Budget and Financial Information</h2>
+            <!-- Add budget and financial information fields -->
+        ` },
+        { name: 'Supporting Documents', content: `
+            <h2 class="titleClass">Supporting Documents</h2>
+            <!-- Add supporting documents fields -->
+        ` },
+        { name: 'References or Referrals', content: `
+            <h2 class="titleClass">References or Referrals</h2>
+            <!-- Add references or referrals fields -->
+        ` },
+        { name: 'Declaration and Consent', content: `
+            <h2 class="titleClass">Declaration and Consent</h2>
+            <!-- Add declaration and consent fields -->
+        ` }
+    ];
+
+
+    sections.forEach(section => {
+        const tab = document.createElement('div');
+        tab.classList.add('tab');
+        tab.textContent = section.name;
+        tab.addEventListener('click', function() {
+            showTabContent(section.name);
+        });
+        tabsContainer.appendChild(tab);
+
+        const tabContent = document.createElement('div');
+        tabContent.classList.add('tab-content');
+        tabContent.innerHTML = section.content;
+        tabContent.classList.add(section.name.split(' ').join('-')); // Add class based on section name
+        applicantArticle.appendChild(tabContent);
+    });
+
+    tabsContainer.firstChild.classList.add('active'); // Activate first tab by default
+    applicantArticle.appendChild(tabsContainer);
+
+    let applicantSection = document.getElementById('applicantInfo');
+    applicantSection.innerHTML = ''; // Clear existing content
+    applicantSection.classList.add('applicantSectionClass');
+    applicantSection.appendChild(applicantArticle);
+}
+function showTabContent(tabName) {
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+    tabContents.forEach(content => {
+        content.classList.remove('active');
+    });
+
+    document.querySelector(`.tab-content.${tabName.split(' ').join('-')}`).classList.add('active');
+    document.querySelector(`.tab.${tabName}`).classList.add('active');
+}
