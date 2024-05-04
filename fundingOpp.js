@@ -17,11 +17,11 @@ async function fetchData() {
         
         const data = await response.json();
 
-        data.forEach(fundingOpportunity => {
+        data.forEach((fundingOpportunity,index) => {
             const fundingName = fundingOpportunity.FundingName;
-            const fundingType = fundingOpportunity.FundingType;
-            const fundingDescription = fundingOpportunity.FundingDescription;
-            const requirements = fundingOpportunity.Requirements;
+            // const fundingType = fundingOpportunity.FundingType;
+            // const fundingDescription = fundingOpportunity.FundingDescription;
+            // const requirements = fundingOpportunity.Requirements;
             const deadline = fundingOpportunity.Deadline;
 
             const opportunityDiv = document.createElement('div');
@@ -29,13 +29,14 @@ async function fetchData() {
 
             const nameHeading = document.createElement('h1');
             nameHeading.textContent = `${fundingName}`;
-            const typeParagraph = document.createElement('p');
-            typeParagraph.textContent = `Funding Type: ${fundingType}`;
-            const descriptionParagraph = document.createElement('p');
-            descriptionParagraph.textContent = `Description: ${fundingDescription}`;
-            const requirementsParagraph = document.createElement('p');
-            requirementsParagraph.textContent = `Requirements: ${requirements}`;
-            const deadlineParagraph = document.createElement('p');
+            // const typeParagraph = document.createElement('p');
+            // typeParagraph.textContent = `Funding Type: ${fundingType}`;
+            // const descriptionParagraph = document.createElement('p');
+            // descriptionParagraph.textContent = `Description: ${fundingDescription}`;
+            // const requirementsParagraph = document.createElement('p');
+            // requirementsParagraph.textContent = `Requirements: ${requirements}`;
+             const deadlineParagraph = document.createElement('p');
+             deadlineParagraph.classList.add('deadline');
             deadlineParagraph.textContent = `Deadline: ${deadline}`;
 
             const seeMoreButton = document.createElement('button');
@@ -48,12 +49,28 @@ async function fetchData() {
                 window.location.href="applications.html";
             });
 
+            const removeButton = document.createElement('button');
+            removeButton.classList.add('card-button');
+            removeButton.textContent = 'Remove';
+
+            removeButton.addEventListener('click', function(){
+                //
+            });
+            // Add alternating class based on index
+            if (index % 2 === 0) {
+                seeMoreButton.classList.add('card-button-violet');
+                removeButton.classList.add('card-button-violet');
+            } else {
+                seeMoreButton.classList.add('card-button-purple');
+                removeButton.classList.add('card-button-purple');
+            }
             opportunityDiv.appendChild(nameHeading);
-            opportunityDiv.appendChild(typeParagraph);
-            opportunityDiv.appendChild(descriptionParagraph);
-            opportunityDiv.appendChild(requirementsParagraph);
+            // opportunityDiv.appendChild(typeParagraph);
+            // opportunityDiv.appendChild(descriptionParagraph);
+            // opportunityDiv.appendChild(requirementsParagraph);
             opportunityDiv.appendChild(deadlineParagraph);
             opportunityDiv.appendChild(seeMoreButton);
+            opportunityDiv.appendChild(removeButton);
 
             let fundingOpportunitiesSection = document.getElementById('landing-section');
             fundingOpportunitiesSection.appendChild(opportunityDiv);
