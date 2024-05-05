@@ -90,6 +90,12 @@ function advertAreaShow()
     document.getElementById('advertiserFormSection').style.display="block";
 }
 
+function showApproveFunder(){
+    document.querySelector(".classMain").style.display = "none";
+    document.querySelector(".aboutClass").style.display = "none";
+    document.getElementById("approve-fundManagers").style.display = "block";
+}
+
 module.exports = {
     setApplicant,
     setFunder,
