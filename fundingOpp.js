@@ -27,7 +27,7 @@ async function fetchData() {
 
             const nameHeading = document.createElement('h1');
             nameHeading.textContent = `${fundingName}`;
-            const deadlineParagraph = document.createElement('p');
+             const deadlineParagraph = document.createElement('p');
              deadlineParagraph.classList.add('deadline');
             deadlineParagraph.textContent = `Deadline: ${deadline}`;
 
@@ -37,7 +37,7 @@ async function fetchData() {
 
             seeMoreButton.addEventListener('click', function(){
                 sessionStorage.setItem('FundingName', fundingName);
-                sessinStorage.setItem('Requirements', requirements);
+                sessionStorage.setItem('Requirements', requirements);
                 window.location.href="applications.html";
             });
 
