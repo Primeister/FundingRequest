@@ -45,8 +45,61 @@ async function fetchData() {
             removeButton.classList.add('card-button');
             removeButton.textContent = 'Remove';
 
-            removeButton.addEventListener('click', function(){
-                //
+           removeButton.addEventListener('click', function() {
+                // Create a popup dialog
+                const confirmationPopup = document.createElement('div');
+                confirmationPopup.classList.add('confirmation-popup');
+            
+                const popupContent = document.createElement('div');
+                popupContent.classList.add('popup-content');
+            
+                const warningMessage = document.createElement('p');
+                warningMessage.textContent = "Are you sure you want to remove this funding opportunity? This action cannot be undone.";
+            
+                const confirmRemoveButton = document.createElement('button');
+                confirmRemoveButton.textContent = 'Remove';
+                confirmRemoveButton.classList.add('confirm-remove-button');
+            
+                confirmRemoveButton.addEventListener('click', async function() {
+                    try {
+                        const id = fundingOpportunity.id; // Assuming you have an 'id' property in your fundingOpportunity object
+            
+                        const response = await fetch(`https://fundreq.azurewebsites.net/deletefundOpp/${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                        });
+            
+                        if (!response.ok) {
+                            throw new Error("Failed to remove funding opportunity");
+                        }
+            
+                        // If the deletion is successful, remove the corresponding card from the UI
+                        opportunityDiv.remove();
+                        
+                        // Close the popup
+                        confirmationPopup.remove();
+                    } catch (error) {
+                        console.error(error);
+                    }
+                });
+            
+                const cancelButton = document.createElement('button');
+                cancelButton.textContent = 'Cancel';
+                cancelButton.classList.add('cancel-button');
+            
+                cancelButton.addEventListener('click', function() {
+                    // Close the popup
+                    confirmationPopup.remove();
+                });
+            
+                popupContent.appendChild(warningMessage);
+                popupContent.appendChild(confirmRemoveButton);
+                popupContent.appendChild(cancelButton);
+                confirmationPopup.appendChild(popupContent);
+            
+                document.body.appendChild(confirmationPopup);
             });
             // Add alternating class based on index
             if (index % 2 === 0) {
