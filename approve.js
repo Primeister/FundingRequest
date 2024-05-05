@@ -2,56 +2,41 @@
 let apiUpdate = 'https://fundreq.azurewebsites.net/update/status/';
 
 
-function getFundManagers(){
+document.addEventListener("DOMContentLoaded", function(){
 
-    var mainElement = document.getElementById("main-section");
-    mainElement.innerHTML = "";
-    var headingSection = document.createElement("section");
-    headingSection.style.display = "flex";
-    headingSection.style.flexDirection = "row";
-    headingSection.style.justifyContent = "center";
-    headingSection.style.marginTop = "30px";
-    var heading = document.createElement('h1');
-    heading.textContent = "Approve Fund Managers";
-    heading.style.fontSize = "30px";
-    var line = document.createElement('hr');
-    line.style.marginBottom = "60px"
-    headingSection.appendChild(heading);
-    
-    mainElement.appendChild(headingSection);
-    mainElement.appendChild(line);
-    document.querySelector("footer").style.display = "none";
-    
-    
+    var mainElement = document.getElementById("profiles");
     
     fetch('https://fundreq.azurewebsites.net/fundManagers')
     .then(res => {
         return res.json();
     }).then( data =>{
         
-        let newSectionId = 0;
+        let newProfileId = 0;
     
         data.forEach(person => {
     
-    
-    
         // Get a reference to the <main> element
-        let sectionId = newSectionId.toString(); 
+        let profileId = newProfileId.toString(); 
     
-        var newSection = document.createElement("section");
-        newSection.style.display = "flex";
-        newSection.style.flexDirection = "row";
-        newSection.style.justifyContent = "center";
-        newSection.style.borderWidth = "5px";
-        newSection.style.marginBottom = "50px";
-        newSection.style.backgroundColor = "white";
-        newSection.id = sectionId;
+        var profile = document.createElement("section");
+        profile.style.width = "300px";
+        profile.style.marginLeft = "10px";
+        profile.style.marginTop = "10px";
+        profile.style.backgroundColor = "#e0e0e5";
+        profile.style.borderRadius = "20px";
+        profile.id = profileId;
         
-        
-        var innerSection = document.createElement("section");
-        innerSection.style.paddingRight = "100px"
-        innerSection.style.width = "25%";
-    
+        var profilePicSection = document.createElement("section");
+        profilePicSection.style.backgroundColor = "white"
+        profilePicSection.style.marginBottom = "10px"
+        profilePicSection.style.display = "flex";
+        profilePicSection.style.justifyContent = "center";
+        profilePicSection.style.borderRadius = "0 20px 0 0";
+
+        var profileIcon = document.createElement("img")
+        profileIcon.src = "Images/profileIcon.png"
+        profileIcon.style.width = "150px"
+
         // Create a new button element
         var approveButton = document.createElement("button");
         approveButton.textContent = "approve"; // Set the button text
@@ -74,14 +59,13 @@ function getFundManagers(){
             var result = confirm("Are you sure you want to approve?");
             if (result){
                 update(data, personId);
-                document.getElementById(sectionId).remove();
+                document.getElementById(profileId).remove();
             }
 
             
             
         };
         
-
         rejectButton.onclick = function() {
             data = {
                 "id" : person.id,
@@ -91,43 +75,43 @@ function getFundManagers(){
             var result = confirm("Are you sure you want to reject?");
             if (result){
                 update(data, personId);
-                document.getElementById(sectionId).remove();
+                document.getElementById(profileId).remove();
             }
             
         };
     
-    
-        // Apply styling to the section
-        newSection.style.display = "flex";
-        newSection.style.flexDirection = "row";
-        newSection.style.borderColor = "black";
-        
-    
         var name = document.createElement('p');
         name.textContent = person.name + " " + person.surname;
+        name.style.marginLeft = "10px";
         var email = document.createElement('p');
         email.textContent = person.email;
+        email.style.marginLeft = "10px";
+
+        profilePicSection.appendChild(profileIcon);
+        profile.appendChild(profilePicSection);
     
-        innerSection.appendChild(name);
-        innerSection.appendChild(email);
-    
-        newSection.appendChild(innerSection);
-        // Append the button to the section
-        newSection.appendChild(approveButton);
-        newSection.appendChild(rejectButton);
-    
-    
+        profile.appendChild(name);
+        profile.appendChild(email);
+
+        approveButton.style.marginLeft = "10px";
+        rejectButton.style.marginLeft = "10px";
+
+        approveButton.style.borderRadius = "0 5px 5px 20px";
+
+        profile.appendChild(approveButton);
+        profile.appendChild(rejectButton);
     
         // Append the new section to the main element
-        mainElement.appendChild(newSection);
+        mainElement.appendChild(profile);
     
-        newSectionId = newSectionId + 1;
+        newProfileId = newProfileId + 1;
         });
     
         
     }
     ).catch(error => console.log(error));
-    }
+});
+
 
     async function update(data, id){
 

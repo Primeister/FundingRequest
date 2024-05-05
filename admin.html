@@ -10,6 +10,7 @@
     <script src="approve.js"></script>
     <script src="admin.js"></script>
     <script src="dashboardScript.js"></script>
+    <script src="script.js"></script>
   </head>
   <body>
     <header class="nav1">
@@ -32,7 +33,7 @@
           <ul>
             <li class="active"><a href="admin.html"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
             <li><a href="#"><img src="images/manageUsers.png" alt="users-icon"/></a><p>Manage Users</p></li>
-            <li onclick="getFundManagers()"><a href="#"><img src="images/Approve.png" alt="approve-icon"/></a><p>Approve Fund-Managers</p></li>
+            <li onclick="showApproveFunder()"><a href="#"><img src="images/Approve.png" alt="approve-icon"/></a><p>Approve Fund-Managers</p></li>
             <li><a href="#"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
             <li><a href="#"><img src="images/setting.png" alt="settings-icon"/></a><p>Settings</p></li>
             <li><a href="#"><img src="images/members.png" alt="members-icon"/></a><p>Switch Account</p></li>
@@ -76,6 +77,20 @@
     
       </section>
     </main>
+
+    <section id="approve-fundManagers">
+
+      <center><h1 style="font-size: 30px; margin-top: 20px;">Approve Fund Managers</h1></center><hr>
+
+
+        <section id="profile-blocks" style="display: flex; justify-content:center">
+
+            <section id="profiles" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; column-gap:10px; "></section>
+
+        </section>
+    </section>
+
+    </section>
 
     <main id="aboutId" class="aboutClass">
       <section class="aboutClass-section">
