@@ -19,23 +19,15 @@ async function fetchData() {
 
         data.forEach((fundingOpportunity,index) => {
             const fundingName = fundingOpportunity.FundingName;
-            // const fundingType = fundingOpportunity.FundingType;
-            // const fundingDescription = fundingOpportunity.FundingDescription;
-            // const requirements = fundingOpportunity.Requirements;
             const deadline = fundingOpportunity.Deadline;
+            const requirements = fundingOpportunity.Requirements;
 
             const opportunityDiv = document.createElement('div');
             opportunityDiv.classList.add('opportunitySection')
 
             const nameHeading = document.createElement('h1');
             nameHeading.textContent = `${fundingName}`;
-            // const typeParagraph = document.createElement('p');
-            // typeParagraph.textContent = `Funding Type: ${fundingType}`;
-            // const descriptionParagraph = document.createElement('p');
-            // descriptionParagraph.textContent = `Description: ${fundingDescription}`;
-            // const requirementsParagraph = document.createElement('p');
-            // requirementsParagraph.textContent = `Requirements: ${requirements}`;
-             const deadlineParagraph = document.createElement('p');
+            const deadlineParagraph = document.createElement('p');
              deadlineParagraph.classList.add('deadline');
             deadlineParagraph.textContent = `Deadline: ${deadline}`;
 
@@ -45,7 +37,7 @@ async function fetchData() {
 
             seeMoreButton.addEventListener('click', function(){
                 sessionStorage.setItem('FundingName', fundingName);
-                //fetchApplicants();
+                sessinStorage.setItem('Requirements', requirements);
                 window.location.href="applications.html";
             });
 
