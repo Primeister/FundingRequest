@@ -460,6 +460,9 @@ button:hover {
 .h1Table{
   margin-left: 10%;
 }
+.tableHeadersClass{
+  font-family: 'Times New Roman', Times, serif;
+}
 .applicant-table th {
   padding: 8px;
   text-align: left;
