@@ -19,6 +19,7 @@ async function fetchApplicants(){
         let headers = ['Name', 'DOB', 'CONTACT NUMBER', 'EMAIL', "STATUS", ''];
         headers.forEach(headerText => {
             let headerCell = document.createElement('th');
+            headerCell.classList.add('tableHeadersClass');
             headerCell.textContent = headerText;
             headerRow.appendChild(headerCell);
         });
