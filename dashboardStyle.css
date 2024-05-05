@@ -412,7 +412,7 @@ button:hover {
   }
 }
 .opportunitySection:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
   transition: transform 0.3s ease;
   background-color: whitesmoke;
 }
