@@ -400,6 +400,8 @@ button:hover {
   height:auto;
 
   h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
     padding-bottom: 10px;
     font-size: 25px;
     margin-bottom: 10px;
