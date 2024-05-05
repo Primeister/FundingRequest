@@ -219,6 +219,13 @@ footer{
   bottom: 0;
   
 }
+
+#approve-fundManagers{
+  height: 1000px;
+  width: 100%;
+  display: none;
+}
+
 #advertiserFormSection
 {
   height: 1000px;
