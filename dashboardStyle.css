@@ -576,6 +576,9 @@ button:hover {
 .modalButtonClass{
   background-color: #ad00b3;
 }
+.modalButtonClass:hover{
+  background-color: #d028d6;
+}
 
 .titleClass {
   font-size: 20px;
