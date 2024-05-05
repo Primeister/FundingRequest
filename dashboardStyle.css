@@ -507,9 +507,8 @@ button:hover {
 }
 .applicantSectionClass {
   background-color: #f8f9fa;
-  margin: 20px auto;
-  width: 70%;
-  max-width: 600px;
+  margin-left: 10%;
+  width: 80%;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -535,18 +534,38 @@ button:hover {
   margin-bottom: 10px;
   color: purple;
 }
+
+.checkbox-label {
+  font-size: 20px; 
+  font-family:'Times New Roman', Times, serif;
+  padding:10px;
+} 
+
+
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .tabs {
-  margin-bottom: 20px;
+  display: flex;
+  overflow-x: auto;
+  height: 50px;
+  margin-top: 20px; /* Move the tabs to the top */
+}
+
+.tabs::-webkit-scrollbar {
+  width: 0; 
 }
 
 .tab {
-  display: inline-block;
   padding: 10px 20px;
   cursor: pointer;
   background-color: purple;
   color: #fff;
   border-radius: 5px 5px 0 0;
-  margin-right: 10px;
+  margin-right: 0;
+  white-space: nowrap; 
 }
 
 .tab.active {
@@ -560,4 +579,15 @@ button:hover {
 
 .tab-content.active {
   display: block;
+}
+
+/* for eligibility criteria */
+.requirements{
+  display:flex;
+  background-color: #fff;
+  border-radius: 5px;
+  width:80%;
+  margin-left:10%;
+  margin-top:20px;
+  padding:10px;
 }
