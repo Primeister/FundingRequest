@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function(){
         profilePicSection.style.borderRadius = "0 20px 0 0";
 
         var profileIcon = document.createElement("img")
-        profileIcon.src = "Images/profileIcon.png"
+        profileIcon.src = "images/profileIcon.png"
         profileIcon.style.width = "150px"
 
         // Create a new button element
