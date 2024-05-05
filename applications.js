@@ -42,7 +42,6 @@ async function fetchApplicants(){
             modalButton.textContent = 'View More';
 
             modalButton.addEventListener('click', function(){
-                //show modal dialog of each applicant
                 showModal(application);
                 table.style.display = 'none';
                 const modalContent = document.querySelector('.applicantModalClass');
@@ -64,8 +63,9 @@ async function fetchApplicants(){
 
 document.addEventListener("DOMContentLoaded", fetchApplicants);
 
-
 function showModal(application) {
+    const requirements = sessionStorage.getItem("Requirements");
+
     let existingModal = document.querySelector('.applicantModalClass');
     if (existingModal) {
         existingModal.remove();
@@ -147,6 +147,41 @@ function showModal(application) {
     applicantSection.innerHTML = ''; // Clear existing content
     applicantSection.classList.add('applicantSectionClass');
     applicantSection.appendChild(applicantArticle);
+
+
+    //aside info for the eligibility criteria
+    // Dynamically create checkboxes for requirements
+    const requirementsSection = document.createElement('aside');
+    requirementsSection.classList.add('eachApplicantMain');
+    requirementsSection.id = 'FundOppCriteria';
+
+    const requirementsTitle = document.createElement('h2');
+    requirementsTitle.textContent = 'Eligibility Criteria';
+    requirementsSection.appendChild(requirementsTitle);
+    
+    // const requirementsLabel = document.createElement('label');
+    // requirementsLabel.htmlFor = 'requirementsCheckbox';
+    // requirementsLabel.textContent = 'Criteria';
+    
+    requirements.split('\n\n').forEach(requirement => {
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = 'requirementsCheckbox';
+        checkbox.name = 'requirements';
+        checkbox.classList.add('checkbox');
+        
+        const requirementLabel = document.createElement('label');
+        requirementLabel.textContent = requirement;
+        requirementLabel.classList.add('checkbox-label');
+        
+        requirementsSection.appendChild(checkbox);
+        requirementsSection.appendChild(requirementLabel);
+        requirementsSection.appendChild(document.createElement('br'));
+    });
+
+    let applSection = document.getElementById('reqClass');
+    applSection.classList.add('requirements');
+    applSection.appendChild(requirementsSection);
 }
 function showTabContent(tabName) {
     const tabs = document.querySelectorAll('.tab');
@@ -157,6 +192,13 @@ function showTabContent(tabName) {
     });
     tabContents.forEach(content => {
         content.classList.remove('active');
+    });
+
+    // Add 'active' class to all active tabs
+    tabs.forEach(tab => {
+        if (tab.textContent === tabName) {
+            tab.classList.add('active');
+        }
     });
 
     document.querySelector(`.tab-content.${tabName.split(' ').join('-')}`).classList.add('active');
