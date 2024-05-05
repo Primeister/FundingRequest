@@ -39,7 +39,7 @@ async function fetchApplicants(){
             let modalButtonCell = row.insertCell();
             let modalButton = document.createElement('button');
             modalButton.classList.add('modalButtonClass');
-            modalButton.textContent = 'View More';
+            modalButton.textContent = 'Review';
 
             modalButton.addEventListener('click', function(){
                 showModal(application);
