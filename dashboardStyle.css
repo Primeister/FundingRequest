@@ -501,6 +501,10 @@ button:hover {
   color: #fff; /* White text color */
 }
 
+.cancel-button{
+  background-color: #a803ad;
+}
+
 .confirm-remove-button:hover, .cancel-button:hover {
   opacity: 0.8; /* Reduce opacity on hover */
 }
