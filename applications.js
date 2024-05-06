@@ -163,7 +163,7 @@ function showModal(application) {
     // requirementsLabel.htmlFor = 'requirementsCheckbox';
     // requirementsLabel.textContent = 'Criteria';
     
-    requirements.split('\n\n').forEach(requirement => {
+    requirements.split('\n').forEach(requirement => {
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.id = 'requirementsCheckbox';
