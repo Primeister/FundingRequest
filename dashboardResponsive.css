@@ -1,0 +1,138 @@
+@media screen and (min-width:400px) and (max-width: 750px) {
+    /*to make the top nav smaller*/
+    .topNav ul{
+        font-size: 10px;
+    }
+    .topNav ul li{
+        margin:10px;
+    }
+    .nav1 img{
+        height:60%;
+    }
+    .sideNav{
+        width: 80px;
+    }
+    .sideNav:hover{
+        width:200px;
+    }
+    .user{
+        font-size: 10px;
+        
+        padding:8px;
+        p{
+            font-size: 10px;
+        }
+    }
+    .userImage{
+        width:30px;
+        margin-right: 5px;
+    }
+    ul{
+        padding:0 10px;
+    }
+    ul li{
+        margin:20px 0;
+    }
+    ul li img{
+        width:20px;
+        margin-right: 7px;
+    }
+    .classMain-section{
+        width:84%;
+    }
+    .opportunityClass {
+        margin-left: 5%; /* Reduce left margin */
+    }
+    .opportunitySection {
+        margin-left: 5%;
+        width: 40%; /* Reduce width */
+        height: auto; /* Allow height to adjust based on content */
+    }
+    #advertiserFormSection fieldset{
+        width:60%;
+    }
+    #advertiserFormSection fieldset input{
+        width:60%;
+    }
+    #advertiserFormSection fieldset select{
+        width:60%;
+    }
+    #advertiserFormSection fieldset textarea{
+        width:60%;
+    }
+    .applicant-table{
+        margin:15%;
+        margin-top:5px;
+        width:75%;
+    }
+    .h1Table{
+        margin:auto;
+    }
+    .applicant-table th, .applicant-table td{
+        font-size: 16px;
+    }
+    /* .applicant-table td:nth-child(4),
+    .applicant-table th:nth-child(4) {
+        display: none;
+    } */
+  }
+  @media screen and (max-width:500px){
+    .topNav ul li{
+        margin:5px;
+    }
+    .nav1 img{
+        height:50%;
+    }
+    .sideNav{
+        width:70px;
+    }
+    .sideNav:hover{
+        width:160px;
+    }
+    ul li p{
+        font-size: 10px;
+    }
+
+    .opportunitySection {
+        margin-left: 20%;
+        width: 60%; /* Reduce width */
+        height: auto; /* Allow height to adjust based on content */
+    }
+    .applicant-table{
+        margin:15%;
+        margin-top:10px;
+    }
+    .applicant-table th, .applicant-table td{
+        padding:6px;
+        font-size: 14px;
+    }
+    .aboutClass-section{
+        padding:10px;
+        margin-top: 10px;
+        width:80%;
+        font-size:15px;
+
+        img{
+            height:100px;
+        }
+    }
+    .applicantModalClass h1, .applicantModalClass p{
+        font-size:15px;
+    }
+    .titleClass{
+        font-size: 15px;
+        margin-bottom:5px;
+    }
+    .tabs{
+        height:40px;
+        margin-top:15px;
+    }
+    .tab{
+       padding:5px 5px; 
+    }
+    .tab-content{
+        padding:10px 0;
+        font-size: 15px;
+    }
+    
+  }
