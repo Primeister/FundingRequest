@@ -42,6 +42,7 @@ async function fetchApplicants(){
             modalButton.textContent = 'Review';
 
             modalButton.addEventListener('click', function(){
+                sessionStorage.setItem("applicant_email", application.email);
                 showModal(application);
                 table.style.display = 'none';
                 const modalContent = document.querySelector('.applicantModalClass');
@@ -159,6 +160,8 @@ function showModal(application) {
     requirementsTitle.textContent = 'Eligibility Criteria';
     requirementsSection.appendChild(requirementsTitle);
     
+   
+
     // const requirementsLabel = document.createElement('label');
     // requirementsLabel.htmlFor = 'requirementsCheckbox';
     // requirementsLabel.textContent = 'Criteria';
@@ -182,6 +185,52 @@ function showModal(application) {
     let applSection = document.getElementById('reqClass');
     applSection.classList.add('requirements');
     applSection.appendChild(requirementsSection);
+    
+    const acceptRejectSection = document.createElement('div');
+    acceptRejectSection.classList.add('requirements');
+    acceptRejectSection.id = 'acceptRejectSection';
+    const acceptApplicant = document.createElement('button');
+    acceptApplicant.id = 'acceptButton';
+    acceptApplicant.textContent = 'Accept';
+
+    acceptApplicant.classList.add('acceptButton');
+    const rejectApplicant = document.createElement('button');
+    rejectApplicant.textContent = 'Reject';
+    rejectApplicant.id ='rejectButton';
+    rejectApplicant.classList.add('rejectButton');
+    
+    acceptRejectSection.appendChild(acceptApplicant);
+    acceptRejectSection.appendChild(rejectApplicant);
+
+    acceptApplicant.addEventListener('click', () => {
+        const applicantEmail = sessionStorage.getItem('applicant_email');
+        let fundingName = sessionStorage.getItem('FundingName');
+        let headersList = {
+            "Accept": "*/*"
+           }
+           
+        let response = fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${sessionStorage.getItem('applicant_email')}/accept`, { 
+            method: "GET",
+            headers: headersList
+        });
+
+    });
+    rejectApplicant.addEventListener('click', () => {
+        const applicantEmail = sessionStorage.getItem('applicant_email');
+        let headersList = {
+            "Accept": "*/*"
+           }
+           
+        let response = fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${sessionStorage.getItem('applicant_email')}/reject`, { 
+            method: "GET",
+            headers: headersList
+        });
+
+    });
+
+
+    applSection.insertAdjacentElement(
+        "afterend",acceptRejectSection);
 }
 function showTabContent(tabName) {
     const tabs = document.querySelectorAll('.tab');

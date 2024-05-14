@@ -619,3 +619,18 @@ button:hover {
   margin-top:20px;
   padding:10px;
 }
+
+#acceptRejectSection{
+  background: none;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+#rejectButton{
+  background-color: red;
+}
+
+#rejectButton:hover{
+  background-color: #840707;
+}
