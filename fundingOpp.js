@@ -203,7 +203,7 @@ async function modifyFundOpp(fundingName, newValue) {
              headers: {
                  'Content-Type': 'application/json'
              },
-             body: JSON.stringify({ newValue })
+             body: JSON.stringify( newValue )
          });
 
          if (!response.ok) {
