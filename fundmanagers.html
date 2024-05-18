@@ -36,7 +36,7 @@
             <li><a href="fundmanagers.html"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
             <li onclick="advertAreaShow()"><img src="images/advertise.png" alt="advertise-icon"/><p>Advertise Funding</p></li>
             <li><a href="#"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
-            <li><a href="#"><img src="images/budget.png" alt="budget-icon"/></a><p>Budget</p></li>
+            <li onclick="viewBudget()"><a href="#"><img src="images/budget.png" alt="budget-icon"/></a><p>Budget</p></li>
             <li><a href="#"><img src="images/reports.png" alt="reports-icon"></a><p>Reports and Analytics</p></li>
             <li><a href="#"><img src="images/members.png" alt="members-icon"/></a><p>Switch Account</p></li>
             <li><a href="#"><img src="images/setting.png" alt="settings-icon"/></a><p>Settings</p></li>
@@ -55,44 +55,63 @@
       <section>
         <article class="eachApplicantMain" id="fundingOppTable"></article>
       </section>
-    
-      <section id="advertiserFormSection">
-    
-        <br><br><br><br><br><br>
-        <center>
-        <fieldset>
-        <br><br>
-        <img src="images/contract.png" alt="contract" style="height: 100px;">
-        <br><br>
-          <h1 style="font-size: xx-large;">Funding Details</h1>
-          <br><br>
-        <form action="">
-    
-          <input type="text" id="fundingName" placeholder="Name of funding" required><br>
-          <br><br>
-          <select title="fundingType"  name="fundingType" id="fundingType" class="large-font-size" required>
-            <option value="void">Type of funding</option>
-            <option value="business">Business</option>
-            <option value="event">Event</option>
-            <option value="education">Education</option>
-          </select><br><br><br>
-            Description:<br>
-            <textarea name="description" id="description" cols="30" rows="4" placeholder="add description" required></textarea><br><br><br>
-            Requirements:<br>
-            <textarea name="requirements" id="requirements" cols="30" rows="4" placeholder="enter requirements" required></textarea><br><br><br>
-            Deadline:<br>
-            <input type="date" id="deadline" placeholder="enter deadline"><br><br><br>
-            <input type="submit" onclick="PostFunding()" class="submit" value="Post!" style="cursor: pointer;" id="submitBtn">
-            <br><br><br>
-            <caption style="color: grey;"> all submisions are subject to review by admin, <b style="cursor: pointer;">Learn more about review process</b> </caption>
-            
-            <br><br><br>
-    
-        </form>  
-        </fieldset>
-      </center>
-      </section>
+      
     </main>
+
+    <section id="advertiserFormSection">
+    
+      <br><br><br><br><br><br>
+      <center>
+      <fieldset>
+      <br><br>
+      <img src="images/contract.png" alt="contract" style="height: 100px;">
+      <br><br>
+        <h1 style="font-size: xx-large;">Funding Details</h1>
+        <br><br>
+      <form action="">
+  
+        <input type="text" id="fundingName" placeholder="Name of funding" required><br>
+        <br><br>
+        <select title="fundingType"  name="fundingType" id="fundingType" class="large-font-size" required>
+          <option value="void">Type of funding</option>
+          <option value="business">Business</option>
+          <option value="event">Event</option>
+          <option value="education">Education</option>
+        </select><br><br><br>
+          Description:<br>
+          <textarea name="description" id="description" cols="30" rows="4" placeholder="add description" required></textarea><br><br><br>
+          Requirements:<br>
+          <textarea name="requirements" id="requirements" cols="30" rows="4" placeholder="enter requirements" required></textarea><br><br><br>
+          Deadline:<br>
+          <input type="date" id="deadline" placeholder="enter deadline"><br><br><br>
+          <input type="submit" onclick="PostFunding()" class="submit" value="Post!" style="cursor: pointer;" id="submitBtn">
+          <br><br><br>
+          <caption style="color: grey;"> all submisions are subject to review by admin, <b style="cursor: pointer;">Learn more about review process</b> </caption>
+          
+          <br><br><br>
+  
+      </form>  
+      </fieldset>
+      </center>
+    </section>
+
+    <center>
+    <section id="budgetSection" style="padding-top: 20px;">
+      <center>
+        <section>
+        <section id="totalFunds" style="background-color: aliceblue; border-radius: 10px;">
+          <h1>TOTAL FUNDS:</h1><br>
+          <h1>R0.00</h1><br>
+          <button>Manage Funds</button>
+        </section>
+
+        <section id ="opportunityFunds" style="padding-top: 20px;">
+
+        </section>
+      </section>
+      </center>
+    </section>
+    </center>
 
     <main id="aboutId" class="aboutClass">
       <section class="aboutClass-section">

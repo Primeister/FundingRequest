@@ -207,6 +207,13 @@ footer{
   bottom: 0;
   
 }
+#budgetSection{
+  display: none;
+  height: 1000px;
+  width: 75%;
+  text-align: center;
+}
+
 #advertiserFormSection
 {
   height: 1000px;
