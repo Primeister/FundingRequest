@@ -56,6 +56,8 @@ async function postData(data) {
         return;
     }
 
+    console.log("Fund manager email:", fundManagerEmail);
+
     // Prepare notification data
     let notificationData = {
         fundManagerEmail: fundManagerEmail,
@@ -63,6 +65,7 @@ async function postData(data) {
         applicantName: `${data.firstname} ${data.surname}`
     };
 
+    console.log("Notification data to be sent:", notificationData);
     // Call the new notification endpoint
     await postNotification(notificationData);
 }
