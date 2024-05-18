@@ -14,15 +14,15 @@ document.addEventListener("DOMContentLoaded", function(){
         
 
             let opportunity = document.createElement('section');
-            opportunity.style.backgroundColor = "grey";
+            opportunity.style.backgroundColor = "purple";
             opportunity.style.paddingTop = "20px";
             opportunity.style.borderRadius = "10px";
             let lineBreak = document.createElement('br');
             let fundingName = document.createElement('h1');
-            fundingName.style.color = "white";
+            
             fundingName.textContent = fundingOpp.FundingName;
             let amount = document.createElement('h1');
-            amount.style.color = "white";
+            
             amount.textContent = "Allocated Funds: R0.00";
             let manageFundsButton =  document.createElement('button');
             manageFundsButton.textContent = "Manage Funds";
