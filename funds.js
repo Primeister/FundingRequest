@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", function(){
             let fundingName = document.createElement('h1');
             fundingName.textContent = fundingOpp.FundingName;
             let amount = document.createElement('h1');
-            amount.textContent = "Allocated Funds: R0.00";
+            let allocatedAmount = fundingOpp.Amount.toString(); 
+            amount.textContent = "Allocated Funds: R" + allocatedAmount;
             let manageFundsButton =  document.createElement('button');
             manageFundsButton.textContent = "Manage Funds";
             
