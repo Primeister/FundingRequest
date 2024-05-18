@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(){
         return res.json();
     }).then( data =>{
         
-        data.array.forEach(fundingOpp => {
+        data.forEach(fundingOpp => {
             
         
 
