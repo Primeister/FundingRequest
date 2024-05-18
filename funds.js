@@ -1,4 +1,4 @@
-let email = sessionStorage.getItem('email');
+
 
 document.addEventListener("DOMContentLoaded", function(){
 
