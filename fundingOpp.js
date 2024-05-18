@@ -183,7 +183,7 @@ async function fetchData() {
             opportunityDiv.appendChild(nameHeading);
             opportunityDiv.appendChild(deadlineParagraph);
             opportunityDiv.appendChild(seeMoreButton);
-            container.appendChild(removeButton);
+            opportunityDiv.appendChild(removeButton);
             opportunityDiv.appendChild(container);
             
             let fundingOpportunitiesSection = document.getElementById('landing-section');
