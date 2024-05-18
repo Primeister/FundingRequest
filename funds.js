@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     var mainElement = document.getElementById("opportunityFunds");
     
-    fetch('https://fundreq.azurewebsites.net/fundingOpportunities/2332600@students.wits.ac.za')
+    fetch('https://fundreq.azurewebsites.net/fundingOpportunities/' + email)
     .then(res => {
         return res.json();
     }).then( data =>{
