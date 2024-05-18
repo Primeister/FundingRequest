@@ -32,7 +32,8 @@ document.addEventListener("DOMContentLoaded", function() {
         "type": document.getElementById("fundingType").value,
         "description": document.getElementById("description").value,
         "requirements": document.getElementById("requirements").value,
-        "deadline": document.getElementById("deadline").value
+        "deadline": document.getElementById("deadline").value,
+        "amount": document.getElementById("allocatedFunds").value
     };
 
     post(data);

@@ -73,6 +73,10 @@
   
         <input type="text" id="fundingName" placeholder="Name of funding" required><br>
         <br><br>
+
+        <input type="number" id="allocatedFunds" placeholder="Allocated funds" required><br>
+        <br><br>
+
         <select title="fundingType"  name="fundingType" id="fundingType" class="large-font-size" required>
           <option value="void">Type of funding</option>
           <option value="business">Business</option>
@@ -85,7 +89,7 @@
           <textarea name="requirements" id="requirements" cols="30" rows="4" placeholder="enter requirements" required></textarea><br><br><br>
           Deadline:<br>
           <input type="date" id="deadline" placeholder="enter deadline"><br><br><br>
-          <input type="submit" onclick="PostFunding()" class="submit" value="Post!" style="cursor: pointer;" id="submitBtn">
+          <input type="submit" onclick="PostFunding()" class="submit" value="Create!" style="cursor: pointer;" id="submitBtn">
           <br><br><br>
           <caption style="color: grey;"> all submisions are subject to review by admin, <b style="cursor: pointer;">Learn more about review process</b> </caption>
           
