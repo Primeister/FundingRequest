@@ -87,6 +87,9 @@ return payload;
 function advertAreaShow()
 {
     document.getElementById('landing-section').style.display="none";
+    document.querySelector(".classMain").style.display = "none";
+    document.querySelector(".aboutClass").style.display = "none";
+    document.getElementById("budgetSection").style.display = "none";
     document.getElementById('advertiserFormSection').style.display="block";
 }
 
@@ -101,6 +104,8 @@ function viewBudget(){
 function showApproveFunder(){
     document.querySelector(".classMain").style.display = "none";
     document.querySelector(".aboutClass").style.display = "none";
+    document.getElementById('advertiserFormSection').style.display="none";
+    document.getElementById("budgetSection").style.display = "none";
     document.getElementById("approve-fundManagers").style.display = "block";
 }
 
