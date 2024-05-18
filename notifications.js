@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    fetchData();
     fetchNotifications();
   
     const inboxLink = document.getElementById('inboxLink');
