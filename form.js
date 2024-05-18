@@ -32,18 +32,67 @@ async function postData(data) {
         "Content-Type": "application/json"
     };
 
-    let response = await fetch("https://fundreq.azurewebsites.net/application/post" , {
+    // POST the application data to the server
+    let response = await fetch("https://fundreq.azurewebsites.net/application/post", {
         method: "POST",
         mode: "cors",
         headers: headersList,
         body: bodyContent
     });
 
+    if (!response.ok) {
+        console.error("Failed to submit application");
+        return;
+    }
+
     let result = await response.json();
     console.log(result);
+
+    // Retrieve the fund manager's email from sessionStorage
+    let fundManagerEmail = sessionStorage.getItem('email');
+
+    if (!fundManagerEmail) {
+        console.error("Fund manager email not found in sessionStorage");
+        return;
+    }
+
+    // Prepare notification data
+    let notificationData = {
+        fundManagerEmail: fundManagerEmail,
+        fundingOpportunityName: data.funding_name,
+        applicantName: `${data.firstname} ${data.surname}`
+    };
+
+    // Call the new notification endpoint
+    await postNotification(notificationData);
+}
+
+async function postNotification(notificationData) {
+    let bodyContent = JSON.stringify(notificationData);
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json"
+    };
+
+    // POST the notification data to the server
+    let response = await fetch("https://fundreq.azurewebsites.net/notifications/add", {
+        method: "POST",
+        mode: "cors",
+        headers: headersList,
+        body: bodyContent
+    });
+
+    if (!response.ok) {
+        console.error("Failed to add notification");
+        return;
+    }
+
+    let result = await response.json();
+    console.log(result.message);
 }
 
 module.exports = {
     PostForm,
-    postData
+    postData,
+    postNotification
 }
