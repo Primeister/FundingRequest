@@ -673,3 +673,27 @@ button:hover {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+/* styling the notifications page */
+.inboxClass {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+
+}
+
+.inboxClass h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.notification {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.notification:last-child {
+  border-bottom: none;
+}

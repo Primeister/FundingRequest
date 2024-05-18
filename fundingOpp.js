@@ -9,7 +9,7 @@ async function fetchData() {
              throw new Error("Email not found in sessionStorage");
          } 
 
-        const response = await fetch(`https://fundreq.azurewebsites.net/fundingOpportunities/${email}`);
+        const response = await fetch(`https://fundreq.azurewebsites.net/fundingOpportunities/2549192@students.wits.ac.za`);
 
         if (!response.ok) {
             throw new Error("Could not fetch resource");
