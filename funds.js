@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         data.forEach(fundingOpp => {
             
-            let stringAmountID = amount.toString();
+            let stringAmountID = amountID.toString();
 
             let opportunity = document.createElement('section');
             opportunity.style.backgroundColor = "purple";
@@ -49,6 +49,8 @@ document.addEventListener("DOMContentLoaded", function(){
             opportunity.appendChild(manageFundsButton);
 
             mainElement.appendChild(opportunity);
+
+            amountID = amountID + 1;
 
         });
     }
