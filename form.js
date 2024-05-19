@@ -1,43 +1,62 @@
 async function PostForm() {
     let data = {
+        
         "surname": document.getElementById("surname").value,
-      
+
         "firstname": document.getElementById("firstname").value,
-      
+
         "mobile": document.getElementById("mobile").value,
-      
+
         "email": document.getElementById("email").value,
-      
+
         "id_number": document.getElementById("idnumber").value,
-      
+
         "dob": document.getElementById("dob").value,
-      
+
         "citizenship": document.getElementById("citizenship").value,
 
         "funding_name": sessionStorage.getItem("FundingName")
-        
     };
 
-    // Retrieve the fund manager's email from sessionStorage
-    let email = sessionStorage.getItem('email');
-
-    if (!email) {
-        console.error("Fund manager email not found in sessionStorage");
-        return;
+    // Fetch fund manager's email 
+    async function fetchFundManagerEmail() {
+        try {
+            const response = await fetch(`https://fundreq.azurewebsites.net/fundManager/${data.funding_name}`);
+            
+            if (!response.ok) {
+                throw new Error("Failed to fetch fund manager email");
+            }
+        
+            const responseData = await response.json();
+            // Assuming the response data is an array and you want the FundManager value of the first item
+            const fundManagerEmail = responseData[0]?.FundManager;
+            return fundManagerEmail;
+        } catch (error) {
+            console.error("Error fetching fund manager email:", error);
+            return null; // Return null in case of error
+        }
     }
-    console.log("Fund manager email:", email);
 
     // Prepare notification data
+    const fundManagerEmail = await fetchFundManagerEmail();
+    if (fundManagerEmail === null) {
+        console.error("No fund manager email retrieved, cannot proceed with notification.");
+        return;
+    }
+    
     let notificationData = {
-        fundManagerEmail: email,
+        fundManagerEmail: fundManagerEmail,
         fundingOpportunityName: data.funding_name,
         applicantName: `${data.firstname} ${data.surname}`
     };
-    console.log(notificationData);
 
+    console.log(notificationData); // To verify the notification data
+
+    // Post data and notification
     await postData(data);
     await postNotification(notificationData);
 
+    // Redirect after posting
     window.location.href = "applicants.html";
 }
 
