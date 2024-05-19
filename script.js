@@ -90,6 +90,8 @@ function advertAreaShow()
     document.querySelector(".classMain").style.display = "none";
     document.querySelector(".aboutClass").style.display = "none";
     document.getElementById("budgetSection").style.display = "none";
+    document.getElementById("editOppAmountSection").style.display = "none";
+    document.getElementById("editTotalAmountSection").style.display = "none";
     document.getElementById('advertiserFormSection').style.display="block";
 }
 
@@ -98,6 +100,8 @@ function viewBudget(){
     document.querySelector(".aboutClass").style.display = "none";
     document.getElementById('landing-section').style.display="none";
     document.getElementById('advertiserFormSection').style.display="none";
+    document.getElementById("editOppAmountSection").style.display = "none";
+    document.getElementById("editTotalAmountSection").style.display = "none";
     document.getElementById("budgetSection").style.display = "block";
 }
 
@@ -106,7 +110,15 @@ function showApproveFunder(){
     document.querySelector(".aboutClass").style.display = "none";
     document.getElementById('advertiserFormSection').style.display="none";
     document.getElementById("budgetSection").style.display = "none";
+    document.getElementById("editOppAmountSection").style.display = "none";
+    document.getElementById("editTotalAmountSection").style.display = "none";
     document.getElementById("approve-fundManagers").style.display = "block";
+}
+
+function openEditor(){
+    document.getElementById("budgetSection").style.display = "none";
+    document.getElementById("editOppAmountSection").style.display = "none";
+    document.getElementById("editTotalAmountSection").style.display = "block";
 }
 
 module.exports = {

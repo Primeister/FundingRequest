@@ -26,6 +26,13 @@ document.addEventListener("DOMContentLoaded", function(){
             amount.textContent = "Allocated Funds: R" + allocatedAmount;
             let manageFundsButton =  document.createElement('button');
             manageFundsButton.textContent = "Manage Funds";
+
+            manageFundsButton.onclick = function() {
+                
+                document.getElementById("budgetSection").style.display = "none";
+                document.getElementById("editOppAmountSection").style.display = "block";
+                  
+            };
             
             opportunity.appendChild(fundingName);
             opportunity.appendChild(lineBreak);

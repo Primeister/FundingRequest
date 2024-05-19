@@ -214,6 +214,20 @@ footer{
   text-align: center;
 }
 
+#editTotalAmountSection{
+  display: none;
+  height: 1000px;
+  width: 75%;
+  text-align: center;
+}
+
+#editOppAmountSection{
+  display: none;
+  height: 1000px;
+  width: 75%;
+  text-align: center;
+}
+
 #advertiserFormSection
 {
   height: 1000px;
