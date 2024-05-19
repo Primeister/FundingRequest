@@ -168,6 +168,31 @@ async function fetchData() {
     }
 }
 
+async function fetchFundManagerStatus() {
+    try {
+        const email = sessionStorage.getItem('email');
+        if (!email) {
+            throw new Error("Funder email not found in session storage");
+        }
+
+        const response = await fetch(`https://fundreq.azurewebsites.net/funder/${email}`);
+
+        if (!response.ok) {
+            throw new Error("Could not fetch fund manager status");
+        }
+
+        const data = await response.json();
+        const fundManagerStatus = document.getElementById('fundManagerStatus');
+        fundManagerStatus.textContent = `Status: ${data.status}`;
+    } catch (error) {
+        console.error('Error fetching fund manager status:', error);
+        const fundManagerStatus = document.getElementById('fundManagerStatus');
+        fundManagerStatus.textContent = 'Error loading status';
+    }
+}
+
+document.addEventListener("DOMContentLoaded", fetchFundManagerStatus);
+
 async function editOption(fundingOpportunity, field) {
     const currentValue = fundingOpportunity[field];
     const newValue = await createPopup(`Enter the new ${field}:`, currentValue);
