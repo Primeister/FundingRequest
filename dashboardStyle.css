@@ -215,6 +215,7 @@ footer{
 }
 
 #approve-fundManagers{
+  display: none;
   height: 1000px;
   width: 100%;
   text-align: center;
