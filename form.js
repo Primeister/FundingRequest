@@ -1,7 +1,5 @@
 async function PostForm() {
     let data = {
-
-        
         "surname": document.getElementById("surname").value,
       
         "firstname": document.getElementById("firstname").value,
@@ -20,7 +18,25 @@ async function PostForm() {
         
     };
 
+    // Retrieve the fund manager's email from sessionStorage
+    let email = sessionStorage.getItem('email');
+
+    if (!email) {
+        console.error("Fund manager email not found in sessionStorage");
+        return;
+    }
+    console.log("Fund manager email:", email);
+
+    // Prepare notification data
+    let notificationData = {
+        fundManagerEmail: email,
+        fundingOpportunityName: data.funding_name,
+        applicantName: `${data.firstname} ${data.surname}`
+    };
+    console.log(notificationData);
+
     await postData(data);
+    await postNotification(notificationData);
 
     window.location.href = "applicants.html";
 }
@@ -47,27 +63,6 @@ async function postData(data) {
 
     let result = await response.json();
     console.log(result);
-
-    // Retrieve the fund manager's email from sessionStorage
-    let fundManagerEmail = sessionStorage.getItem('email');
-
-    if (!fundManagerEmail) {
-        console.error("Fund manager email not found in sessionStorage");
-        return;
-    }
-
-    console.log("Fund manager email:", fundManagerEmail);
-
-    // Prepare notification data
-    let notificationData = {
-        fundManagerEmail: fundManagerEmail,
-        fundingOpportunityName: data.funding_name,
-        applicantName: `${data.firstname} ${data.surname}`
-    };
-
-    console.log("Notification data to be sent:", notificationData);
-    // Call the new notification endpoint
-    await postNotification(notificationData);
 }
 
 async function postNotification(notificationData) {
