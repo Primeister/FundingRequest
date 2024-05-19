@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function(){
             let opportunity = document.createElement('section');
             opportunity.style.backgroundColor = "purple";
             opportunity.style.paddingTop = "20px";
+            opportunity.style.marginTop = "20px";
             opportunity.style.borderRadius = "10px";
             let lineBreak = document.createElement('br');
             let lineBreak2 = document.createElement('br');
