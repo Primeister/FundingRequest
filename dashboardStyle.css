@@ -610,7 +610,7 @@ button:hover {
   background-color: violet;
 }
 .tab:hover{
-  background-color: black;
+  background-color: rgb(161, 15, 161);
   color: white;
 }
 
