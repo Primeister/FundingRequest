@@ -767,3 +767,17 @@ button:hover {
 .notification:last-child {
   border-bottom: none;
 }
+
+/* status section for fund manager */
+.fundManagerStatusSection {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-left:10%;
+  margin-right:10%;
+}
+
+.fundManagerStatusSection h2 {
+  margin-bottom: 10px;
+}
