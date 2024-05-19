@@ -1,6 +1,32 @@
+    // Fetch fund manager's email 
+    async function fetchEmail() {
+        try {
+            fundName= sessionStorage.getItem("FundingName");
+            console.log(fundName);
+          const response = await fetch('https://fundreq.azurewebsites.net/fundManager/' + fundName);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          } else {
+            const data = await response.json();
+            if (data.length > 0) {
+              const email = data[0].FundManager;
+              document.getElementById('emailId').textContent = `email: ${email}`;
+              console.log(email);
+              console.log("Successfully fetched email: " + email);
+              return email;
+            } else {
+              console.log("No data found");
+              return null;
+            }
+          }
+        } catch (error) {
+          console.log('Error:', error);
+        }
+    }
+
 async function PostForm() {
     let data = {
-        
+
         "surname": document.getElementById("surname").value,
 
         "firstname": document.getElementById("firstname").value,
@@ -14,31 +40,12 @@ async function PostForm() {
         "dob": document.getElementById("dob").value,
 
         "citizenship": document.getElementById("citizenship").value,
-
+        
         "funding_name": sessionStorage.getItem("FundingName")
     };
 
-    // Fetch fund manager's email 
-    async function fetchFundManagerEmail() {
-        try {
-            const response = await fetch(`https://fundreq.azurewebsites.net/fundManager/${data.funding_name}`);
-            
-            if (!response.ok) {
-                throw new Error("Failed to fetch fund manager email");
-            }
-        
-            const responseData = await response.json();
-            // Assuming the response data is an array and you want the FundManager value of the first item
-            const fundManagerEmail = responseData[0]?.FundManager;
-            return fundManagerEmail;
-        } catch (error) {
-            console.error("Error fetching fund manager email:", error);
-            return null; // Return null in case of error
-        }
-    }
-
     // Prepare notification data
-    const fundManagerEmail = await fetchFundManagerEmail();
+    const fundManagerEmail = await fetchEmail();
     if (fundManagerEmail === null) {
         console.error("No fund manager email retrieved, cannot proceed with notification.");
         return;
