@@ -113,53 +113,53 @@
     </section>
 
     <center>
-    <section id="budgetSection" style="padding-top: 20px;">
-      <center>
-        <section>
-        <section id="totalFunds" style="background-color: aliceblue; border-radius: 10px;">
-          <h1>TOTAL FUNDS:</h1><br>
-          <h1>R0.00</h1><br>
-          <button onclick="openEditor()">Manage Funds</button>
-        </section>
-
-        <section id ="opportunityFunds" style="padding-top: 20px;"></section>
-
-      </section>
-      </center>
-    </section>
-    </center>
-
-    <center>
-      <section id="editTotalAmountSection" style="padding-top: 20px;">
+      <section id="budgetSection" style="padding-top: 20px;">
         <center>
           <section>
           <section id="totalFunds" style="background-color: aliceblue; border-radius: 10px;">
-            <h1>Set New Amount</h1><br><br>
-            <input type="number" id="allocatedTotalFunds" placeholder="Allocated funds" required><br>
-            <br><br>
-            <button>Set</button>
+            <h1>TOTAL FUNDS:</h1><br>
+            <h1 id="totalFunds">R0.00</h1><br>
+            <button onclick="openEditor()">Manage Funds</button>
           </section>
-          
+  
+          <section id ="opportunityFunds" style="padding-top: 20px;"></section>
+  
         </section>
         </center>
       </section>
       </center>
-
+  
       <center>
-        <section id="editOppAmountSection" style="padding-top: 20px;">
+        <section id="editTotalAmountSection" style="padding-top: 20px;">
           <center>
             <section>
             <section id="totalFunds" style="background-color: aliceblue; border-radius: 10px;">
               <h1>Set New Amount</h1><br><br>
-              <input type="number" id="allocatedOppFunds" placeholder="Allocated funds" required><br>
+              <input type="number" id="allocatedTotalFunds" placeholder="Allocated funds" required><br>
               <br><br>
-              <button>Set</button>
+              <button onclick="updateTotalFunds()">Set</button>
             </section>
             
           </section>
           </center>
         </section>
         </center>
+  
+        <center>
+          <section id="editOppAmountSection" style="padding-top: 20px;">
+            <center>
+              <section>
+              <section id="totalFunds" style="background-color: aliceblue; border-radius: 10px;">
+                <h1>Set New Amount</h1><br><br>
+                <input type="number" id="allocatedOppFunds" placeholder="Allocated funds" required><br>
+                <br><br>
+                <button onclick="updateOppFunds()">Set</button>
+              </section>
+              
+            </section>
+            </center>
+          </section>
+          </center>
 
     <main id="aboutId" class="aboutClass">
       <section class="aboutClass-section">
