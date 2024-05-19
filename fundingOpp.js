@@ -9,7 +9,7 @@ async function fetchData() {
              throw new Error("Email not found in sessionStorage");
          } 
 
-        const response = await fetch(`https://fundreq.azurewebsites.net/fundingOpportunities/2549192@students.wits.ac.za`);
+        const response = await fetch(`https://fundreq.azurewebsites.net/fundingOpportunities/${email}`);
 
         if (!response.ok) {
             throw new Error("Could not fetch resource");
@@ -55,7 +55,7 @@ async function fetchData() {
                 dropdownMenu.classList.add('dropdown-content');
 
                 // Add elements to modify the funding opportunity
-                const elementsToModify = ['Edit Name', 'Edit Description', 'Edit Requirements', 'Edit Deadline'];
+                const elementsToModify = ['FundingName', 'Description', 'Requirements', 'Deadline'];
                 elementsToModify.forEach(element => {
                     const option = document.createElement('a');
                     option.textContent = element;
@@ -63,35 +63,8 @@ async function fetchData() {
         
                     option.addEventListener('click', async function(event) {
                         event.preventDefault();
-                        let newValue;
-                        // Retrieve existing data based on the selected option
-                        switch (element) {
-                            case 'Edit Name':
-                                newValue = prompt('Enter the new name:', fundingOpportunity.FundingName);
-                                break;
-                            case 'Edit Description':
-                                newValue = prompt('Enter the new description:', fundingOpportunity.FundingDescription);
-                                break;
-                            case 'Edit Requirements':
-                                newValue = prompt('Enter the new requirements:', fundingOpportunity.Requirements);
-                                break;
-                            case 'Edit Deadline':
-                                newValue = prompt('Enter the new deadline:', fundingOpportunity.Deadline);
-                                break;
-                            default:
-                                break;
-                        }
-                    
-                        if (newValue !== null) {
-                            try {
-                                const updatedData = await modifyFundOpp(fundingOpportunity.FundingName, newValue);
-                                // Optionally, update the UI with the updated data
-                            } catch (error) {
-                                // Handle any errors that occur during the modification process
-                                console.error('Error modifying funding opportunity:', error);
-                            }
-                        }
-                        dropdownMenu.remove();
+                        await editOption(fundingOpportunity, element); // Call editOption function with appropriate arguments
+                        dropdownMenu.remove(); // Remove dropdown menu after editing
                     });
                     
                     dropdownMenu.appendChild(option);
@@ -114,7 +87,7 @@ async function fetchData() {
             removeButton.classList.add('card-button');
             removeButton.textContent = 'Remove';
 
-           removeButton.addEventListener('click', function() {
+            removeButton.addEventListener('click', function() {
                 // Create a popup dialog
                 const confirmationPopup = document.createElement('div');
                 confirmationPopup.classList.add('confirmation-popup');
@@ -170,6 +143,7 @@ async function fetchData() {
             
                 document.body.appendChild(confirmationPopup);
             });
+
             // Add alternating class based on index
             if (index % 2 === 0) {
                 seeMoreButton.classList.add('card-button-violet');
@@ -193,32 +167,104 @@ async function fetchData() {
         console.error(error);
     }
 }
-document.addEventListener("DOMContentLoaded", fetchData);
 
-async function modifyFundOpp(fundingName, newValue) {
-    try {
-         const url = `https://fundreq.azurewebsites.net/modifyFundOpp/${fundingName}`;
-         const response = await fetch(url, {
-             method: 'PUT',
-             headers: {
-                 'Content-Type': 'application/json'
-             },
-             body: JSON.stringify( newValue )
-         });
-
-         if (!response.ok) {
-             throw new Error('Failed to modify funding opportunity');
-         }
-
-         const data = await response.json();
-         return data;
-     } catch (error) {
-         console.error('Error modifying funding opportunity:', error);
-         throw error;
+async function editOption(fundingOpportunity, field) {
+    const currentValue = fundingOpportunity[field];
+    const newValue = await createPopup(`Enter the new ${field}:`, currentValue);
+    if (newValue !== null) {
+        try {
+            const updatedData = await modifyFundOpp(fundingOpportunity.FundingName, field, newValue);
+            console.log('Updated data:', updatedData);
+        } catch (error) {
+            console.error('Error modifying funding opportunity:', error);
+        }
     }
 }
+
+document.addEventListener("DOMContentLoaded", fetchData);
+
+function createPopup(message, defaultValue) {
+    return new Promise((resolve) => {
+        // Create modal elements
+        const modalBackdrop = document.createElement('div');
+        modalBackdrop.classList.add('modal-backdrop');
+
+        const modal = document.createElement('div');
+        modal.classList.add('modal');
+
+        const modalContent = document.createElement('div');
+        modalContent.classList.add('modal-content');
+
+        const messageParagraph = document.createElement('p');
+        messageParagraph.textContent = message;
+
+        const inputField = document.createElement('input');
+        inputField.type = 'text';
+        inputField.value = defaultValue; // Set the default value here
+
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('button-container');
+
+        const confirmButton = document.createElement('button');
+        confirmButton.textContent = 'Confirm';
+        confirmButton.classList.add('confirm-remove-button');
+
+        const cancelButton = document.createElement('button');
+        cancelButton.textContent = 'Cancel';
+        cancelButton.classList.add('cancel-button');
+
+        // Event listeners for buttons
+        confirmButton.addEventListener('click', () => {
+            resolve(inputField.value);
+            modalBackdrop.remove();
+        });
+
+        cancelButton.addEventListener('click', () => {
+            resolve(null);
+            modalBackdrop.remove();
+        });
+
+        // Append buttons to button container
+        buttonContainer.appendChild(confirmButton);
+        buttonContainer.appendChild(cancelButton);
+
+        // Append elements to modal content
+        modalContent.appendChild(messageParagraph);
+        modalContent.appendChild(inputField);
+        modalContent.appendChild(buttonContainer);
+        modal.appendChild(modalContent);
+
+        // Append modal to document body
+        modalBackdrop.appendChild(modal);
+        document.body.appendChild(modalBackdrop);
+    });
+}
+
+async function modifyFundOpp(fundingName, field, newValue) {
+    try {
+        const url = `https://fundreq.azurewebsites.net/modifyFundOpp/${fundingName}`;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ [field]: newValue })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to modify funding opportunity');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error modifying funding opportunity:', error);
+        throw error;
+    }
+}
+document.addEventListener("DOMContentLoaded", fetchData);
+
 
 module.exports = {
     fetchData, modifyFundOpp
 }
-
