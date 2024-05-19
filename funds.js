@@ -1,7 +1,7 @@
 
 
 let apiUpdateAmount = 'https://fundreq.azurewebsites.net/update/amount/';
-let apiUpdateTotalAmount = 'https://fundreq.azurewebsites.net/update/total/amount';
+let apiUpdateTotalAmount = 'https://fundreq.azurewebsites.net/update/total/amount/';
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 function updateTotalFunds(){
 
-    document.getElementById("totalFunds").textContent = "Allocated funds: R" + document.getElementById("allocatedTotalFunds").value.toString();
+    document.getElementById("totalFunds").textContent = "R" + document.getElementById("allocatedTotalFunds").value.toString();
 
     let data = {
         "amount": document.getElementById("allocatedTotalFunds").value
