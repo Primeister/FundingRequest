@@ -108,10 +108,6 @@ function viewBudget(){
 function showApproveFunder(){
     document.querySelector(".classMain").style.display = "none";
     document.querySelector(".aboutClass").style.display = "none";
-    document.getElementById('advertiserFormSection').style.display="none";
-    document.getElementById("budgetSection").style.display = "none";
-    document.getElementById("editOppAmountSection").style.display = "none";
-    document.getElementById("editTotalAmountSection").style.display = "none";
     document.getElementById("approve-fundManagers").style.display = "block";
 }
 
