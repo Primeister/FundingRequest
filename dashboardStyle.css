@@ -480,6 +480,13 @@ button:hover {
 .cancel-button{
   background-color: #a803ad;
 }
+.confirm-remove-button:hover {
+  background-color: #a00909; /* Red color for remove button */
+  color: #fff; /* White text color */
+}
+.cancel-button:hover{
+  background-color: #920597;
+}
 
 .confirm-remove-button:hover, .cancel-button:hover {
   opacity: 0.8; /* Reduce opacity on hover */
@@ -633,7 +640,13 @@ button:hover {
   gap: 20px;
   justify-content: center;
 }
+#acceptButton{
+  background-color: purple;
+}
 
+#acceptButton:hover{
+  background-color: rgb(177, 12, 177);
+}
 #rejectButton{
   background-color: red;
 }
@@ -672,6 +685,49 @@ button:hover {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+/* Modal container */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  max-width: 90%;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content p {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  margin-bottom: 20px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.button-container {
+  display: flex;
+  justify-content:space-evenly;
 }
 
 /* styling the notifications page */
