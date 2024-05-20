@@ -54,7 +54,7 @@ async function PostForm() {
 
     const notificationData = {
         fundManagerEmail: fundManagerEmail,
-        fundingOpportunityName: data.funding_name,
+        fundOppName: data.funding_name,
         applicantName: `${data.firstname} ${data.surname}`
     };
 
