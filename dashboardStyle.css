@@ -775,6 +775,52 @@ button:hover {
   border-bottom: none;
 }
 
+.tab {
+  cursor: pointer;
+  padding: 10px;
+  display: inline-block;
+  margin-right: 0;
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  font-weight: bold;
+  border-bottom: 2px solid #000; /* Add a border to indicate the active tab */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.star {
+  cursor: pointer;
+  margin-right: 10px;
+  color: #ccc; /* Gray color for unselected star */
+}
+
+.star:hover {
+  color: #ff0; /* Yellow color for hover effect */
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
 /* status section for fund manager */
 .fundManagerStatusSection {
   padding: 20px;
