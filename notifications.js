@@ -28,13 +28,14 @@ async function fetchNotifications() {
         throw new Error("Email not found in sessionStorage");
     } 
 
-    const response = await fetch('https://fundreq.azurewebsites.net/notifications/' + email);
+    const response = await fetch('https://fundreq.azurewebsites.net/notifications/'+ email );
     if (!response.ok) {
       throw new Error("Failed to fetch notifications");
     }
     const notifications = await response.json();
     window.notifications = notifications; // Store notifications globally
     displayNotifications(notifications);
+    countUnreadNotifications(notifications);
   } catch (error) {
     console.error("Error fetching notifications:", error);
   }
@@ -143,4 +144,26 @@ function showInbox() {
   } else {
     displayNotifications(window.notifications);
   }
+}
+
+function countUnreadNotifications(notifications) {
+  const unreadCount = notifications.filter(notification => !notification.read).length;
+  const inboxLink = document.getElementById('inboxLink');
+  let countElement = document.getElementById('unread-count');
+
+  if (!countElement) {
+    countElement = document.createElement('span');
+    countElement.id = 'unread-count';
+    countElement.style.background = 'red';
+    countElement.style.color = 'white';
+    countElement.style.borderRadius = '50%';
+    countElement.style.padding = '2px 6px';
+    countElement.style.position = 'absolute';
+    countElement.style.top = '0';
+    countElement.style.right = '0';
+    countElement.style.fontSize = '12px';
+    inboxLink.appendChild(countElement);
+  }
+
+  countElement.textContent = unreadCount;
 }
