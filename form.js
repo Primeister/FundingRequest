@@ -28,7 +28,13 @@ async function fetchEmail() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", fetchEmail);
+document.addEventListener("DOMContentLoaded", function() {
+    fetchEmail();
+    document.getElementById("advertiserFormSection").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+        PostForm();
+    });
+});
 
 async function PostForm() {
     let fundManagerEmail = sessionStorage.getItem("FundManagerEmail");
@@ -60,63 +66,75 @@ async function PostForm() {
 
     console.log(notificationData); // To verify the notification data
 
-    await postData(data);
-    await postNotification(notificationData);
+    try {
+        await postData(data);
+        await postNotification(notificationData);
 
-    window.location.href = "applicants.html";
+        // Navigate to applicants page after successful submission
+        window.location.href = "applicants.html";
+    } catch (error) {
+        console.error("Error processing form:", error);
+    }
 }
 
 async function postData(data) {
-    let bodyContent = JSON.stringify(data);
-    let headersList = {
-        "Accept": "*/*",
-        "Content-Type": "application/json"
-    };
+    try {
+        let bodyContent = JSON.stringify(data);
+        let headersList = {
+            "Accept": "*/*",
+            "Content-Type": "application/json"
+        };
 
-    // POST the application data to the server
-    let response = await fetch("https://fundreq.azurewebsites.net/application/post", {
-        method: "POST",
-        mode: "cors",
-        headers: headersList,
-        body: bodyContent
-    });
+        // POST the application data to the server
+        let response = await fetch("https://fundreq.azurewebsites.net/application/post", {
+            method: "POST",
+            mode: "cors",
+            headers: headersList,
+            body: bodyContent
+        });
 
-    if (!response.ok) {
-        console.error("Failed to submit application");
-        return;
+        if (!response.ok) {
+            throw new Error("Failed to submit application");
+        }
+
+        let result = await response.json();
+        console.log(result);
+    } catch (error) {
+        console.error("Error in postData:", error);
+        throw error;
     }
-
-    let result = await response.json();
-    console.log(result);
 }
 
 async function postNotification(notificationData) {
-    let bodyContent = JSON.stringify(notificationData);
-    let headersList = {
-        "Accept": "*/*",
-        "Content-Type": "application/json"
-    };
+    try {
+        let bodyContent = JSON.stringify(notificationData);
+        let headersList = {
+            "Accept": "*/*",
+            "Content-Type": "application/json"
+        };
 
-    // POST the notification data to the server
-    let response = await fetch("https://fundreq.azurewebsites.net/notifications/add", {
-        method: "POST",
-        mode: "cors",
-        headers: headersList,
-        body: bodyContent
-    });
+        // POST the notification data to the server
+        let response = await fetch("https://fundreq.azurewebsites.net/notifications/add", {
+            method: "POST",
+            mode: "cors",
+            headers: headersList,
+            body: bodyContent
+        });
 
-    if (!response.ok) {
-        console.error("Failed to add notification");
-        return;
+        if (!response.ok) {
+            throw new Error("Failed to add notification");
+        }
+
+        let result = await response.json();
+        console.log(result.message);
+    } catch (error) {
+        console.error("Error in postNotification:", error);
+        throw error;
     }
-
-    let result = await response.json();
-    console.log(result.message);
 }
-
 
 module.exports = {
     PostForm,
     postData,
     postNotification
-}
+};
