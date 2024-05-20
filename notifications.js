@@ -24,13 +24,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 async function fetchNotifications() {
   try {
-    let email = sessionStorage.getItem("email");
-    if (!email) {
-      console.error("Email not found in sessionStorage");
-      return;
-    }
-    console.log(email);
-      const response = await fetch('https://fundreq.azurewebsites.net/notifications/${email}');
+    // let email = sessionStorage.getItem("email");
+    // if (!email) {
+    //   console.error("Email not found in sessionStorage");
+    //   return;
+    // }
+    // console.log(email);
+      const response = await fetch('https://fundreq.azurewebsites.net/notifications/2549192@students.wits.ac.za');
       
       if (!response.ok) {
           throw new Error("Failed to fetch notifications");
@@ -67,11 +67,13 @@ function displayNotifications(notifications) {
       applicantLink.href = '#';
       applicantLink.textContent = notification.applicantName;
       applicantLink.addEventListener('click', function() {
-          // Store the notification details in sessionStorage
-          sessionStorage.setItem("applicant_email", notification.applicantEmail);
-          sessionStorage.setItem("FundingName", notification.fundOppName);
+        // Store the notification details in sessionStorage
+        sessionStorage.setItem("applicant_email", notification.applicantEmail);
+        sessionStorage.setItem("FundingName", notification.fundOppName);
+        console.log("applicant name:" + notification.applicantEmail);
+        console.log("funding name:" + notification.fundOppName);
 
-          // Prepare the application object for showModal
+        // Prepare the application object for showModal
           const application = {
               firstname: notification.applicantName.split(' ')[0],
               surname: notification.applicantName.split(' ')[1],
@@ -122,6 +124,11 @@ function filterNotifications(filterId) {
           filteredNotifications = window.notifications;
   }
   displayNotifications(filteredNotifications);
+}
+
+function showModal(application) {
+  // Function to display the modal with application details
+  console.log(application); // For debugging purposes
 }
 
 async function fetchApplicants() {
