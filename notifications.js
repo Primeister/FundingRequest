@@ -19,14 +19,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 async function fetchNotifications() {
   try {
-     //Get the email address from sessionStorage
-      let email = sessionStorage.getItem('email');
-      console.log(email);
+    // Get the email address from sessionStorage
+    let email = sessionStorage.getItem('email');
+    console.log(email);
     
-      // Check if email exists
-      if (!email) {
-          throw new Error("Email not found in sessionStorage");
-      } 
+    // Check if email exists
+    if (!email) {
+        throw new Error("Email not found in sessionStorage");
+    } 
 
     const response = await fetch('https://fundreq.azurewebsites.net/notifications/' + email);
     if (!response.ok) {
@@ -92,11 +92,18 @@ function displayNotifications(notifications) {
     notificationRow.appendChild(fundingCell);
 
     const timestampCell = document.createElement('td');
-    timestampCell.textContent = new Date(notification.timestamp).toLocaleString();
+    // Convert timestamp to local time
+    const localTime = convertToLocalTime(notification.timestamp);
+    timestampCell.textContent = localTime;
     notificationRow.appendChild(timestampCell);
 
     notificationsContainer.appendChild(notificationRow);
   });
+}
+
+function convertToLocalTime(timestamp) {
+  const date = new Date(timestamp + 'Z'); // Append 'Z' to indicate UTC time
+  return date.toLocaleString();
 }
 
 function filterNotifications(filterId) {
