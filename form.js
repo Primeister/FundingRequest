@@ -30,6 +30,14 @@ async function fetchEmail() {
 
 document.addEventListener("DOMContentLoaded", fetchEmail);
 
+document.addEventListener("DOMContentLoaded", function() {
+    fetchEmail();
+    document.getElementById("form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+        PostForm();
+    });
+});
+
 async function PostForm() {
     let fundManagerEmail = sessionStorage.getItem("FundManagerEmail");
     if (!fundManagerEmail) {
