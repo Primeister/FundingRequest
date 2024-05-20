@@ -1,93 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Funding Application Form</title>
     <link rel="stylesheet" href="form.css" />
     <link rel="stylesheet" href="dashboardResponsive.css"/>
-  </head>
-  <body>
+</head>
+<body>
     <header class="nav1">
-      <img src="images/FundXWF.png" alt="logo" />
-      <nav class="topNav">
-        <ul>
-          <li><a href="#" id="showPageLink">About</a></li>
-          <li><a href="howitworks.html">How It Works</a></li>
-          <li><a href="help.html">Help</a></li>
-        </ul>
-      </nav>
+        <img src="images/FundXWF.png" alt="logo" />
+        <nav class="topNav">
+            <ul>
+                <li><a href="#" id="showPageLink">About</a></li>
+                <li><a href="howitworks.html">How It Works</a></li>
+                <li><a href="help.html">Help</a></li>
+            </ul>
+        </nav>
     </header>
 
     <div class="form-container">
-      <div class="classMain-section">
-        <h1>Application Form</h1>
-        <form id="advertiserFormSection" enctype="multipart/form-data">
-          <fieldset>
-            <legend>Applicant Information</legend>
-            <input
-              type="text"
-              id="surname"
-              name="surname"
-              placeholder="Surname"
-              required
-            />
-            <input
-              type="text"
-              id="firstname"
-              name="firstname"
-              placeholder="First Name/s"
-              required
-            />
-            <input
-              type="tel"
-              id="mobile"
-              name="mobile"
-              placeholder="Mobile Number"
-              pattern="[0-9]{10}"
-              required
-            />
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-              required
-            />
-            <input
-              type="text"
-              id="idnumber"
-              name="idnumber"
-              placeholder="ID Number"
-              required
-            />
-            <input
-              type="date"
-              id="dob"
-              name="dob"
-              placeholder="Date of Birth"
-              required
-            />
-            <input
-              type="text"
-              id="citizenship"
-              name="citizenship"
-              placeholder="Citizenship"
-              required
-            />
+        <div class="classMain-section">
+            <h1>Application Form</h1>
+            <form id="advertiserFormSection" enctype="multipart/form-data">
+                <fieldset>
+                    <legend>Applicant Information</legend>
+                    <input type="text" id="surname" name="surname" placeholder="Surname" required />
+                    <input type="text" id="firstname" name="firstname" placeholder="First Name/s" required />
+                    <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required />
+                    <input type="email" id="email" name="email" placeholder="Email" required />
+                    <input type="text" id="idnumber" name="idnumber" placeholder="ID Number" required />
+                    <input type="date" id="dob" name="dob" placeholder="Date of Birth" required />
+                    <input type="text" id="citizenship" name="citizenship" placeholder="Citizenship" required />
 
-            <button id="submitBtn" type="submit" onclick="PostForm()">
-              Submit
-            </button>
-          </fieldset>
-        </form>
-      </div>
+                    <button id="submitBtn" type="submit">Submit</button>
+                </fieldset>
+            </form>
+        </div>
     </div>
 
     <footer class="footer">
-      <p>&copy; 2024 Fund X</p>
+        <p>&copy; 2024 Fund X</p>
     </footer>
 
     <script src="form.js"></script>
-  </body>
+</body>
 </html>
+
