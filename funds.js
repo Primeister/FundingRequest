@@ -6,6 +6,18 @@ let apiUpdateTotalAmount = 'https://fundreq.azurewebsites.net/update/total/amoun
 document.addEventListener("DOMContentLoaded", function(){
 
     var mainElement = document.getElementById("opportunityFunds");
+
+    fetch('https://fundreq.azurewebsites.net/fundManagers/' + email)
+    .then(result => {
+        return result.json();
+    }).then(data => {
+        if(data.Funds == null){
+
+        }
+        else{
+            document.getElementById("totalFunds").textContent = "R" + data.Funds.toString();
+        }
+    }).catch(error => console.log(error));
     
     fetch('https://fundreq.azurewebsites.net/fundingOpportunities/' + email)
     .then(res => {
