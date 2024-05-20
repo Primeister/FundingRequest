@@ -19,7 +19,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 async function fetchNotifications() {
   try {
-    const response = await fetch('https://fundreq.azurewebsites.net/notifications/2549192@students.wits.ac.za');
+     //Get the email address from sessionStorage
+      let email = sessionStorage.getItem('email');
+      console.log(email);
+    
+      // Check if email exists
+      if (!email) {
+          throw new Error("Email not found in sessionStorage");
+      } 
+
+    const response = await fetch('https://fundreq.azurewebsites.net/notifications/' + email);
     if (!response.ok) {
       throw new Error("Failed to fetch notifications");
     }
