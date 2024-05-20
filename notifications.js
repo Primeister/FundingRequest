@@ -20,6 +20,13 @@ document.addEventListener("DOMContentLoaded", function() {
             throw new Error("Email not found in sessionStorage");
         } 
 
+        let fundName = sessionStorage.getItem("FundingName");
+        if(!fundName){
+            console.error("FundingName not found in sessionStorage");
+            return;
+        }
+        console.log(fundName);
+
         const response = await fetch('https://fundreq.azurewebsites.net/notifications/${email}');
         
       if (!response.ok) {
@@ -33,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
       notifications.forEach(notification => {
         const notificationDiv = document.createElement('div');
         notificationDiv.classList.add('notification');
-        notificationDiv.textContent = `New application for ${notification.fundingOpportunityName} by ${notification.applicantName}`;
+        notificationDiv.textContent = `New application for ${fundName} by ${notification.applicantName}`;
         notificationsContainer.appendChild(notificationDiv);
       });
     } catch (error) {
