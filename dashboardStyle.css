@@ -753,7 +753,8 @@ button:hover {
 
 /* styling the notifications page */
 .inboxClass {
-  margin: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
