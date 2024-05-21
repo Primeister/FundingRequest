@@ -55,7 +55,7 @@ async function fetchData() {
                 dropdownMenu.classList.add('dropdown-content');
 
                 // Add elements to modify the funding opportunity
-                const elementsToModify = ['FundingName', 'Description', 'Requirements', 'Deadline'];
+                const elementsToModify = ['Description', 'Requirements', 'Deadline'];
                 elementsToModify.forEach(element => {
                     const option = document.createElement('a');
                     option.textContent = element;
