@@ -4,7 +4,7 @@
     <!--icon style link-->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Applicants</title>
+    <title>Applications</title>
     <link rel="stylesheet" href="dashboardStyle.css"/>
     <link rel="stylesheet" href="dashboardResponsive.css"/>
     <link rel="icon" type="image/x-icon" href="images/FundXW.png">
@@ -13,6 +13,7 @@
     <script src="fundManagers.js"></script>
     <script src="script.js"></script>
     <script src="applications.js"></script>
+    <script src="notifications.js"></script>
   </head>
   <body>
     <header class="nav1">
@@ -35,11 +36,9 @@
           <ul>
             <li><a href="fundmanagers.html"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
             <li onclick="advertAreaShow()"><img src="images/advertise.png" alt="advertise-icon"/><p>Advertise Funding</p></li>
-            <li><a href="#"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
-            <li><a href="#"><img src="images/budget.png" alt="budget-icon"/></a><p>Budget</p></li>
-            <li><a href="#"><img src="images/reports.png" alt="reports-icon"></a><p>Reports and Analytics</p></li>
-            <li><a href="#"><img src="images/members.png" alt="members-icon"/></a><p>Switch Account</p></li>
-            <li><a href="#"><img src="images/setting.png" alt="settings-icon"/></a><p>Settings</p></li>
+            <li><a href="#" id="inboxLink"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
+            <li onclick="viewBudget()"><a href="#"><img src="images/budget.png" alt="budget-icon"/></a><p>Budget</p></li>
+            <li><a href="reporting.html"><img src="images/reports.png" alt="reports-icon"></a><p>Reports and Analytics</p></li>
             <li style="bottom:0; position:fixed;"><a href="index.html"><img src="images/logout.png" alt="logout-icon"/></a><p>Logout</p></li>
           </ul>
         </nav>
