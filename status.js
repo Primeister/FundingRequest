@@ -8,7 +8,7 @@ async function fetchApplicationData() {
             return;
         }
         
-        const response = await fetch('https://fundreq.azurewebsites.net/applications/status/' email);
+        const response = await fetch('https://fundreq.azurewebsites.net/applications/status/' + email);
         if (!response.ok) {
             throw new Error('Failed to fetch application data');
         }
