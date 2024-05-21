@@ -34,6 +34,11 @@ async function fetchNotifications() {
     }
     const notifications = await response.json();
     window.notifications = notifications; // Store notifications globally
+
+    const applicantCounts = countApplicantsPerDay(notifications);
+    sessionStorage.setItem('applicantCounts', JSON.stringify(applicantCounts));
+    console.log("these are the inputs for the chart: " + applicantCounts);
+    
     displayNotifications(notifications);
     countUnreadNotifications(notifications);
   } catch (error) {
@@ -166,4 +171,14 @@ function countUnreadNotifications(notifications) {
   }
 
   countElement.textContent = unreadCount;
+}
+
+//function to count the number of applicants per day
+function countApplicantsPerDay(notifications) {
+  const counts = notifications.reduce((acc, notification) => {
+    const date = new Date(notification.timestamp + 'Z').toISOString().split('T')[0]; // Extract date part only
+    acc[date] = (acc[date] || 0) + 1;
+    return acc;
+  }, {});
+  return counts;
 }
