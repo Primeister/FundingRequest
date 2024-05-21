@@ -13,7 +13,20 @@
     <script src="fundManagers.js"></script>
     <script src="script.js"></script>
     <script src="applications.js"></script>
+    <script>
+       function filterApplications(status) {
+    var rows = document.querySelectorAll("#fundingOppTable tr");
+    rows.forEach(function(row) {
+        if (status === "all" || row.dataset.status === status) {
+            row.style.display = "table-row"; // Show rows that match the status or show all rows if 'all' is selected
+        } else {
+            row.style.display = "none"; // Hide rows that don't match the status
+        }
+    });
+}
+    </script>
   </head>
+
   <body>
     <header class="nav1">
       <img src="images/FundXWF.png" alt="logo">
@@ -24,139 +37,83 @@
           <li><a href="help.html" id="showPageLink">Help</a></li>
         </ul>
       </nav>
-  </header>
+    </header>
 
     <aside class="header">
-        <nav class="sideNav">
-            <section class="user">
-                <img src="images/user.png" class="userImage" alt="user-icon"/>
-              <p id="username"></p>
-            </section><hr>
-          <ul>
-            <li><a href="fundmanagers.html"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
-            <li onclick="advertAreaShow()"><img src="images/advertise.png" alt="advertise-icon"/><p>Advertise Funding</p></li>
-            <li><a href="#"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
-            <li><a href="#"><img src="images/budget.png" alt="budget-icon"/></a><p>Budget</p></li>
-            <li><a href="reporting.html"><img src="images/reports.png" alt="reports-icon"></a><p>Reports and Analytics</p></li>
-            <li style="bottom:0; position:fixed;"><a href="index.html"><img src="images/logout.png" alt="logout-icon"/></a><p>Logout</p></li>
-          </ul>
-        </nav>
+      <nav class="sideNav">
+        <section class="user">
+          <img src="images/user.png" class="userImage" alt="user-icon"/>
+          <p id="username"></p>
+        </section><hr>
+        <ul>
+          <li><a href="fundmanagers.html"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
+          <li onclick="advertAreaShow()"><img src="images/advertise.png" alt="advertise-icon"/><p>Advertise Funding</p></li>
+          <li><a href="#"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
+          <li><a href="#"><img src="images/budget.png" alt="budget-icon"/></a><p>Budget</p></li>
+          <li><a href="reporting.html"><img src="images/reports.png" alt="reports-icon"></a><p>Reports and Analytics</p></li>
+          <li style="bottom:0; position:fixed;"><a href="index.html"><img src="images/logout.png" alt="logout-icon"/></a><p>Logout</p></li>
+        </ul>
+      </nav>
     </aside>
 
     <main class="classMain">
-      <section>
-        <!--<h1 class="h1Table">Applicants Table</h1>-->
-        <article class="eachApplicantMain" id="fundingOppTable"></article>
-      </section>
-
-      <section>
-        <article class="eachApplicantMain" id="applicantInfo"></article>
-      </section>
-
-      <section>
-        <aside class="eachApplicantMain" id="FundOppCriteria">
-          <form>
-            <label for="checkbox" id="reqClass"></label><br>
-          </form>
-        </aside>
-      </section>
+      <main class="classMain">
+        <section>
+            <div class="status-tabs-container" id="tabsandtableID">
+                <div class="tabs" id="statusTabs">
+                    <button class="tab" onclick="filterApplications('all')">All</button>
+                    <button class="tab" onclick="filterApplications('Approved')">Approved</button>
+                    <button class="tab" onclick="filterApplications('processing')">Processing</button>
+                    <button class="tab" onclick="filterApplications('Rejected')">Rejected</button>
+                </div>
+                <article class="eachApplicantMain" id="fundingOppTable">
+                    <!-- Your table content goes here -->
+                </article>
+            </div>
+        </section>
     
-      <section id="advertiserFormSection">
+        <section>
+            <article class="eachApplicantMain" id="applicantInfo"></article>
+        </section>
     
-        <br><br><br><br><br><br>
-        <center>
-        <fieldset>
-        <br><br>
-        <img src="images/contract.png" alt="contract" style="height: 100px;">
-        <br><br>
-          <h1 style="font-size: xx-large;">Funding Details</h1>
-          <br><br>
-        <form action="">
+        <section>
+            <aside class="eachApplicantMain" id="FundOppCriteria">
+                <form>
+                    <label for="checkbox" id="reqClass"></label><br>
+                </form>
+            </aside>
+        </section>
     
-          <input type="text" id="fundingName" placeholder="Name of funding" required><br>
-          <br><br>
-          <select title="fundingType"  name="fundingType" id="fundingType" class="large-font-size" required>
-            <option value="void">Type of funding</option>
-            <option value="business">Business</option>
-            <option value="event">Event</option>
-            <option value="education">Education</option>
-          </select><br><br><br>
-            Description:<br>
-            <textarea name="description" id="description" cols="30" rows="4" placeholder="add description" required></textarea><br><br><br>
-            Requirements:<br>
-            <textarea name="requirements" id="requirements" cols="30" rows="4" placeholder="enter requirements" required></textarea><br><br><br>
-            Deadline:<br>
-            <input type="date" id="deadline" placeholder="enter deadline"><br><br><br>
-            <input type="submit" onclick="PostFunding()" class="submit" value="Post!" style="cursor: pointer;" id="submitBtn">
-            <br><br><br>
-            <caption style="color: grey;"> all submisions are subject to review by admin, <b style="cursor: pointer;">Learn more about review process</b> </caption>
-            
-            <br><br><br>
-    
-        </form>  
-        </fieldset>
-      </center>
-      </section>
+        <section id="advertiserFormSection">
+            <!-- Your form content goes here -->
+        </section>
     </main>
+    >
+  
+      <section>
+          <article class="eachApplicantMain" id="applicantInfo"></article>
+      </section>
+  
+      <section>
+          <aside class="eachApplicantMain" id="FundOppCriteria">
+              <form>
+                  <label for="checkbox" id="reqClass"></label><br>
+              </form>
+          </aside>
+      </section>
+  
+      <section id="advertiserFormSection">
+          <!-- Your form content goes here -->
+      </section>
+  </main>
+  
 
     <main id="aboutId" class="aboutClass">
-      <section class="aboutClass-section">
-          <h1>PROJECT OVERVIEW</h1>
-          <p>Our funding requests management project aims to revolutionize the way organizations manage and access funding initiatives. We provide a centralized platform that facilitates the advertising of funding opportunities and the streamlined management of applications. From educational scholarships to business grants and event sponsorships, our platform caters to a diverse range of funding needs, empowering organizations to make a meaningful impact in society.</p>
-      </section>
-
-      <section class="aboutClass-section">
-          <h1>Vision and Mission</h1>
-          <img src="images/visionAndMission.jpg" alt="vision">
-          <p>Our vision is to create a world where accessing funding for impactful initiatives is easy, transparent, and efficient. We are on a mission to democratize access to funding opportunities, empowering individuals and organizations to pursue their goals and drive positive change in their communities. Through our platform, we strive to foster innovation, support education, and facilitate collaboration between funders and applicants.</p>
-      </section>
-
-      <section class="aboutClass-section">
-          <h1>Objectives and Goals</h1>
-          <img src="images/objectivesAndGoals.jpg" alt="objectives">
-          <p>Provide a centralized platform for advertising funding opportunities and managing applications</p>
-          <p>Ensure transparency, efficiency, and accessibility in the funding process</p>
-          <p>Empower fund managers to make informed decisions and track the progress of funding initiatives</p>
-          <p>Enhance user experience through continuous improvement and innovation</p>
-          <p>Foster collaboration and networking among stakeholders in the funding ecosystem</p>
-      </section>
-
-      <section class="aboutClass-section">
-          <h1>KEY FEATURES</h1>
-          <img src="images/keyFeatures.png" alt="key">
-          <p>User-friendly interface for advertising funding opportunities and submitting applications</p>
-          <p>Comprehensive user management system with roles for applicants, fund managers, and platform administrators</p>
-          <p>Budgeting tools to track funds and manage allocations effectively</p>
-          <p>Reporting dashboard with real-time insights into funding usage and application data</p>
-          <p>Notifications system to keep users informed about updates and relevant information</p>
-          <p>Bonus feature: Document upload and scanning to streamline the application process</p>
-      </section>
-
-      <section class="aboutClass-section">
-          <h1>TEAM CONTRIBUTORS</h1>
-          <img src="images/teamContributors.png" alt="team">
-          <p>Our project is led by a dedicated team of developers, designers, and project managers committed to delivering a high-quality and impactful solution. 
-              Meet our team [<a href="#">here</a>] and learn more about our contributors [<a href="#">here</a>].</p>
-      </section>
-
-      <section class="aboutClass-section">
-          <h1>TIMELINE AND PROGRESS</h1>
-          <img src="images/timelineAndProgress.png" alt="timeline">
-          <p>Since its inception, our project has made significant strides in development, with major milestones achieved along the way. We are currently in [development phase/release phase].</p>
-      </section>
-
-      <section class="aboutClass-section">
-          <h1>VALUES AND PRINCIPLES</h1>
-          <img src="images/valuesAndPrinciples.png" alt="values">
-          <p>Transparency: We believe in open communication and accountability throughout the funding process</p>
-          <p>Innovation: We embrace continuous improvement and innovation to deliver the best possible experience for our users</p>
-          <p>Inclusivity: We are committed to creating an inclusive platform that supports diversity and equal access to funding opportunities</p>
-          <p>Impact: We are driven by a desire to create positive change and make a difference in the world through our work</p>
-      </section>
+      <!-- About section content goes here -->
     </main>
 
     <footer style="position:fixed;">
-        <p>&copy; 2024 Fund X</p>
+      <p>&copy; 2024 Fund X</p>
     </footer>
   </body>
 </html>
