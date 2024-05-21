@@ -31,8 +31,6 @@ The project will be developed using Agile methodology, incorporating Continuous 
 #### Instructions for Running the Project
 [Add instructions here]
 
-Great, let's update the README file with the technologies used:
-
 #### Technologies Used
 - **Frontend:** 
   - HTML, CSS, JavaScript
