@@ -90,7 +90,9 @@ function displayApplications(data, filter) {
         modalButton.addEventListener('click', function() {
             sessionStorage.setItem("applicant_email", application.email);
             showModal(application);
-            table.style.display = 'none';
+            // table.style.display = 'none';
+            // tabContainer.style.display = 'none'; // Hide the container when the button is clicked
+            document.getElementById('tabsandtableID').style.display = 'none'; // Hide the container when the button is clicked
             const modalContent = document.querySelector('.applicantModalClass');
             modalContent.style.display = 'block'; // Show the modal content when the button is clicked
         });
@@ -257,6 +259,7 @@ function showModal(application) {
     });
 
     applSection.insertAdjacentElement("afterend", acceptRejectSection);
+    
 }
 
 function showTabContent(tabName) {
