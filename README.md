@@ -31,11 +31,28 @@ The project will be developed using Agile methodology, incorporating Continuous 
 #### Instructions for Running the Project
 [Add instructions here]
 
+Great, let's update the README file with the technologies used:
+
 #### Technologies Used
-- **Frontend:** [Add frontend technologies]
-- **Backend:** [Add backend technologies]
-- **Database:** [Add database technologies]
-- **Deployment:** [Add deployment technologies]
+- **Frontend:** 
+  - HTML, CSS, JavaScript
+  - Framework: [Add if any]
+- **Backend:** 
+  - Node.js
+  - Framework: [Add if any]
+- **Database:** 
+  - SQLite3
+- **API Development & Testing:** 
+  - Thunder Client (VS Code extension)
+  - Postman
+- **Deployment:** 
+  - Microsoft Azure
+- **Version Control:** 
+  - GitHub
+- **UML Diagrams:** 
+  - draw.io
+- **IDE:** 
+  - Visual Studio Code
 
 #### Contributors
 - Prince Dlomo
