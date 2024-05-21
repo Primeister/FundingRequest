@@ -25,6 +25,7 @@ async function fetchApplicants(){
         });
 
         data.forEach(application => {
+            console.log(application);
             let row = table.insertRow();
             let nameCell = row.insertCell();
             nameCell.textContent = `${application.firstname} ${application.surname}`;
