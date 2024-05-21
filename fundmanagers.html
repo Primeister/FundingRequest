@@ -15,6 +15,7 @@
     <script src="fundingOpp.js"></script>
     <script src="funds.js"></script>
     <script src="notifications.js"></script>
+    <script src="category.js"></script>
   </head>
   <body>
     <header class="nav1">
@@ -163,6 +164,25 @@
                 <input type="number" id="allocatedOppFunds" placeholder="Allocated funds" required><br>
                 <br><br>
                 <button onclick="updateOppFunds()">Set</button>
+              </section>
+
+              <section id="TotalFunds" style="background-color: aliceblue; border-radius: 10px; margin-top: 15px;">
+                <h1>Funds Per Applicant:</h1><br>
+                <h1 id="applicantFunds">R0.00</h1><br>
+                <input type="number" id="applicantFundsInput" placeholder="Allocated funds" style="height: 33px;" required>
+                <button onclick="updateApplicantFunds()">Update</button>
+              </section>
+
+              <section id="TotalFunds" style="background-color: aliceblue; border-radius: 10px; margin-top: 15px; height: 300px;">
+                <section style="background-color: grey; height: 120px; border-radius: 10px;">
+                  <h1>Categories</h1><br>
+                  <input type="text" id="category" placeholder="category" style="display: inline; height: 33px;" required>
+                  <input type="number" id="categoryAmount" placeholder="Allocated funds" style="display: inline; height: 33px;;" required required>
+                  <button onclick="addCategory()">Add</button>
+                </section >
+                <section id="categories" style="height: 180px;">
+                  
+                </section>
               </section>
               
             </section>
