@@ -838,3 +838,8 @@ a:hover {
 .fundManagerStatusSection h2 {
   margin-bottom: 10px;
 }
+
+/* styling for the status tabs in the applications.html file */
+#statusTabs{
+  margin-left:10%;
+}
