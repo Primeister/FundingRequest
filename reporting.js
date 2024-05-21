@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        let email = sessionStorage("email");
+        let email = sessionStorage.getItem("email");
         console.log("email: ", email);
         if (!email) {
             console.error("No email found in session storage.");
