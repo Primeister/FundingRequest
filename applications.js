@@ -1,4 +1,4 @@
-async function fetchApplicants(){
+async function fetchApplicants() {
     const fundingName = sessionStorage.getItem("FundingName");
     if (!fundingName) {
         console.error("FundingName not found in sessionStorage");
@@ -11,55 +11,95 @@ async function fetchApplicants(){
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        console.log('Applicants:', data);
 
-        let table = document.createElement('table');
-        table.classList.add('applicant-table');
+        // Create tabs for filtering
+        createTabs();
+        
+        // Initially display all applications
+        displayApplications(data, 'All');
 
-        let headerRow = table.insertRow();
-        let headers = ['Name', 'DOB', 'CONTACT NUMBER', 'EMAIL', "STATUS", ''];
-        headers.forEach(headerText => {
-            let headerCell = document.createElement('th');
-            headerCell.classList.add('tableHeadersClass');
-            headerCell.textContent = headerText;
-            headerRow.appendChild(headerCell);
-        });
-
-        data.forEach(application => {
-            let row = table.insertRow();
-            let nameCell = row.insertCell();
-            nameCell.textContent = `${application.firstname} ${application.surname}`;
-            let dobCell = row.insertCell();
-            dobCell.textContent = application.dob;
-            let numberCell = row.insertCell();
-            numberCell.textContent = application.mobile;
-            let emailCell = row.insertCell();
-            emailCell.textContent = application.email;
-            let statusCell = row.insertCell();
-            statusCell.textContent = application.status;
-            let modalButtonCell = row.insertCell();
-            let modalButton = document.createElement('button');
-            modalButton.classList.add('modalButtonClass');
-            modalButton.textContent = 'Review';
-
-            modalButton.addEventListener('click', function(){
-                sessionStorage.setItem("applicant_email", application.email);
-                showModal(application);
-                table.style.display = 'none';
-                const modalContent = document.querySelector('.applicantModalClass');
-                modalContent.style.display = 'block'; // Show the modal content when the button is clicked
-            });
-            
-            modalButtonCell.appendChild(modalButton);
-        });
-
-        let fundingOppTable = document.getElementById('fundingOppTable');
-        fundingOppTable.innerHTML = ''; // Clear existing table content
-        fundingOppTable.appendChild(table);
-
+        // Add event listeners to tabs
+        document.getElementById('tab-all').addEventListener('click', () => displayApplications(data, 'All'));
+        document.getElementById('tab-processing').addEventListener('click', () => displayApplications(data, 'Processing'));
+        document.getElementById('tab-approved').addEventListener('click', () => displayApplications(data, 'Approved'));
+        document.getElementById('tab-rejected').addEventListener('click', () => displayApplications(data, 'Rejected'));
 
     } catch (error) {
         console.error('Error fetching applicants:', error);
     }
+}
+
+function createTabs() {
+    const tabContainer = document.createElement('div');
+    tabContainer.classList.add('tab-container');
+
+    const tabs = ['All', 'Processing', 'Approved', 'Rejected'];
+    tabs.forEach(tab => {
+        const tabButton = document.createElement('button');
+        tabButton.textContent = tab;
+        tabButton.id = `tab-${tab.toLowerCase()}`;
+        tabButton.classList.add('tab-button');
+        tabContainer.appendChild(tabButton);
+    });
+
+    const fundingOppTable = document.getElementById('fundingOppTable');
+    fundingOppTable.innerHTML = ''; // Clear existing content
+    fundingOppTable.appendChild(tabContainer);
+}
+
+function displayApplications(data, filter) {
+    const table = document.createElement('table');
+    table.classList.add('applicant-table');
+
+    // Create table header
+    let headerRow = table.insertRow();
+    let headers = ['Name', 'DOB', 'CONTACT NUMBER', 'EMAIL', "STATUS", ''];
+    headers.forEach(headerText => {
+        let headerCell = document.createElement('th');
+        headerCell.classList.add('tableHeadersClass');
+        headerCell.textContent = headerText;
+        headerRow.appendChild(headerCell);
+    });
+
+    let fundingOppTable = document.getElementById('fundingOppTable');
+    fundingOppTable.innerHTML = ''; // Clear existing table content
+
+    const filteredData = filter === 'All' ? data : data.filter(application => application.status.toLowerCase() === filter.toLowerCase());
+
+    // Add new applicants
+    filteredData.forEach(application => {
+        let row = table.insertRow(); // Insert row at the end of the table
+        row.classList.add('status-row');
+        row.setAttribute('data-status', application.status);
+        let nameCell = row.insertCell();
+        nameCell.textContent = `${application.firstname} ${application.surname}`;
+        let dobCell = row.insertCell();
+        dobCell.textContent = application.dob;
+        let numberCell = row.insertCell();
+        numberCell.textContent = application.mobile;
+        let emailCell = row.insertCell();
+        emailCell.textContent = application.email;
+        let statusCell = row.insertCell();
+        statusCell.textContent = application.status;
+        let modalButtonCell = row.insertCell();
+        let modalButton = document.createElement('button');
+        modalButton.classList.add('modalButtonClass');
+        modalButton.textContent = 'Review';
+
+        modalButton.addEventListener('click', function() {
+            sessionStorage.setItem("applicant_email", application.email);
+            showModal(application);
+            table.style.display = 'none';
+            const modalContent = document.querySelector('.applicantModalClass');
+            modalContent.style.display = 'block'; // Show the modal content when the button is clicked
+        });
+
+        modalButtonCell.appendChild(modalButton);
+    });
+
+    // Insert table header and body into the fundingOppTable
+    fundingOppTable.appendChild(table);
 }
 
 document.addEventListener("DOMContentLoaded", fetchApplicants);
@@ -124,7 +164,6 @@ function showModal(application) {
         ` }
     ];
 
-
     sections.forEach(section => {
         const tab = document.createElement('div');
         tab.classList.add('tab');
@@ -149,8 +188,6 @@ function showModal(application) {
     applicantSection.classList.add('applicantSectionClass');
     applicantSection.appendChild(applicantArticle);
 
-
-    //aside info for the eligibility criteria
     // Dynamically create checkboxes for requirements
     const requirementsSection = document.createElement('aside');
     requirementsSection.classList.add('eachApplicantMain');
@@ -159,24 +196,18 @@ function showModal(application) {
     const requirementsTitle = document.createElement('h2');
     requirementsTitle.textContent = 'Eligibility Criteria';
     requirementsSection.appendChild(requirementsTitle);
-    
-   
 
-    // const requirementsLabel = document.createElement('label');
-    // requirementsLabel.htmlFor = 'requirementsCheckbox';
-    // requirementsLabel.textContent = 'Criteria';
-    
     requirements.split('\n').forEach(requirement => {
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.id = 'requirementsCheckbox';
         checkbox.name = 'requirements';
         checkbox.classList.add('checkbox');
-        
+
         const requirementLabel = document.createElement('label');
         requirementLabel.textContent = requirement;
         requirementLabel.classList.add('checkbox-label');
-        
+
         requirementsSection.appendChild(checkbox);
         requirementsSection.appendChild(requirementLabel);
         requirementsSection.appendChild(document.createElement('br'));
@@ -185,14 +216,13 @@ function showModal(application) {
     let applSection = document.getElementById('reqClass');
     applSection.classList.add('requirements');
     applSection.appendChild(requirementsSection);
-    
+
     const acceptRejectSection = document.createElement('div');
     acceptRejectSection.classList.add('requirements');
     acceptRejectSection.id = 'acceptRejectSection';
     const acceptApplicant = document.createElement('button');
     acceptApplicant.id = 'acceptButton';
     acceptApplicant.textContent = 'Accept';
-
     acceptApplicant.classList.add('acceptButton');
     const rejectApplicant = document.createElement('button');
     rejectApplicant.textContent = 'Reject';
@@ -204,34 +234,31 @@ function showModal(application) {
 
     acceptApplicant.addEventListener('click', () => {
         const applicantEmail = sessionStorage.getItem('applicant_email');
-        let fundingName = sessionStorage.getItem('FundingName');
         let headersList = {
             "Accept": "*/*"
-           }
-           
-        let response = fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${sessionStorage.getItem('applicant_email')}/accept`, { 
+        }
+
+        fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${applicantEmail}/accept`, { 
             method: "GET",
             headers: headersList
         });
-
     });
+
     rejectApplicant.addEventListener('click', () => {
         const applicantEmail = sessionStorage.getItem('applicant_email');
         let headersList = {
             "Accept": "*/*"
-           }
-           
-        let response = fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${sessionStorage.getItem('applicant_email')}/reject`, { 
+        }
+
+        fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${applicantEmail}/reject`, { 
             method: "GET",
             headers: headersList
         });
-
     });
 
-
-    applSection.insertAdjacentElement(
-        "afterend",acceptRejectSection);
+    applSection.insertAdjacentElement("afterend", acceptRejectSection);
 }
+
 function showTabContent(tabName) {
     const tabs = document.querySelectorAll('.tab');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -243,13 +270,21 @@ function showTabContent(tabName) {
         content.classList.remove('active');
     });
 
-    // Add 'active' class to all active tabs
-    tabs.forEach(tab => {
-        if (tab.textContent === tabName) {
-            tab.classList.add('active');
-        }
-    });
-
     document.querySelector(`.tab-content.${tabName.split(' ').join('-')}`).classList.add('active');
     document.querySelector(`.tab.${tabName}`).classList.add('active');
 }
+
+function filterStatus(status) {
+    var rows = document.getElementsByClassName('status-row');
+  
+    for (var i = 0; i < rows.length; i++) {
+      var row = rows[i];
+      var currentStatus = row.getAttribute('data-status');
+  
+      if (status === 'all' || currentStatus === status) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    }
+  }
