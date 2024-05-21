@@ -776,6 +776,19 @@ button:hover {
 .notification:last-child {
   border-bottom: none;
 }
+/*  testing something*/
+.tab {
+  cursor: pointer;
+  padding: 10px;
+  display: inline-block;
+  margin-right: 0;
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  font-weight: bold;
+  border-bottom: 2px solid #000; /* Add a border to indicate the active tab */
+}
 
 table {
   width: 100%;
