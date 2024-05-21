@@ -1,6 +1,14 @@
 async function fetchApplicationData() {
     try {
-        const response = await fetch('https://fundreq.azurewebsites.net/applications/status/athinimgagule03@gmail.com');
+        let email = storageSession("email");
+        console.log("email: ", email);
+        if (!email) {
+            console.error("No email found in session storage.");
+            alert("No email found in session storage.");
+            return;
+        }
+        
+        const response = await fetch('https://fundreq.azurewebsites.net/applications/status/' email);
         if (!response.ok) {
             throw new Error('Failed to fetch application data');
         }
