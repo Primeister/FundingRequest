@@ -1,15 +1,15 @@
 async function fetchData() {
     try {
-         //Get the email address from sessionStorage
-         let email = sessionStorage.getItem('email');
-         console.log(email)
-        
-         // Check if email exists
-         if (!email) {
-             throw new Error("Email not found in sessionStorage");
-         } 
+        //Get the email address from sessionStorage
+        let email = sessionStorage.getItem('email');
+        console.log(email)
+       
+        // Check if email exists
+        if (!email) {
+            throw new Error("Email not found in sessionStorage");
+        } 
 
-        const response = await fetch(`https://fundreq.azurewebsites.net/fundingOpportunities/${email}`);
+        const response = await fetch(`https://fundreq.azurewebsites.net/fundingOpportunities/` + email);
 
         if (!response.ok) {
             throw new Error("Could not fetch resource");
@@ -17,28 +17,28 @@ async function fetchData() {
         
         const data = await response.json();
 
-        data.forEach((fundingOpportunity,index) => {
+        data.forEach((fundingOpportunity, index) => {
             const fundingName = fundingOpportunity.FundingName;
             const deadline = fundingOpportunity.Deadline;
             const requirements = fundingOpportunity.Requirements;
 
             const opportunityDiv = document.createElement('div');
-            opportunityDiv.classList.add('opportunitySection')
+            opportunityDiv.classList.add('opportunitySection');
 
             const nameHeading = document.createElement('h1');
             nameHeading.textContent = `${fundingName}`;
-             const deadlineParagraph = document.createElement('p');
-             deadlineParagraph.classList.add('deadline');
+            const deadlineParagraph = document.createElement('p');
+            deadlineParagraph.classList.add('deadline');
             deadlineParagraph.textContent = `Deadline: ${deadline}`;
 
             const seeMoreButton = document.createElement('button');
-            seeMoreButton.classList.add('card-button')
+            seeMoreButton.classList.add('card-button');
             seeMoreButton.textContent = 'See More';
 
-            seeMoreButton.addEventListener('click', function(){
+            seeMoreButton.addEventListener('click', function() {
                 sessionStorage.setItem('FundingName', fundingName);
                 sessionStorage.setItem('Requirements', requirements);
-                window.location.href="applications.html";
+                window.location.href = "applications.html";
             });
 
             const container = document.createElement('div');
@@ -54,19 +54,19 @@ async function fetchData() {
                 dropdownMenu = document.createElement('div');
                 dropdownMenu.classList.add('dropdown-content');
 
-                // Add elements to modify the funding opportunity
-                const elementsToModify = ['Description', 'Requirements', 'Deadline'];
+                // Add elements to modify the funding opportunity, excluding 'FundingName'
+                const elementsToModify = ['FundingDescription', 'Requirements', 'Deadline'];
                 elementsToModify.forEach(element => {
                     const option = document.createElement('a');
                     option.textContent = element;
-                    option.href='#';
-        
+                    option.href = '#';
+
                     option.addEventListener('click', async function(event) {
                         event.preventDefault();
-                        await editOption(fundingOpportunity, element); // Call editOption function with appropriate arguments
+                        await editOption(fundingOpportunity, element);
                         dropdownMenu.remove(); // Remove dropdown menu after editing
                     });
-                    
+
                     dropdownMenu.appendChild(option);
                 });
 
@@ -191,24 +191,21 @@ async function fetchFundManagerStatus() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", fetchFundManagerStatus);
-
 async function editOption(fundingOpportunity, field) {
+    console.log('Editing field:', field);  // Debugging log
     const currentValue = fundingOpportunity[field];
+    console.log('Current value:', currentValue);  // Debugging log
+
     const newValue = await createPopup(`Enter the new ${field}:`, currentValue);
     if (newValue !== null) {
         try {
-            // Convert the field to lowercase to match the backend expectations
-            const updatedData = await modifyFundOpp(fundingOpportunity.FundingName, field.toLowerCase(), newValue);
+            const updatedData = await modifyFundOpp(fundingOpportunity.FundingName, field, newValue);
             console.log('Updated data:', updatedData);
         } catch (error) {
             console.error('Error modifying funding opportunity:', error);
         }
     }
 }
-
-
-document.addEventListener("DOMContentLoaded", fetchData);
 
 function createPopup(message, defaultValue) {
     return new Promise((resolve) => {
@@ -225,9 +222,9 @@ function createPopup(message, defaultValue) {
         const messageParagraph = document.createElement('p');
         messageParagraph.textContent = message;
 
-        const inputField = document.createElement('input');
-        inputField.type = 'text';
-        inputField.value = defaultValue; // Set the default value here
+        const textArea = document.createElement('textarea');
+        textArea.value = defaultValue || ''; // Fallback to an empty string if defaultValue is undefined
+        textArea.rows = 10; // Set the number of rows for the textarea to display multiple lines
 
         const buttonContainer = document.createElement('div');
         buttonContainer.classList.add('button-container');
@@ -242,7 +239,7 @@ function createPopup(message, defaultValue) {
 
         // Event listeners for buttons
         confirmButton.addEventListener('click', () => {
-            resolve(inputField.value);
+            resolve(textArea.value);
             modalBackdrop.remove();
         });
 
@@ -257,7 +254,7 @@ function createPopup(message, defaultValue) {
 
         // Append elements to modal content
         modalContent.appendChild(messageParagraph);
-        modalContent.appendChild(inputField);
+        modalContent.appendChild(textArea);
         modalContent.appendChild(buttonContainer);
         modal.appendChild(modalContent);
 
@@ -291,8 +288,7 @@ async function modifyFundOpp(fundingName, field, newValue) {
 }
 
 document.addEventListener("DOMContentLoaded", fetchData);
-
-
+document.addEventListener("DOMContentLoaded", fetchFundManagerStatus);
 module.exports = {
     fetchData, modifyFundOpp
 }
