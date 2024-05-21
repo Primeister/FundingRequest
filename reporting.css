@@ -1,5 +1,15 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 .container {
     display: flex;
+    min-width: 350px;
     flex-direction: column;
     background-color: white;
     padding: 20px;
@@ -7,6 +17,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-left:10%;
     margin-right: 10%;
+
 }
 
 .chart-container {
@@ -16,10 +27,12 @@
     /* margin: auto; */
     height: 30%;
     width: 30%;
+    min-width: 300px;
     margin-right: 40px; /* Add margin to create space between chart containers */
 }
 
 .charts-container {
+    min-width: 200px;
     display: flex;
     flex-direction: row;
     position: relative;
