@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Status</title>
+    <link rel="stylesheet" href="dashboardStyle.css"/>
+    <link rel="stylesheet" href="dashboardResponsive.css"/>
+    <link rel="icon" type="image/x-icon" href="images/FundXW.png">
+    <script src="status.js" defer></script>
+    <style>
+        table {
+            margin-left:10%;
+            margin-right:10%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            width: 80%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+        .applDetSection {
+            margin-top: 20px;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+    </style>
+</head>
+<body>
+    <header class="nav1">
+        <img src="images/FundXWF.png" alt="logo">
+        <nav class="topNav">
+            <ul>
+                <li><a href="#" id="showPageLink">About</a></li>
+                <li><a href="howitworks.html">How It Works</a></li>
+                <li><a href="help.html">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+    <aside class="header">
+        <nav class="sideNav">
+            <section class="user">
+                <img src="images/user.png" class="userImage" alt="user-icon"/>
+                <p id="username"></p>
+            </section><hr>
+            <ul>
+                <li><a href="applicants.html"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
+                <li class="active"><a href="status.html"><img src="images/applications.png" alt="application-icon"/></a><p>Application</p></li>
+                <li><a href="#"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
+                <li><a href="#"><img src="images/setting.png" alt="settings-icon"/></a><p>Settings</p></li>
+                <li><a href="#"><img src="images/members.png" alt="members-icon"/></a><p>Switch Account</p></li>
+                <li style="bottom:0; position:fixed;"><a href="index.html"><img src="images/logout.png" alt="logout-icon"/></a><p>Logout</p></li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="classMain">
+        <!-- Application status table comming-->
+
+        <section id="application-details-container" class="applDetSection"></section>
+
+    </main>
+    <footer>
+        <p>&copy; 2024 Fund X</p>
+    </footer>
+</body>
+</html>
