@@ -1,18 +1,32 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
 .container {
+    display: flex;
+    flex-direction: column;
     background-color: white;
-    padding: 20%;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left:10%;
+    margin-right: 10%;
+}
+
+.chart-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    /* margin: auto; */
+    height: 30%;
+    width: 30%;
+    margin-right: 40px; /* Add margin to create space between chart containers */
+}
+
+.charts-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    /* margin: auto; */
+    height: 20%;
+    width: 20%;
+    margin-right: 40px; /* Add margin to create space between chart containers */
 }
 
 h1 {
@@ -22,6 +36,6 @@ h1 {
 
 canvas {
     margin-top: 20px;
+    width: 100%; /* Make canvas width 100% to fill its container */
+    height: auto; /* Let the height adjust automatically based on the width */
 }
-
-
