@@ -198,13 +198,15 @@ async function editOption(fundingOpportunity, field) {
     const newValue = await createPopup(`Enter the new ${field}:`, currentValue);
     if (newValue !== null) {
         try {
-            const updatedData = await modifyFundOpp(fundingOpportunity.FundingName, field, newValue);
+            // Convert the field to lowercase to match the backend expectations
+            const updatedData = await modifyFundOpp(fundingOpportunity.FundingName, field.toLowerCase(), newValue);
             console.log('Updated data:', updatedData);
         } catch (error) {
             console.error('Error modifying funding opportunity:', error);
         }
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", fetchData);
 
@@ -273,7 +275,7 @@ async function modifyFundOpp(fundingName, field, newValue) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ [field]: newValue })
+            body: JSON.stringify({ aspect: field.toLowerCase(), newValue })
         });
 
         if (!response.ok) {
@@ -287,6 +289,7 @@ async function modifyFundOpp(fundingName, field, newValue) {
         throw error;
     }
 }
+
 document.addEventListener("DOMContentLoaded", fetchData);
 
 
