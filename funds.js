@@ -2,6 +2,7 @@
 
 let apiUpdateAmount = 'https://fundreq.azurewebsites.net/update/amount/';
 let apiUpdateTotalAmount = 'https://fundreq.azurewebsites.net/update/total/amount/';
+let apiDeleteCategory = 'https://fundreq.azurewebsites.net/delete/category/';
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -49,11 +50,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 
                 sessionStorage.setItem('amountID', stringAmountID);
                 sessionStorage.setItem('fundingName', fundingOpp.FundingName);
-                if(!(fundingOpp.ApplicantAmount == null)){
-                document.getElementById("applicantFunds").textContent = "R" + fundingOpp.ApplicantAmount.toString();
-                }
                 document.getElementById("budgetSection").style.display = "none";
                 document.getElementById("editOppAmountSection").style.display = "block";
+                document.getElementById("applicantFunds") = "R" + fundingOpp.ApplicantAmount.toString();
+                getCategories(fundingOpp.FundingName);
                
             };
             
@@ -152,4 +152,82 @@ async function updateOppAmount(data, fundingName){
         alert(result.error);
     }
 }
+
+function getCategories(fundingName){
+
+    fetch('https://fundreq.azurewebsites.net/categories/' + fundingName)
+    .then(res => {
+        return res.json();
+    }).then( data =>{
+        
+        let sectionID = 0;
+        let mainElement = document.getElementById("categories");
+
+        data.forEach(Category => {
+
+            let newSection = document.createElement('section');
+            let categoryParagraph = document.createElement('p');
+            let removeButton = document.createElement('button');
+
+            //styles
+
+            newSection.style.marginTop = "20px";
+            newSection.id = sectionID.toString();
+
+            categoryParagraph.style.display ="inline";
+            categoryParagraph.textContent = Category.category;
+            removeButton.textContent = "Remove";
+            removeButton.style.backgroundColor = "red";
+            removeButton.style.marginLeft = "20px";
+
+            removeButton.onclick = function() {
+            
+                document.getElementById(sectionID.toString()).remove();
+
+                data = {
+                    "category": Category.category
+                }
+                deleteCategory(data);
+                
+            };
+
+            newSection.appendChild(categoryParagraph);
+            newSection.appendChild(removeButton);
+            mainElement.appendChild(newSection);
+
+            sectionID = sectionID + 1;
+        });
+    }
+    ).catch(error => console.log(error));
+    
+}
+
+async function deleteCategory(data, id){
+
+    let bodyContent = JSON.stringify(data);
+    let headersList = {
+        "Accept" : "*/*",
+        "Content-Type" : "application/json"
+    }
+
+    let response = await fetch(apiDeleteCategory + id, {
+        method: "DELETE",
+        node: "cors",
+        headers: headersList,
+        body: bodyContent
+    });
+
+    let result = await response.json();
+
+    if(result.message === "Field updated successfully"){
+        console.log(result.message);
+        alert(result.message);
+    }
+    else{
+        console.log(result.error);
+        alert(result.error);
+    }
+}
+
+
 
