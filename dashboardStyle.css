@@ -884,3 +884,8 @@ a:hover {
   text-decoration: none;
   border-radius: 5px;
 }
+#categories
+{
+  background-color:transparent;
+  overflow-y:scroll;
+}
