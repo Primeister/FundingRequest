@@ -767,13 +767,13 @@ button:hover {
   font-size: 24px;
   margin-bottom: 10px;
 }
-#inboxtab{
+/* #inboxtab{
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #ddd;
-}
+} */
 
 .notification {
   border-bottom: 1px solid #ddd;
