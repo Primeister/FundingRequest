@@ -160,12 +160,14 @@ select option:hover {
 
 @media (max-width: 630px) {
     #mainSignup {
-        flex-direction: column;
+        flex-direction: row;
     }
     .about,
     .form-wrap {
-        margin-top: 70px;
-        width: 100%;
+        margin-top: 20px;
+        /* width: 100%; */
+        height:auto;
+        font-size: smaller;
     }
 }
 .google--applicant{
