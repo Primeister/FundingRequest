@@ -1,48 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-  fetchNotifications();
-
-  const tabs = document.querySelectorAll('.tab');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', function() {
-      tabs.forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-      filterNotifications(this.id);
-    });
-  });
-
-  document.getElementById('tab-all').classList.add('active');
-  
-  document.getElementById('inboxLink').addEventListener('click', function() {
-    showInbox();
-  });
-});
-
-async function fetchNotifications() {
-  try {
-    let email = sessionStorage.getItem('email');
-    if (!email) {
-      throw new Error("Email not found in sessionStorage");
-    }
-
-    const response = await fetch('https://fundreq.azurewebsites.net/notifications/' + email);
-    if (!response.ok) {
-      throw new Error("Failed to fetch notifications");
-    }
-    const notifications = await response.json();
-    window.notifications = notifications; // Store notifications globally
-
-    const applicantCounts = countApplicantsPerDay(notifications);
-    sessionStorage.setItem('applicantCounts', JSON.stringify(applicantCounts));
-    console.log("these are the inputs for the chart: " + applicantCounts);
-    
-    displayNotifications(notifications);
-    countUnreadNotifications(notifications);
-
-  } catch (error) {
-    console.error("Error fetching notifications:", error);
-  }
-}
-
 function displayNotifications(notifications) {
   const notificationsContainer = document.getElementById('notifications');
   notificationsContainer.innerHTML = ''; // Clear existing notifications
@@ -52,24 +7,11 @@ function displayNotifications(notifications) {
 
     const applicantCell = document.createElement('td');
 
-    // Add the checkbox
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.classList.add('checkbox');
-
-    // Add the star icon
-    const starIcon = document.createElement('span');
-    starIcon.classList.add('star');
-    starIcon.innerHTML = '★'; // Unicode star character
 
     const applicantLink = document.createElement('a');
     applicantLink.href = '#';
     applicantLink.textContent = notification.applicantName;
     applicantLink.addEventListener('click', function() {
-      // Mark notification as read
-      notification.read = true;
-      updateNotificationReadStatus(notification.id);
-
       // Store the notification details in sessionStorage
       sessionStorage.setItem("applicantName", notification.applicantName);
       sessionStorage.setItem("FundingName", notification.fundOppName);
@@ -83,13 +25,8 @@ function displayNotifications(notifications) {
       eligibilityCriteriaSection.style.display = 'block';
 
       fetchApplicants(notification.fundOppName);
-
-      // Decrease unread notification count
-      decreaseUnreadCount();
     });
 
-    applicantCell.appendChild(checkbox);
-    applicantCell.appendChild(starIcon);
     applicantCell.appendChild(applicantLink);
     notificationRow.appendChild(applicantCell);
 
@@ -105,20 +42,6 @@ function displayNotifications(notifications) {
 
     notificationsContainer.appendChild(notificationRow);
   });
-}
-
-async function updateNotificationReadStatus(notificationId) {
-  try {
-    const response = await fetch(`https://fundreq.azurewebsites.net/notifications/${notificationId}/read`, {
-      method: 'PUT'
-    });
-    if (!response.ok) {
-      throw new Error('Failed to update notification status');
-    }
-    console.log(`Notification ${notificationId} marked as read`);
-  } catch (error) {
-    console.error('Error updating notification status:', error);
-  }
 }
 
 async function fetchApplicants(fundingName) {
@@ -158,25 +81,6 @@ async function fetchApplicants(fundingName) {
 function convertToLocalTime(timestamp) {
   const date = new Date(timestamp + 'Z'); // Append 'Z' to indicate UTC time
   return date.toLocaleString();
-}
-
-function filterNotifications(filterId) {
-  let filteredNotifications;
-  switch (filterId) {
-    case 'tab-unread':
-      filteredNotifications = window.notifications.filter(n => !n.read);
-      break;
-    case 'tab-read':
-      filteredNotifications = window.notifications.filter(n => n.read);
-      break;
-    case 'tab-starred':
-      filteredNotifications = window.notifications.filter(n => n.starred);
-      break;
-    case 'tab-all':
-    default:
-      filteredNotifications = window.notifications;
-  }
-  displayNotifications(filteredNotifications);
 }
 
 function showInbox() {
@@ -221,15 +125,6 @@ function countUnreadNotifications(notifications) {
   }
 
   countElement.textContent = unreadCount;
-}
-
-function decreaseUnreadCount() {
-  const countElement = document.getElementById('unread-count');
-  let unreadCount = parseInt(countElement.textContent, 10);
-  if (unreadCount > 0) {
-    unreadCount--;
-    countElement.textContent = unreadCount;
-  }
 }
 
 // Function to count the number of applicants per day
@@ -331,6 +226,7 @@ function showModal(application) {
 
   // Dynamically create checkboxes for requirements
   const requirementsSection = document.createElement('aside');
+  // requirementsSection.innerHTML='';
   requirementsSection.classList.add('eachApplicantMain');
   requirementsSection.id = 'FundOppCriteria';
 
@@ -410,25 +306,18 @@ function showModal(application) {
   // Initially show the first tab content
   showTabContent(sections[0].name);
 }
-
 function showTabContent(tabName) {
-  const tabContents = document.querySelectorAll('.tab-content');
-  tabContents.forEach(tabContent => {
-    if (tabContent.classList.contains(tabName.split(' ').join('-'))) {
-      tabContent.style.display = 'block';
-    } else {
-      tabContent.style.display = 'none';
-    }
-  });
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
 
-  const tabs = document.querySelectorAll('.tabs .tab');
-  tabs.forEach(tab => {
-    if (tab.textContent === tabName) {
-      tab.classList.add('active');
-    } else {
-      tab.classList.remove('active');
-    }
-  });
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+    tabContents.forEach(content => {
+        content.classList.remove('active');
+    });
+
+    document.querySelector(`.tab-content.${tabName.split(' ').join('-')}`).classList.add('active');
+    document.querySelector(`.tab.${tabName}`).classList.add('active');
 }
-
 document.addEventListener("DOMContentLoaded", fetchApplicants);
