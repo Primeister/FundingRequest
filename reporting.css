@@ -52,3 +52,18 @@ canvas {
     width: 100%; /* Make canvas width 100% to fill its container */
     height: auto; /* Let the height adjust automatically based on the width */
 }
+/* Responsive styles */
+@media (max-width: 768px) {
+    .container {
+        margin: 0 5%;
+        padding: 15px;
+    }
+
+    .chart-container,
+    .charts-container {
+        display:flex;
+        flex-direction: column;
+        max-width: 100%; /* Allow charts to take full width on smaller screens */
+        margin: 10px auto;
+    }
+}
