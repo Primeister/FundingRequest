@@ -1,3 +1,6 @@
+let apiUpdateApplicantAmount = 'https://fundreq.azurewebsites.net/update/applicant/amount/';
+
+
 function addCategory(){
 
     let categoryName = document.getElementById("category");
@@ -32,8 +35,19 @@ function addCategory(){
     newSection.appendChild(removeButton);
     mainElement.appendChild(newSection)
 
+    let fundingName1 = sessionStorage.getItem('fundingName');
+
+    data = {
+        "category": categoryName.value + ": R" + categoryAmount.value.toString(),
+        "fundingName": fundingName1
+    }
+
+    postCategory(data);
+
     categoryAmount.value = "";
     categoryName.value = "";
+
+    
 }
    
 }
@@ -45,6 +59,62 @@ function updateApplicantFunds(){
 
     if(!(newApplicantAmount.value == "")){
         applicantAmount.textContent = "R" + newApplicantAmount.value.toString();
+
+        let fundingName2 = sessionStorage.getItem('fundingName');
+
+        let data = {
+            "applicantAmount": applicantAmount.value
+        }
+
+        updateApplicantAmount(data, fundingName2);
+
         newApplicantAmount.value = "";
+    }
+
+    
+
+}
+
+async function postCategory(data) {
+    let bodyContent = JSON.stringify(data);
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json"
+       }
+    let response = await fetch("https://fundreq.azurewebsites.net/category", {
+        method: "POST",
+        mode: "cors",
+        headers: headersList,
+        body: bodyContent
+    });
+    let result = await response.json();
+    console.log(result);
+    
+}
+
+async function updateApplicantAmount(data, fundingName1){
+
+    let bodyContent = JSON.stringify(data);
+    let headersList = {
+        "Accept" : "*/*",
+        "Content-Type" : "application/json"
+    }
+
+    let response = await fetch(apiUpdateApplicantAmount + fundingName1, {
+        method: "PUT",
+        node: "cors",
+        headers: headersList,
+        body: bodyContent
+    });
+
+    let result = await response.json();
+
+    if(result.message === "Field updated successfully"){
+        console.log(result.message);
+        alert(result.message);
+    }
+    else{
+        console.log(result.error);
+        alert(result.error);
     }
 }
