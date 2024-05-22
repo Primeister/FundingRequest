@@ -84,6 +84,8 @@ function updateTotalFunds(){
     }
 
     updateTotalAmount(data, email);
+
+    document.getElementById("allocatedTotalFunds").value = "";
 }
 
 async function updateTotalAmount(data, email){
@@ -124,6 +126,8 @@ function updateOppFunds(){
     }
 
     updateOppAmount(data, fundingName);
+
+    document.getElementById("allocatedOppFunds").value = "";
 }
 
 
