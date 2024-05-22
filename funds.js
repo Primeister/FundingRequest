@@ -168,6 +168,7 @@ function getCategories(fundingName){
         
         let sectionID = 0;
         let mainElement = document.getElementById("categories");
+        mainElement.innerHTML = "";
 
         data.forEach(Category => {
 
