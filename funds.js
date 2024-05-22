@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 sessionStorage.setItem('fundingName', fundingOpp.FundingName);
                 document.getElementById("budgetSection").style.display = "none";
                 document.getElementById("editOppAmountSection").style.display = "block";
-                document.getElementById("applicantFunds") = "R" + fundingOpp.ApplicantAmount.toString();
+                document.getElementById("applicantFunds").textContent = "R" + fundingOpp.ApplicantAmount.toString();
                 getCategories(fundingOpp.FundingName);
                
             };
