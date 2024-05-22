@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 
                 sessionStorage.setItem('amountID', stringAmountID);
                 sessionStorage.setItem('fundingName', fundingOpp.FundingName);
+                document.getElementById("applicantFunds") = "R" + fundingOpp.ApplicantAmount.toString();
                 document.getElementById("budgetSection").style.display = "none";
                 document.getElementById("editOppAmountSection").style.display = "block";
                
