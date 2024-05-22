@@ -243,10 +243,20 @@ function showModal(application) {
             "Accept": "*/*"
         }
 
-        fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${applicantEmail}/accept`, { 
-            method: "GET",
-            headers: headersList
+        const bodyContent = JSON.stringify({
+            "requested_amount": applicantAmount
         });
+
+        const response = fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${applicantEmail}/accept`, { 
+            method: "POST",
+            mode: "cors",
+            headers: headersList,
+            body: bodyContent
+        }).then(response => response.json());
+        if(response.error === "Applicant amount exceeds budget"){
+            showInsufficientFundsPopup();
+        }
+        
     });
 
     rejectApplicant.addEventListener('click', () => {
@@ -294,4 +304,40 @@ function filterStatus(status) {
       }
     }
   }
+
+  function showInsufficientFundsPopup() {
+  // Create the popup container
+  const popupContainer = document.createElement("div");
+  popupContainer.classList.add("popup-container");
+
+  // Create the popup content
+  const popupContent = document.createElement("div");
+  popupContent.classList.add("popup-content");
+
+  // Create the message
+  const message = document.createElement("p");
+  message.textContent = "Insufficient Funds";
+
+  // Create the link
+  const link = document.createElement("a");
+  link.href = "budget.html"; // Replace with the actual URL of the budget page
+  link.textContent = "Go to Budget Page";
+
+  // Append the message and link to the popup content
+  popupContent.appendChild(message);
+  popupContent.appendChild(link);
+
+  // Append the popup content to the container
+  popupContainer.appendChild(popupContent);
+
+  // Append the popup container to the document body
+  document.body.appendChild(popupContainer);
+
+  // Add an event listener to close the popup when clicked outside
+  popupContainer.addEventListener("click", function(event) {
+    if (event.target === popupContainer) {
+      popupContainer.remove();
+    }
+  });
+}
   
