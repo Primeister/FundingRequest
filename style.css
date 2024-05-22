@@ -158,16 +158,25 @@ select option:hover {
     display: none;
 }
 
-@media (max-width: 630px) {
+@media (min-width: 350px) and (max-width: 750px) {
     #mainSignup {
         flex-direction: row;
     }
     .about,
     .form-wrap {
-        /* margin-top: 20px; */
-        /* width: 100%; */
         height:auto;
-        font-size: smaller;
+        font-size:smaller;
+    }
+    .about {
+        margin-top: 0;
+        padding-top: 0;
+    }
+}
+@media (max-width : 350px) {
+    .about,
+    .form-wrap {
+        height:auto;
+        font-size:xx-small;
     }
 }
 .google--applicant{
