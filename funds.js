@@ -2,7 +2,7 @@
 
 let apiUpdateAmount = 'https://fundreq.azurewebsites.net/update/amount/';
 let apiUpdateTotalAmount = 'https://fundreq.azurewebsites.net/update/total/amount/';
-let apiDeleteCategory = 'https://fundreq.azurewebsites.net/delete/category/';
+let apiDeleteCategory = 'https://fundreq.azurewebsites.net/delete/category';
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -204,7 +204,7 @@ function getCategories(fundingName){
     
 }
 
-async function deleteCategory(data, id){
+async function deleteCategory(data){
 
     let bodyContent = JSON.stringify(data);
     let headersList = {
@@ -212,7 +212,7 @@ async function deleteCategory(data, id){
         "Content-Type" : "application/json"
     }
 
-    let response = await fetch(apiDeleteCategory + id, {
+    let response = await fetch(apiDeleteCategory, {
         method: "DELETE",
         node: "cors",
         headers: headersList,
