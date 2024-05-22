@@ -160,23 +160,60 @@ select option:hover {
 
 @media (min-width: 350px) and (max-width: 750px) {
     #mainSignup {
-        flex-direction: row;
+        flex-direction: row; /* Stack the containers vertically */
+        padding: 10px; /* Adjust padding */
     }
     .about,
     .form-wrap {
-        height:auto;
-        font-size:smaller;
+        width: 90%; /* Reduce width */
+        font-size: smaller; /* Reduce font size */
+        padding: 10px; /* Reduce padding */
     }
-    .about {
-        margin-top: 0;
-        padding-top: 0;
+    .about h1 {
+        font-size: 1.8em; /* Reduce font size */
+    }
+    .about p {
+        font-size: 0.9em; /* Reduce font size */
+    }
+    .form-wrap {
+        width: 90%; /* Reduce width */
+        padding: 10px; /* Reduce padding */
+    }
+    .title {
+        font-size: 1.5em; /* Reduce font size */
+    }
+    .google-signin-button {
+        font-size: 0.9em; /* Reduce font size */
+        padding: 8px; /* Adjust padding */
     }
 }
-@media (max-width : 350px) {
+@media (max-width: 350px) {
+    #mainSignup {
+        flex-direction: column; /* Stack the containers vertically */
+        padding: 5px; /* Adjust padding */
+    }
     .about,
     .form-wrap {
-        height:auto;
-        font-size:xx-small;
+        width: 100%; /* Full width */
+        font-size: smaller; /* Reduce font size */
+        padding: 10px; /* Reduce padding */
+    }
+    .about h1 {
+        font-size: 1.5em; /* Reduce font size */
+    }
+    .about p {
+        font-size: 0.8em; /* Reduce font size */
+    }
+    .form-wrap {
+        width: 100%; /* Full width */
+        padding: 5px; /* Reduce padding */
+    }
+    .title {
+        font-size: 1.2em; /* Reduce font size */
+    }
+    .google-signin-button {
+        font-size: 0.8em; /* Reduce font size */
+        padding: 5px; /* Adjust padding */
     }
 }
 .google--applicant{
