@@ -198,8 +198,13 @@ function getCategories(fundingName){
                 
             };
 
+            let hrLine = document.createElement('hr');
+            let lineBreak = document.createElement('br');
+
             newSection.appendChild(categoryParagraph);
             newSection.appendChild(removeButton);
+            newSection.appendChild(lineBreak);
+            newSection.appendChild(hrLine);
             mainElement.appendChild(newSection);
 
             sectionID = sectionID + 1;
