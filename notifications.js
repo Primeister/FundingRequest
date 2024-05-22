@@ -1,3 +1,37 @@
+document.addEventListener("DOMContentLoaded", function() {
+  fetchNotifications();
+  
+  document.getElementById('inboxLink').addEventListener('click', function() {
+    showInbox();
+  });
+});
+
+async function fetchNotifications() {
+  try {
+    let email = sessionStorage.getItem('email');
+    if (!email) {
+      throw new Error("Email not found in sessionStorage");
+    }
+
+    const response = await fetch('https://fundreq.azurewebsites.net/notifications/' + email);
+    if (!response.ok) {
+      throw new Error("Failed to fetch notifications");
+    }
+    const notifications = await response.json();
+    window.notifications = notifications; // Store notifications globally
+
+    const applicantCounts = countApplicantsPerDay(notifications);
+    sessionStorage.setItem('applicantCounts', JSON.stringify(applicantCounts));
+    console.log("these are the inputs for the chart: " + applicantCounts);
+    
+    displayNotifications(notifications);
+    countUnreadNotifications(notifications);
+
+  } catch (error) {
+    console.error("Error fetching notifications:", error);
+  }
+}
+
 function displayNotifications(notifications) {
   const notificationsContainer = document.getElementById('notifications');
   notificationsContainer.innerHTML = ''; // Clear existing notifications
