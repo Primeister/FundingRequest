@@ -56,7 +56,7 @@ async function PostForm() {
         "dob": document.getElementById("dob").value,
         "citizenship": document.getElementById("citizenship").value,
         "funding_name": sessionStorage.getItem("FundingName"),
-        "funding_amount": document.getElementById("requested-amount").value
+        "requested_amount": document.getElementById("requested-amount").value
     };
 
     const notificationData = {
