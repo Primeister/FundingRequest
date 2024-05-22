@@ -216,6 +216,41 @@ select option:hover {
         padding: 5px; /* Adjust padding */
     }
 }
+
+@media (max-width: 750px) and (orientation: landscape) {
+    #mainSignup {
+        flex-direction: row; /* Align containers horizontally */
+        padding: 10px;
+    }
+    .about,
+    .form-wrap {
+        width: 45%; /* Adjust width for landscape mode */
+        font-size: smaller;
+        padding: 10px;
+    }
+    .about h1 {
+        font-size: 1.8em; /* Reduce font size */
+    }
+    .about p {
+        font-size: 0.9em; /* Reduce font size */
+    }
+    .form-wrap {
+        width: 45%; /* Adjust width for landscape mode */
+        padding: 10px; /* Reduce padding */
+    }
+    .title {
+        font-size: 1.5em; /* Reduce font size */
+    }
+    .google-signin-button {
+        font-size: 0.9em; /* Reduce font size */
+        padding: 8px; /* Adjust padding */
+    }
+    .google-icon {
+        height: 16px; /* Adjust Google icon size */
+        width: 18px; /* Adjust Google icon size */
+    }
+}
+
 .google--applicant{
     color: black;
     display: flex;
