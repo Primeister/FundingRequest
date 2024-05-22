@@ -63,7 +63,7 @@ function updateApplicantFunds(){
         let fundingName2 = sessionStorage.getItem('fundingName');
 
         let data = {
-            "applicantAmount": applicantAmount.value
+            "applicantAmount": newApplicantAmount.value
         }
 
         updateApplicantAmount(data, fundingName2);
