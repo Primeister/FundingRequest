@@ -174,7 +174,7 @@ function getCategories(fundingName){
             //styles
 
             newSection.style.marginTop = "20px";
-            newSection.id = sectionID.toString();
+            newSection.id = Category.category;
 
             categoryParagraph.style.display ="inline";
             categoryParagraph.textContent = Category.category;
@@ -184,7 +184,7 @@ function getCategories(fundingName){
 
             removeButton.onclick = function() {
             
-                document.getElementById(sectionID.toString()).remove();
+                document.getElementById(Category.category).remove();
 
                 data = {
                     "category": Category.category
