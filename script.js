@@ -118,6 +118,13 @@ function openManageFunders(){
     document.getElementById("manage-funders").style.display = "block";
 }
 
+function showMain(){
+    document.querySelector(".classMain").style.display = "block";
+    document.querySelector(".aboutClass").style.display = "none";
+    document.getElementById("approve-fundManagers").style.display = "none";
+    document.getElementById("manage-funders").style.display = "none";
+}
+
 function openManageApplicants(){
     document.querySelector(".classMain").style.display = "none";
     document.querySelector(".aboutClass").style.display = "none";
