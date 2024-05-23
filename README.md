@@ -34,10 +34,10 @@ The project will be developed using Agile methodology, incorporating Continuous 
 #### Technologies Used
 - **Frontend:** 
   - HTML, CSS, JavaScript
-  - Framework: [Add if any]
+
 - **Backend:** 
   - Node.js
-  - Framework: [Add if any]
+
 - **Database:** 
   - SQLite3
 - **API Development & Testing:** 
