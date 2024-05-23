@@ -1,4 +1,4 @@
-let apiUpdateApplicantPermission = 'https://fundreq.azurewebsites.net/update/permission/';
+let apiUpdateApplicantPermission = 'https://fundreq.azurewebsites.net/update/applicant/permission/';
 
 
 
@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     var mainElement = document.getElementById("applicants");
     
-    fetch('https://fundreq.azurewebsites.net/fundManagers/')
+    fetch('https://fundreq.azurewebsites.net/applicants')
     .then(res => {
         return res.json();
     }).then( data =>{
@@ -38,25 +38,25 @@ document.addEventListener("DOMContentLoaded", function(){
         profileIcon.style.width = "150px"
 
         // Create a new button element
-        var approveButton = document.createElement("button");
-        approveButton.textContent = "block"; // Set the button text
-        approveButton.style.backgroundColor = "red";
-        approveButton.style.width = "100px";
+        var blockButton = document.createElement("button");
+        blockButton.textContent = "block"; // Set the button text
+        blockButton.style.backgroundColor = "red";
+        blockButton.style.width = "100px";
     
-        var rejectButton = document.createElement("button");
-        rejectButton.textContent = "unblock"; // Set the button textlelet 
-        rejectButton.style.backgroundColor = "green";
-        rejectButton.style.width = "100px";
+        var unblockButton = document.createElement("button");
+        unblockButton.textContent = "unblock"; // Set the button textlelet 
+        unblockButton.style.backgroundColor = "green";
+        unblockButton.style.width = "100px";
             
         let personId = person.id.toString();
         // Define the onclick function for the button
-        approveButton.onclick = function() {
+        blockButton.onclick = function() {
             data = {
                 "id" : person.id,
-                "newValue" : "approved"
+                "newValue" : "blocked"
             }
 
-            var result = confirm("Are you sure you want to approve?");
+            var result = confirm("Are you sure you want to block?");
             if (result){
                 update(data, personId);
                 
@@ -66,13 +66,13 @@ document.addEventListener("DOMContentLoaded", function(){
             
         };
         
-        rejectButton.onclick = function() {
+        unblockButton.onclick = function() {
             data = {
                 "id" : person.id,
-                "newValue" : "rejected"
+                "newValue" : "allowed"
             }
 
-            var result = confirm("Are you sure you want to reject?");
+            var result = confirm("Are you sure you want to unblock?");
             if (result){
                 update(data, personId);
                 
@@ -93,14 +93,19 @@ document.addEventListener("DOMContentLoaded", function(){
         profile.appendChild(name);
         profile.appendChild(email);
 
-        approveButton.style.marginLeft = "10px";
-        rejectButton.style.marginLeft = "10px";
+        blockButton.style.marginLeft = "10px";
+        unblockButton.style.marginLeft = "10px";
 
-        approveButton.style.borderRadius = "0 5px 5px 20px";
+        blockButton.style.borderRadius = "0 5px 5px 20px";
+        unblockButton.style.borderRadius = "0 5px 5px 20px";
 
-        profile.appendChild(approveButton);
-        profile.appendChild(rejectButton);
-    
+        if(person.permission == "allowed"){
+        profile.appendChild(blockButton);
+        }
+
+        if(person.permission == "blocked"){
+        profile.appendChild(unblockButton);
+        }
         // Append the new section to the main element
         mainElement.appendChild(profile);
     
@@ -121,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function(){
             "Content-Type" : "application/json"
         }
 
-        let response = await fetch(apiUpdate + id, {
+        let response = await fetch(apiUpdateApplicantPermission + id, {
             method: "PUT",
             node: "cors",
             headers: headersList,
