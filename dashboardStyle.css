@@ -75,6 +75,20 @@ body{
   width: 100%; /*full width too*/
   height: 100vh-50px; /*full pg*/
 }
+/* Responsive Menu Button */
+.menuButton {
+  display: none;
+  position: absolute;
+  left: 2%; /* Adjust as needed */
+  font-size: 25px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.menuButton:hover{
+  background: none;
+}
 
 .sideNav {
   /*to hide sideBar*/
