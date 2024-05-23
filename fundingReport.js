@@ -5,8 +5,8 @@ async function fetchData() {
     return data;
 }
 
-function filterData(data, fundingName) {
-    return data.filter(item => item.fundingName === fundingName);
+function filterData(data, fundingNames) {
+    return data.filter(item => fundingNames.includes(item.fundingName));
 }
 
 function aggregateData(filteredData) {
@@ -32,12 +32,50 @@ function prepareChartData(aggregatedData, allLabels) {
     return { labels: allLabels, data };
 }
 
-function getAllUniqueLabels(datasets) {
-    const allLabelsSet = new Set();
-    datasets.forEach(data => {
-        Object.keys(data).forEach(label => allLabelsSet.add(label));
+async function drawChart() {
+    const data = await fetchData();
+
+    // Get funding names from session storage
+    const fundingNames = JSON.parse(sessionStorage.getItem('FundingNames')) || [];
+    console.log("Funding names from session storage:", fundingNames);
+
+    const filteredData = filterData(data, fundingNames);
+    const allCategories = [...new Set(filteredData.map(item => item.category.split(": ")[0]))];
+
+    const datasets = fundingNames.map(fundingName => {
+        const filteredFundingData = filterData(filteredData, [fundingName]);
+        const aggregatedData = aggregateData(filteredFundingData);
+        const chartData = prepareChartData(aggregatedData, allCategories);
+
+        return {
+            label: fundingName,
+            data: chartData.data,
+            fill: false,
+            borderColor: getRandomColor(),
+            tension: 0.1
+        };
     });
-    return Array.from(allLabelsSet);
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: allCategories,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Funding Report'
+                }
+            }
+        }
+    });
 }
 
 function getRandomColor() {
@@ -49,84 +87,4 @@ function getRandomColor() {
     return color;
 }
 
-function drawChart(datasets) {
-    const ctx = document.getElementById('myChart');
-    const labels = datasets.length > 0 ? datasets[0].labels : []; // Assuming all datasets have the same labels
-
-    const myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: datasets
-        },
-        options: {
-            responsive: true,
-            title: {
-                display: true,
-                text: 'Funding Distribution by Category'
-            },
-            tooltips: {
-                mode: 'index',
-                intersect: false,
-            },
-            hover: {
-                mode: 'nearest',
-                intersect: true
-            },
-            scales: {
-                x: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Category'
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Amount (R)'
-                    }
-                }
-            }
-        }
-    });
-}
-
-async function init() {
-    const data = await fetchData();
-    const fundingNames = JSON.parse(sessionStorage.getItem('FundingNames')) || []; // Retrieve funding names from sessionStorage
-    const rawDatasets = [];
-
-    for (const fundingName of fundingNames) {
-        const filteredData = filterData(data, fundingName);
-        console.log(`Data filtered for ${fundingName}:`, filteredData);
-        const aggregatedData = aggregateData(filteredData);
-        console.log(`Data aggregated for ${fundingName}:`, aggregatedData);
-        rawDatasets.push(aggregatedData);
-    }
-
-    const allLabels = getAllUniqueLabels(rawDatasets);
-
-    const datasets = fundingNames.map((fundingName, index) => {
-        const aggregatedData = rawDatasets[index];
-        const chartData = prepareChartData(aggregatedData, allLabels);
-        console.log(`Chart data prepared for ${fundingName}:`, chartData);
-
-        return {
-            label: fundingName,
-            data: chartData.data,
-            borderColor: getRandomColor(),
-            backgroundColor: 'rgba(0, 0, 0, 0)', // Transparent background
-            fill: false
-        };
-    });
-
-    drawChart(datasets);
-    console.log("datasets: ", datasets);
-}
-
-document.addEventListener('DOMContentLoaded', init);
-
-
-
+document.addEventListener('DOMContentLoaded', drawChart);
