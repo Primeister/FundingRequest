@@ -17,10 +17,19 @@ async function fetchData() {
         
         const data = await response.json();
 
+        const fundingNames = [];
+
         data.forEach((fundingOpportunity, index) => {
             const fundingName = fundingOpportunity.FundingName;
             const deadline = fundingOpportunity.Deadline;
             const requirements = fundingOpportunity.Requirements;
+
+            fundingNames.push(fundingName);
+            
+            console.log(fundingNames);
+
+            // After collecting all the funding names
+            sessionStorage.setItem('FundingNames', JSON.stringify(fundingNames));
 
             const opportunityDiv = document.createElement('div');
             opportunityDiv.classList.add('opportunitySection');
