@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
 });
 
+function isSmallScreen() {
+    return window.innerWidth <= 750; // Adjust the value as needed
+}
+
 document.addEventListener('click', function(event) {
     if (isSmallScreen()) {
         var sideNav = document.querySelector('.sideNav');
