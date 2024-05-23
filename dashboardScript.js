@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 function isSmallScreen() {
-    return window.innerWidth <= 750; // Adjust the value as needed
+    return window.innerWidth <= 768; // Adjust the value as needed
 }
 
 document.addEventListener('click', function(event) {
@@ -62,6 +62,7 @@ function toggleMenu() {
     }
 }
 
+// Optional: Add an event listener to handle window resize and adjust the sidebar visibility accordingly
 window.addEventListener('resize', function() {
     var sideNav = document.querySelector('.sideNav');
     if (!isSmallScreen()) {
@@ -70,3 +71,4 @@ window.addEventListener('resize', function() {
         sideNav.style.display = 'none'; // Ensure sidebar is hidden on smaller screens if not open
     }
 });
+
