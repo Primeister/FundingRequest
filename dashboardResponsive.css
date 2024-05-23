@@ -239,10 +239,10 @@
     width:30px;
     margin-right: 5px;
   }
-.user p{
-    white-space: normal;
-  }
-    
+      .user p{
+          white-space: normal;
+          font-size: 9px;
+      } 
   }
 
   @media screen and (min-width:330px) and (max-width: 400px){
@@ -313,8 +313,20 @@
     width:30px;
     margin-right: 5px;
   }
-.user p{
-    white-space: normal;
+      .user p{
+          white-space: normal;
+      }
   }
-    
+
+  @media screen and (max-width:750px){
+    .inboxClass{
+        width:100%;
+        margin-left: 0;
+        margin-right : 0;
+    }
+    .fundManagerStatusSection{
+        width:100%;
+        margin-left: 0;
+        margin-right : 0;
+    }
   }
