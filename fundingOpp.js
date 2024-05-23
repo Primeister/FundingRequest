@@ -184,6 +184,9 @@ async function fetchFundManagerStatus() {
         const data = await response.json();
         const fundManagerStatus = document.getElementById('fundManagerStatus');
         fundManagerStatus.textContent = `Status: ${data.status}`;
+        if(!(data.status == "approved")){
+            document.getElementById("advertLink").remove();
+        }
     } catch (error) {
         console.error('Error fetching fund manager status:', error);
         const fundManagerStatus = document.getElementById('fundManagerStatus');
