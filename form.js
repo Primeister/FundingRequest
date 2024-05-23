@@ -1,32 +1,32 @@
-// async function fetchEmail() {
-//     const fundName = sessionStorage.getItem("FundingName");
-//     if (!fundName) {
-//         console.error("FundingName not found in sessionStorage");
-//         return null;
-//     }
-//     console.log(fundName);
+async function fetchEmail() {
+    const fundName = sessionStorage.getItem("FundingName");
+    if (!fundName) {
+        console.error("FundingName not found in sessionStorage");
+        return null;
+    }
+    console.log(fundName);
 
-//     try {
-//         const response = await fetch(`https://fundreq.azurewebsites.net/fundManager/${fundName}`);
-//         if (!response.ok) {
-//             throw new Error(`HTTP error! status: ${response.status}`);
-//         } else {
-//             const data = await response.json();
-//             if (data.length > 0) {
-//                 const email = data[0].FundManager;
-//                 console.log("Successfully fetched email: " + email);
-//                 sessionStorage.setItem("FundManagerEmail", email);
-//                 return email;
-//             } else {
-//                 console.log("No data found");
-//                 return null;
-//             }
-//         }
-//     } catch (error) {
-//         console.log('Error fetching email:', error);
-//         return null;
-//     }
-// }
+    try {
+        const response = await fetch(`https://fundreq.azurewebsites.net/fundManager/${fundName}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+            const data = await response.json();
+            if (data.length > 0) {
+                const email = data[0].FundManager;
+                console.log("Successfully fetched email: " + email);
+                sessionStorage.setItem("FundManagerEmail", email);
+                return email;
+            } else {
+                console.log("No data found");
+                return null;
+            }
+        }
+    } catch (error) {
+        console.log('Error fetching email:', error);
+        return null;
+    }
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     // fetchEmail();
@@ -37,15 +37,15 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 async function PostForm() {
-    // let fundManagerEmail = sessionStorage.getItem("FundManagerEmail");
-    // if (!fundManagerEmail) {
-    //     fundManagerEmail = await fetchEmail();
-    // }
+    let fundManagerEmail = sessionStorage.getItem("FundManagerEmail");
+    if (!fundManagerEmail) {
+        fundManagerEmail = await fetchEmail();
+    }
     
-    // if (!fundManagerEmail) {
-    //     console.error("No fund manager email retrieved, cannot proceed with notification.");
-    //     return;
-    // }
+    if (!fundManagerEmail) {
+        console.error("No fund manager email retrieved, cannot proceed with notification.");
+        return;
+    }
 
     const data = {
         "surname": document.getElementById("surname").value,
@@ -59,17 +59,17 @@ async function PostForm() {
         "requested_amount": document.getElementById("requested-amount").value
     };
 
-    // const notificationData = {
-    //     fundManagerEmail: fundManagerEmail,
-    //     fundOppName: data.funding_name,
-    //     applicantName: `${data.firstname} ${data.surname}`
-    // };
+    const notificationData = {
+        fundManagerEmail: fundManagerEmail,
+        fundOppName: data.funding_name,
+        applicantName: `${data.firstname} ${data.surname}`
+    };
 
-    // console.log(notificationData); // To verify the notification data
+    console.log(notificationData); // To verify the notification data
 
     try {
         await postData(data);
-        // await postNotification(notificationData);
+        await postNotification(notificationData);
 
         // Navigate to applicants page after successful submission
         window.location.href = "applicants.html";
