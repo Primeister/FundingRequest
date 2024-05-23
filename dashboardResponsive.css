@@ -235,6 +235,13 @@
   .user p{
     white-space: normal;
   }
+       .userImage{
+    width:30px;
+    margin-right: 5px;
+  }
+.user p{
+    white-space: normal;
+  }
     
   }
 
@@ -265,6 +272,13 @@
       .user p{
     white-space: normal;
   }
+       .userImage{
+    width:30px;
+    margin-right: 5px;
+  }
+.user p{
+    white-space: normal;
+  }
     
   }
 
@@ -293,6 +307,13 @@
         display: block; /* Display the labels by default */
     }
       .user p{
+    white-space: normal;
+  }
+       .userImage{
+    width:30px;
+    margin-right: 5px;
+  }
+.user p{
     white-space: normal;
   }
     
