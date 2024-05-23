@@ -164,6 +164,9 @@
     width:30px;
     margin-right: 5px;
   }
+.user p{
+    white-space: normal;
+  }
 }
   @media screen and (min-width : 450px) and (max-width: 600px){
     .sideNav {
@@ -201,6 +204,9 @@
     width:30px;
     margin-right: 5px;
   }
+ .user p{
+    white-space: normal;
+  }
 }
   @media screen and (min-width:400px) and (max-width: 450px){
     .sideNav {
@@ -226,6 +232,9 @@
         font-size: 9px;
         display: block; /* Display the labels by default */
     }
+  .user p{
+    white-space: normal;
+  }
     
   }
 
@@ -253,6 +262,9 @@
         font-size: 9px;
         display: block; /* Display the labels by default */
     }
+      .user p{
+    white-space: normal;
+  }
     
   }
 
@@ -280,5 +292,8 @@
         font-size: 8px;
         display: block; /* Display the labels by default */
     }
+      .user p{
+    white-space: normal;
+  }
     
   }
