@@ -34,3 +34,24 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
 });
+
+document.addEventListener('click', function(event) {
+    var sideNav = document.querySelector('.sideNav');
+    var menuButton = document.querySelector('.menuButton');
+
+    // Check if the click is not on the sidebar or the menu button
+    if (!sideNav.contains(event.target) && !menuButton.contains(event.target)) {
+        sideNav.classList.remove('open');
+        sideNav.style.display = 'none';
+    }
+});
+
+function toggleMenu() {
+    var sideNav = document.querySelector('.sideNav');
+    sideNav.classList.toggle('open');
+    if (sideNav.classList.contains('open')) {
+        sideNav.style.display = 'block';
+    } else {
+        sideNav.style.display = 'none';
+    }
+}
