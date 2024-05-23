@@ -13,6 +13,8 @@
     <script src="dashboardScript.js"></script>
     <script src="script.js"></script>
     <script src="about.js"></script>
+    <script src="manageFunders.js"></script>
+    <script src="manageApplicants.js"></script>
   </head>
   <body>
     <header class="nav1">
@@ -45,39 +47,21 @@
         </nav>
     </aside>
     <main class="classMain">
-      <section id="main-section">
+      <section id="manage-users">
 
-        <section class="classMain-section" style="margin-top:20px;">
-            <h1>QUICK STATS</h1><hr>
-            <!--<p>Summary of key metrics</p>
-            <p>Such as total number of users or pending approvals</p>-->
-        </section>
-    
-        <section class="classMain-section">
-            <h1>RECENT ACTIVITY FEED</h1><hr>
-            <!--<p>This is where we might wanna display the recent activities or events, such as new user registrations, approved funding opportunities,etc.</p>-->
+        <center><h1 style="font-size: 30px; margin-top: 20px;">Manage Users</h1></center><hr>
+  
+        <center>
+          <section style="height: 1000px;">
             
-        </section>
-    
-        <section class="classMain-section">
-            <h1>ALERTS OR NOTIFICATIONS</h1><hr>
-            <!--<p>Alerts of notifications for pending tasks that require the admin's attention</p>-->
-            
-        </section>
-    
-        <section class="classMain-section">
-            <h1>ANNOUNCEMENTS</h1><hr>
-            <!--<p>Space for important announcements, updates, or news related to funding management system or the organization</p>-->
-            
-        </section>
-    
-        <section class="classMain-section">
-            <h1>FEEDBACK</h1><hr>
-            <!--<p>If we wanna get feedback we can add this</p>-->
-            
-        </section>
-    
+                <section style="background-color: aliceblue; border-radius: 10px; margin-top: 15px; height: 80px; width: 80%;"><ul><li onclick="openManageApplicants()"><h1>Applicants</h1></li></ul></section>
+
+                <section style="background-color: aliceblue; border-radius: 10px; margin-top: 15px; height: 80px; width: 80%;"><ul><li onclick="openManageFunders()"><h1>Fund Managers</h1></li></ul></section>
+              
+          </section>
       </section>
+    </center>
+  
     </main>
 
     <section id="approve-fundManagers">
@@ -88,6 +72,30 @@
         <section id="profile-blocks" style="display: flex; justify-content:center">
 
             <section id="profiles" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; column-gap:10px; "></section>
+
+        </section>
+    </section>
+
+    <section id="manage-funders" style="height: 1000px; display: none;">
+
+      <center><h1 style="font-size: 30px; margin-top: 20px;">Manage Fund Managers</h1></center><hr>
+
+
+        <section id="funder-blocks" style="display: flex; justify-content:center">
+
+            <section id="funders" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; column-gap:10px; "></section>
+
+        </section>
+    </section>
+
+    <section id="manage-applicants" style="height: 1000px; display: none;">
+
+      <center><h1 style="font-size: 30px; margin-top: 20px;">Manage Applicants</h1></center><hr>
+
+
+        <section id="applicant-blocks" style="display: flex; justify-content:center">
+
+            <section id="applicants" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; column-gap:10px; "></section>
 
         </section>
     </section>

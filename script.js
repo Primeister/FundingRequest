@@ -111,6 +111,20 @@ function showApproveFunder(){
     document.getElementById("approve-fundManagers").style.display = "block";
 }
 
+function openManageFunders(){
+    document.querySelector(".classMain").style.display = "none";
+    document.querySelector(".aboutClass").style.display = "none";
+    document.getElementById("approve-fundManagers").style.display = "none";
+    document.getElementById("manage-funders").style.display = "block";
+}
+
+function openManageApplicants(){
+    document.querySelector(".classMain").style.display = "none";
+    document.querySelector(".aboutClass").style.display = "none";
+    document.getElementById("approve-fundManagers").style.display = "none";
+    document.getElementById("manage-applicants").style.display = "block";
+}
+
 function openEditor(){
     document.getElementById("budgetSection").style.display = "none";
     document.getElementById("editOppAmountSection").style.display = "none";
