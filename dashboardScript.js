@@ -36,13 +36,15 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 document.addEventListener('click', function(event) {
-    var sideNav = document.querySelector('.sideNav');
-    var menuButton = document.querySelector('.menuButton');
+    if (isSmallScreen()) {
+        var sideNav = document.querySelector('.sideNav');
+        var menuButton = document.querySelector('.menuButton');
 
-    // Check if the click is not on the sidebar or the menu button
-    if (!sideNav.contains(event.target) && !menuButton.contains(event.target)) {
-        sideNav.classList.remove('open');
-        sideNav.style.display = 'none';
+        // Check if the click is not on the sidebar or the menu button
+        if (!sideNav.contains(event.target) && !menuButton.contains(event.target)) {
+            sideNav.classList.remove('open');
+            sideNav.style.display = 'none';
+        }
     }
 });
 
@@ -55,3 +57,12 @@ function toggleMenu() {
         sideNav.style.display = 'none';
     }
 }
+
+window.addEventListener('resize', function() {
+    var sideNav = document.querySelector('.sideNav');
+    if (!isSmallScreen()) {
+        sideNav.style.display = 'block'; // Ensure sidebar is visible on larger screens
+    } else if (!sideNav.classList.contains('open')) {
+        sideNav.style.display = 'none'; // Ensure sidebar is hidden on smaller screens if not open
+    }
+});
