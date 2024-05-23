@@ -1,74 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funding Report</title>
-    <link rel="stylesheet" href="reporting.css">
-    <link rel="stylesheet" href="dashboardStyle.css">
-    <link rel="stylesheet" href="dashboardResponsive.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="reporting.js"></script>
-    <script src="notifications.js"></script>
-    <script src="script.js"></script>
-    <script src="form.js"></script>
-    <script src="funds.js"></script>
-    <script src="category.js"></script>
-    <script src="fundManagers.js"></script>
+  <head>
+    <!--icon style link-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Dashboard</title>
+    <link rel="stylesheet" href="dashboardStyle.css"/>
+    <link rel="stylesheet" href="dashboardResponsive.css"/>
+    <link rel="icon" type="image/x-icon" href="images/FundXW.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="dashboardScript.js"></script>
+    <script src="fundManagers.js"></script>
+    <script src="script.js"></script>
+    <script src="fundingOpp.js"></script>
+    <script src="funds.js"></script>
+    <script src="notifications.js"></script>
+    <script src="category.js"></script>
     <script src="about.js"></script>
+    <script src="fundingReport.js"></script>
     
-</head>
-<body>
+  </head>
+  <body>
     <header class="nav1">
-        <button class="menuButton" onclick="toggleMenu()">☰</button>
-        <img src="images/FundXWF.png" alt="logo">
-        <nav class="topNav">
+      <button class="menuButton" onclick="toggleMenu()">☰</button>
+      <img src="images/FundXWF.png" alt="logo">
+      <nav class="topNav">
+        <ul>
+          <li><a href="#" id="showPageLink">About</a></li>
+          <li><a href="howitworks.html" id="showPageLink">How It Works</a></li>
+          <li><a href="help.html" id="showPageLink">Help</a></li>
+        </ul>
+      </nav>
+  </header>
+
+    <aside class="header">
+        <nav class="sideNav">
+            <section class="user">
+                <img src="images/user.png" class="userImage" alt="user-icon"/><br>
+                <p id="username"></p>
+            </section><hr>
           <ul>
-            <li><a href="#" id="showPageLink">About</a></li>
-            <li><a href="howitworks.html" id="showPageLink">How It Works</a></li>
-            <li><a href="help.html" id="showPageLink">Help</a></li>
+            <li><a href="fundmanagers.html"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
+            <li onclick="advertAreaShow()"><img src="images/advertise.png" alt="advertise-icon"/><p>Advertise Funding</p></li>
+            <li><a href="#" id="inboxLink"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
+            <li onclick="viewBudget()"><a href="#"><img src="images/budget.png" alt="budget-icon"/></a><p>Budget</p></li>
+            <li><a href="reporting.html"><img src="images/reports.png" alt="reports-icon"></a><p>Reports and Analytics</p></li>
+            <li style="bottom:0; position:fixed;"><a href="index.html"><img src="images/logout.png" alt="logout-icon"/></a><p>Logout</p></li>
           </ul>
         </nav>
-    </header>
-  
-      <aside class="header">
-          <nav class="sideNav">
-              <section class="user">
-                  <img src="images/user.png" class="userImage" alt="user-icon"/><br>
-                  <p id="username" style="padding:5px;"></p>
-              </section><hr>
-            <ul>
-              <li><a href="fundmanagers.html"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
-              <li onclick="advertAreaShow()"><img src="images/advertise.png" alt="advertise-icon"/><p>Advertise Funding</p></li>
-              <li><a href="#" id="inboxLink"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
-              <li onclick="viewBudget()"><a href="#"><img src="images/budget.png" alt="budget-icon"/></a><p>Budget</p></li>
-              <li><a href="reporting.html"><img src="images/reports.png" alt="reports-icon"></a><p>Reports and Analytics</p></li>
-              <li style="bottom:0; position:fixed;"><a href="index.html"><img src="images/logout.png" alt="logout-icon"/></a><p>Logout</p></li>
-            </ul>
-          </nav>
+    </aside>
+
+    <main class="classMain">
+      <section class="fundManagerStatusSection">
+        <h2>Your Status</h2>
+        <p>NB: You cannot advertise any funding opportunity pending approval by admin</p><br><hr><br>
+        <p id="fundManagerStatus">Loading status...</p>
+      </section>
+      
+      <section class="opportunityClass" id="landing-section"></section>
+
+      <section>
+        <table class="tableClass" id="myTable"></table>
+      </section>
+
+      <section>
+        <article class="eachApplicantMain" id="fundingOppTable"></article>
+      </section>
+
+      <section class="inboxClass" id="inbox-section" style="display: none;">
+        <h2>Inbox</h2>
+
+        <table id="notifications-table">
+          <tbody id="notifications">
+          </tbody>
+        </table>
+      </section>
+      
+    </main>
+    <section>
+      <article class="eachApplicantMain" id="applicantInfo"></article>
+  </section>
+
+  <section>
+      <aside class="eachApplicantMain" id="FundOppCriteria">
+          <form>
+              <label for="checkbox" id="reqClass"></label><br>
+          </form>
       </aside>
+  </section>
 
-      <div class="container">
-        <h1>Application Reports</h1>
-        <div id="chartsContainer" class="chart-container"></div>
-    </div>
-
-    <div class="container">
-        <div id="pieChartsContainer" class="charts-container"></div>
-    </div>
-
-    <div class="container">
-        <h1>Summary Report</h1>
-        <div id="summaryBarChartContainer" class="chart-container"></div>
-        <div id="summaryPieChartContainer" class="charts-container"></div>
-    </div>
+    <section id="advertiserFormSection">
     
+      <br><br><br><br><br><br>
+      <center>
+      <fieldset>
+      <br><br>
+      <img src="images/contract.png" alt="contract" style="height: 100px;">
+      <br><br>
+        <h1 style="font-size: xx-large;">Funding Details</h1>
+        <br><br>
+      <form action="">
+  
+        <input type="text" id="fundingName" placeholder="Name of funding" required><br>
+        <br><br>
 
-<main id="aboutId" class="aboutClass"></main>
+        <input type="number" id="allocatedFunds" placeholder="Allocated funds" required><br>
+        <br><br>
 
-  <footer>
-      <p>&copy; 2024 Fund X</p>
-  </footer>
-</body>
+        <select title="fundingType"  name="fundingType" id="fundingType" class="large-font-size" required>
+          <option value="void">Type of funding</option>
+          <option value="business">Business</option>
+          <option value="event">Event</option>
+          <option value="education">Education</option>
+        </select><br><br><br>
+          Description:<br>
+          <textarea name="description" id="description" cols="30" rows="4" placeholder="add description" required></textarea><br><br><br>
+          Requirements:<br>
+          <textarea name="requirements" id="requirements" cols="30" rows="4" placeholder="enter requirements" required></textarea><br><br><br>
+          Deadline:<br>
+          <input type="date" id="deadline" placeholder="enter deadline"><br><br><br>
+          <input type="submit" onclick="PostFunding()" class="submit" value="Create!" style="cursor: pointer;" id="submitBtn">
+          <br><br><br>
+          <caption style="color: grey;"> all submisions are subject to review by admin, <b style="cursor: pointer;">Learn more about review process</b> </caption>
+          
+          <br><br><br>
+  
+      </form>  
+      </fieldset>
+      </center>
+    </section>
+
+    <center>
+      <section id="budgetSection" style="padding-top: 20px;">
+        <center>
+          <section>
+          <section id="TotalFunds" style="background-color: aliceblue; border-radius: 10px;">
+            <h1>TOTAL FUNDS:</h1><br>
+            <h1 id="totalFunds">R0.00</h1><br>
+            <button onclick="openEditor()">Manage Funds</button>
+          </section>
+  
+          <section id ="opportunityFunds" style="padding-top: 20px;"></section>
+  
+        </section>
+        </center>
+      </section>
+      </center>
+  
+      <center>
+        <section id="editTotalAmountSection" style="padding-top: 20px;">
+          <center>
+            <section>
+            <section id="TotalFunds" style="background-color: aliceblue; border-radius: 10px;">
+              <h1>Set New Amount</h1><br><br>
+              <input type="number" id="allocatedTotalFunds" placeholder="Allocated funds" required><br>
+              <br><br>
+              <button onclick="updateTotalFunds()">Set</button>
+            </section>
+            
+          </section>
+          </center>
+        </section>
+        </center>
+  
+        <center>
+          <section id="editOppAmountSection" style="padding-top: 20px;">
+            <center>
+              <section>
+              <section id="TotalFunds" style="background-color: aliceblue; border-radius: 10px;">
+                <h1>Set New Amount</h1><br><br>
+                <input type="number" id="allocatedOppFunds" placeholder="Allocated funds" required><br>
+                <br><br>
+                <button onclick="updateOppFunds()">Set</button>
+              </section>
+
+              <section id="TotalFunds" style="background-color: aliceblue; border-radius: 10px; margin-top: 15px;">
+                <h1>Funds Per Applicant:</h1><br>
+                <h1 id="applicantFunds">R0.00</h1><br>
+                <input type="number" id="applicantFundsInput" placeholder="Allocated funds" style="height: 33px;" required>
+                <button onclick="updateApplicantFunds()">Update</button>
+              </section>
+
+              <section id="TotalFunds" style="background-color: aliceblue; border-radius: 10px; margin-top: 15px; height: 300px;">
+                <section style="background-color: grey; height: 120px; border-radius: 10px;">
+                  <h1>Categories</h1><br>
+                  <input type="text" id="category" placeholder="category" style="display: inline; height: 33px;" required>
+                  <input type="number" id="categoryAmount" placeholder="Allocated funds" style="display: inline; height: 33px;;" required required>
+                  <button onclick="addCategory()">Add</button>
+                </section >
+                <section id="categories" style="height: 180px;">
+                  
+                </section>
+              </section>
+              
+            </section>
+            </center>
+          </section>
+          </center>
+
+    <main id="aboutId" class="aboutClass"></main>
+
+    <footer>
+        <p>&copy; 2024 Fund X</p>
+    </footer>
+  </body>
 </html>
