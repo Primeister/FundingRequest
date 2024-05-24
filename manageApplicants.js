@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
             var result = confirm("Are you sure you want to block?");
             if (result){
-                update(data, personId);
+                updateApplicantPermission(data, personId);
                 
             }
 
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
             var result = confirm("Are you sure you want to unblock?");
             if (result){
-                update(data, personId);
+                updateApplicantPermission(data, personId);
                 
             }
             
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-    async function update(data, id){
+    async function updateApplicantPermission(data, id){
 
         let bodyContent = JSON.stringify(data);
         let headersList = {

@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function(){
         return res.json();
     }).then( data =>{
         
-        let newProfileId = 0;
+        let newProfileId = 100;
     
         data.forEach(person => {
     
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
             var result = confirm("Are you sure you want to block?");
             if (result){
-                update(data, personId);
+                updateFunderPermission(data, personId);
                 
             }
 
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
             var result = confirm("Are you sure you want to unblock?");
             if (result){
-                update(data, personId);
+                updateFunderPermission(data, personId);
                 
             }
             
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-    async function update(data, id){
+    async function updateFunderPermission(data, id){
 
         let bodyContent = JSON.stringify(data);
         let headersList = {
