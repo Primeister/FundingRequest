@@ -6,6 +6,12 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+document.addEventListener('click', function() {
+  document.querySelectorAll('.container').forEach(element => {
+      element.style.display = 'none';
+  });
+});
+
 async function fetchNotifications() {
   try {
     let email = sessionStorage.getItem('email');
