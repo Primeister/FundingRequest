@@ -15,6 +15,8 @@
     <script src="applications.js"></script>
     <script src="about.js"></script>
     <script src="notifications.js"></script>
+    <script src="fundingOpp.js"></script>
+    <script src="category.js"></script>
     <script>
        function filterApplications(status) {
     var rows = document.querySelectorAll("#fundingOppTable tr");
@@ -45,14 +47,14 @@
     <aside class="header">
       <nav class="sideNav">
         <section class="user">
-          <img  id=image src="images/user.png" class="userImage" alt="user-icon"/>
+          <img src="images/user.png" class="userImage" alt="user-icon"/>
           <p id="username"></p>
         </section><hr>
         <ul>
           <li><a href="fundmanagers.html"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
           <li onclick="advertAreaShow()"><img src="images/advertise.png" alt="advertise-icon"/><p>Advertise Funding</p></li>
           <li><a href="#" id="inboxLink"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
-          <li><a href="#"><img src="images/budget.png" alt="budget-icon"/></a><p>Budget</p></li>
+          <li onclick="viewBudget()"><a href="#"><img src="images/budget.png" alt="budget-icon"/></a><p>Budget</p></li>
           <li><a href="reporting.html"><img src="images/reports.png" alt="reports-icon"></a><p>Reports and Analytics</p></li>
           <li style="bottom:0; position:fixed;"><a href="index.html"><img src="images/logout.png" alt="logout-icon"/></a><p>Logout</p></li>
         </ul>
@@ -60,7 +62,6 @@
     </aside>
 
     <main class="classMain">
-      <main class="classMain">
         <section>
             <div class="status-tabs-container" id="tabsandtableID">
                 <div class="tabs" id="statusTabs">
@@ -87,7 +88,7 @@
             </aside>
         </section>
 
-         <section class="inboxClass" id="inbox-section" style="display:none;">
+        <section class="inboxClass" id="inbox-section" style="display:none;">
           <h2>Inbox</h2>
           <table id="notifications-table">
             <tbody id="notifications">
@@ -106,11 +107,115 @@
       </aside>
     </section>
     
-        <section id="advertiserFormSection">
-            <!-- Your form content goes here -->
-        </section>
-    </main>
+    <section id="advertiserFormSection">
     
+      <br><br><br><br><br><br>
+      <center>
+      <fieldset>
+      <br><br>
+      <img src="images/contract.png" alt="contract" style="height: 100px;">
+      <br><br>
+        <h1 style="font-size: xx-large;">Funding Details</h1>
+        <br><br>
+      <form action="">
+  
+        <input type="text" id="fundingName" placeholder="Name of funding" required><br>
+        <br><br>
+
+        <input type="number" id="allocatedFunds" placeholder="Allocated funds" required><br>
+        <br><br>
+
+        <select title="fundingType"  name="fundingType" id="fundingType" class="large-font-size" required>
+          <option value="void">Type of funding</option>
+          <option value="business">Business</option>
+          <option value="event">Event</option>
+          <option value="education">Education</option>
+        </select><br><br><br>
+          Description:<br>
+          <textarea name="description" id="description" cols="30" rows="4" placeholder="add description" required></textarea><br><br><br>
+          Requirements:<br>
+          <textarea name="requirements" id="requirements" cols="30" rows="4" placeholder="enter requirements" required></textarea><br><br><br>
+          Deadline:<br>
+          <input type="date" id="deadline" placeholder="enter deadline"><br><br><br>
+          <input type="submit" onclick="PostFunding()" class="submit" value="Create!" style="cursor: pointer;" id="submitBtn">
+          <br><br><br>
+          <caption style="color: grey;"> all submisions are subject to review by admin, <b style="cursor: pointer;">Learn more about review process</b> </caption>
+          
+          <br><br><br>
+  
+      </form>  
+      </fieldset>
+      </center>
+    </section>
+
+    <center>
+      <section id="budgetSection" style="padding-top: 20px;">
+        <center>
+          <section>
+          <section id="TotalFunds" style="background-color: aliceblue; border-radius: 10px;">
+            <h1>TOTAL FUNDS:</h1><br>
+            <h1 id="totalFunds">R0.00</h1><br>
+            <button onclick="openEditor()">Manage Funds</button>
+          </section>
+  
+          <section id ="opportunityFunds" style="padding-top: 20px;"></section>
+  
+        </section>
+        </center>
+      </section>
+      </center>
+  
+      <center>
+        <section id="editTotalAmountSection" style="padding-top: 20px;">
+          <center>
+            <section>
+            <section id="TotalFunds" style="background-color: aliceblue; border-radius: 10px;">
+              <h1>Set New Amount</h1><br><br>
+              <input type="number" id="allocatedTotalFunds" placeholder="Allocated funds" required><br>
+              <br><br>
+              <button onclick="updateTotalFunds()">Set</button>
+            </section>
+            
+          </section>
+          </center>
+        </section>
+        </center>
+  
+        <center>
+          <section id="editOppAmountSection" style="padding-top: 20px;">
+            <center>
+              <section>
+              <section id="TotalFunds" style="background-color: aliceblue; border-radius: 10px;">
+                <h1>Set New Amount</h1><br><br>
+                <input type="number" id="allocatedOppFunds" placeholder="Allocated funds" required><br>
+                <br><br>
+                <button onclick="updateOppFunds()">Set</button>
+              </section>
+
+              <section id="TotalFunds" style="background-color: aliceblue; border-radius: 10px; margin-top: 15px;">
+                <h1>Funds Per Applicant:</h1><br>
+                <h1 id="applicantFunds">R0.00</h1><br>
+                <input type="number" id="applicantFundsInput" placeholder="Allocated funds" style="height: 33px;" required>
+                <button onclick="updateApplicantFunds()">Update</button>
+              </section>
+
+              <section id="TotalFunds" style="background-color: aliceblue; border-radius: 10px; margin-top: 15px; height: 300px;">
+                <section style="background-color: grey; height: 120px; border-radius: 10px;">
+                  <h1>Categories</h1><br>
+                  <input type="text" id="category" placeholder="category" style="display: inline; height: 33px;" required>
+                  <input type="number" id="categoryAmount" placeholder="Allocated funds" style="display: inline; height: 33px;;" required required>
+                  <button onclick="addCategory()">Add</button>
+                </section >
+                <section id="categories" style="height: 180px;">
+                  
+                </section>
+              </section>
+              
+            </section>
+            </center>
+          </section>
+          </center>
+
     <main id="aboutId" class="aboutClass">
       <!-- About section content goes here -->
     </main>
