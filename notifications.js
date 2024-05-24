@@ -8,12 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 async function fetchNotifications() {
   try {
-    let email = sessionStorage.getItem('email');
-    if (!email) {
-      throw new Error("Email not found in sessionStorage");
-    }
-
-    const response = await fetch('https://fundreq.azurewebsites.net/notifications/' + email);
+    const response = await fetch('https://fundreq.azurewebsites.net/notifications/2549192@students.wits.ac.za');
     if (!response.ok) {
       throw new Error("Failed to fetch notifications");
     }
@@ -40,23 +35,21 @@ function displayNotifications(notifications) {
     const notificationRow = document.createElement('tr');
 
     const applicantCell = document.createElement('td');
-
-
     const applicantLink = document.createElement('a');
     applicantLink.href = '#';
     applicantLink.textContent = notification.applicantName;
     applicantLink.addEventListener('click', function() {
-      // Store the notification details in sessionStorage
-      sessionStorage.setItem("applicantName", notification.applicantName);
-      sessionStorage.setItem("FundingName", notification.fundOppName);
-      console.log("Funding Name: " + notification.fundOppName);
-      console.log("Applicant Name: " + notification.applicantName);
-
+      
       const applicantInfoSection = document.getElementById('applicantInfo');
       applicantInfoSection.style.display = 'block';
 
       const eligibilityCriteriaSection = document.getElementById('FundOppCriteria');
       eligibilityCriteriaSection.style.display = 'block';
+      
+      sessionStorage.setItem("applicantName", notification.applicantName);
+      sessionStorage.setItem("FundingName", notification.fundOppName);
+      console.log("Funding Name: " + notification.fundOppName);
+      console.log("Applicant Name: " + notification.applicantName);
 
       fetchApplicants(notification.fundOppName);
     });
@@ -69,7 +62,6 @@ function displayNotifications(notifications) {
     notificationRow.appendChild(fundingCell);
 
     const timestampCell = document.createElement('td');
-    // Convert timestamp to local time
     const localTime = convertToLocalTime(notification.timestamp);
     timestampCell.textContent = localTime;
     notificationRow.appendChild(timestampCell);
@@ -113,25 +105,21 @@ async function fetchApplicants(fundingName) {
 }
 
 function convertToLocalTime(timestamp) {
-  const date = new Date(timestamp + 'Z'); // Append 'Z' to indicate UTC time
+  const date = new Date(timestamp + 'Z');
   return date.toLocaleString();
 }
 
 function showInbox() {
-  // Hide other sections
   document.querySelectorAll('.classMain > section').forEach(section => {
     section.style.display = 'none';
   });
-  // Hide the entire section
   const applicantInfoSection = document.getElementById('applicantInfo');
   applicantInfoSection.style.display = 'none';
   
   const eligibilityCriteriaSection = document.getElementById('FundOppCriteria');
   eligibilityCriteriaSection.style.display = 'none';
 
-  // Show inbox section
   document.getElementById('inbox-section').style.display = 'block';
-  // Fetch notifications if not already fetched
   if (!window.notifications) {
     fetchNotifications();
   } else {
@@ -161,10 +149,9 @@ function countUnreadNotifications(notifications) {
   countElement.textContent = unreadCount;
 }
 
-// Function to count the number of applicants per day
 function countApplicantsPerDay(notifications) {
   const counts = notifications.reduce((acc, notification) => {
-    const date = new Date(notification.timestamp + 'Z').toISOString().split('T')[0]; // Extract date part only
+    const date = new Date(notification.timestamp + 'Z').toISOString().split('T')[0];
     acc[date] = (acc[date] || 0) + 1;
     return acc;
   }, {});
@@ -172,7 +159,11 @@ function countApplicantsPerDay(notifications) {
 }
 
 function showModal(application) {
-  const requirements = sessionStorage.getItem("Requirements");
+  const fundingName = sessionStorage.getItem('FundingName');
+  const requirementData = JSON.parse(sessionStorage.getItem('RequirementData'));
+  const requirements = requirementData[fundingName];
+
+  console.log('Requirements:', requirements);
 
   let existingModal = document.querySelector('.applicantModalClass');
   if (existingModal) {
@@ -190,250 +181,142 @@ function showModal(application) {
   const applicantArticle = document.createElement('article');
   applicantArticle.classList.add('applicantModalClass');
 
-  const tabsContainer = document.createElement('div');
-  tabsContainer.classList.add('tabs');
+  const section = {
+    name: 'Personal Information',
+    content: `
+      <h2 class="titleClass">Personal Information</h2>
+      <p>Name: ${applicantName}</p>
+      <p>Mobile: ${applicantMobile}</p>
+      <p>Email: ${applicantEmail}</p>
+      <p>ID number: ${applicantID}</p>
+      <p>Date of birth: ${applicantDOB}</p>
+      <p>Citizenship: ${applicantCitizen}</p>
+      <p>Amount Requested: R${applicantAmount}</p>
+    `
+  };
 
-  const sections = [
-    { name: 'Personal Information', content: `
-        <h2 class="titleClass">Personal Information</h2>
-        <p>Name: ${applicantName}</p>
-        <p>Mobile: ${applicantMobile}</p>
-        <p>Email: ${applicantEmail}</p>
-        <p>ID number: ${applicantID}</p>
-        <p>Date of birth: ${applicantDOB}</p>
-        <p>Citizenship: ${applicantCitizen}</p>
-        <p>Amount Requested: R${applicantAmount}</p>
-    ` },
-    { name: 'Educational Background', content: `
-        <h2 class="titleClass">Educational Background</h2>
-        <!-- Add educational background fields -->
-    ` },
-    { name: 'Professional Experience', content: `
-        <h2 class="titleClass">Professional Experience</h2>
-        <!-- Add professional experience fields -->
-    ` },
-    { name: 'Project/Proposal Details', content: `
-        <h2 class="titleClass">Project/Proposal Details</h2>
-        <!-- Add project/proposal details fields -->
-    ` },
-    { name: 'Budget and Financial Information', content: `
-        <h2 class="titleClass">Budget and Financial Information</h2>
-        <!-- Add budget and financial information fields -->
-    ` },
-    { name: 'Supporting Documents', content: `
-        <h2 class="titleClass">Supporting Documents</h2>
-        <!-- Add supporting documents fields -->
-    ` },
-    { name: 'References or Referrals', content: `
-        <h2 class="titleClass">References or Referrals</h2>
-        <!-- Add references or referrals fields -->
-    ` },
-    { name: 'Declaration and Consent', content: `
-        <h2 class="titleClass">Declaration and Consent</h2>
-        <!-- Add declaration and consent fields -->
-    ` }
-  ];
-
-  sections.forEach(section => {
-    const tab = document.createElement('div');
-    tab.classList.add('tab');
-    tab.textContent = section.name;
-    tab.addEventListener('click', function() {
-      showTabContent(section.name);
-    });
-    tabsContainer.appendChild(tab);
-
-    const tabContent = document.createElement('div');
-    tabContent.classList.add('tab-content');
-    tabContent.innerHTML = section.content;
-    tabContent.classList.add(section.name.split(' ').join('-')); // Add class based on section name
-    applicantArticle.appendChild(tabContent);
-  });
-
-  tabsContainer.firstChild.classList.add('active'); // Activate first tab by default
-  applicantArticle.appendChild(tabsContainer);
+  const sectionDiv = document.createElement('div');
+  sectionDiv.innerHTML = section.content;
+  applicantArticle.appendChild(sectionDiv);
 
   let applicantSection = document.getElementById('applicantInfo');
   applicantSection.innerHTML = ''; // Clear existing content
   applicantSection.classList.add('applicantSectionClass');
   applicantSection.appendChild(applicantArticle);
 
-  // Dynamically create checkboxes for requirements
-  const requirementsSection = document.createElement('aside');
-  // requirementsSection.innerHTML='';
-  requirementsSection.classList.add('eachApplicantMain');
-  requirementsSection.id = 'FundOppCriteria';
+  if (requirements) {
+    const requirementsSection = document.createElement('aside');
+    requirementsSection.classList.add('eachApplicantMain');
+    requirementsSection.id = 'FundOppCriteria';
 
-  const requirementsTitle = document.createElement('h2');
-  requirementsTitle.textContent = 'Eligibility Criteria';
-  requirementsSection.appendChild(requirementsTitle);
+    const requirementsTitle = document.createElement('h2');
+    requirementsTitle.textContent = 'Eligibility Criteria';
+    requirementsSection.appendChild(requirementsTitle);
 
-  requirements.split('\n').forEach(requirement => {
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = 'requirementsCheckbox';
-    checkbox.name = 'requirements';
-    checkbox.classList.add('checkbox');
+    requirements.split('\n').forEach(requirement => {
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = 'requirementsCheckbox';
+      checkbox.name = 'requirements';
+      checkbox.classList.add('checkbox');
 
-    const requirementLabel = document.createElement('label');
-    requirementLabel.textContent = requirement;
-    requirementLabel.classList.add('checkbox-label');
+      const requirementLabel = document.createElement('label');
+      requirementLabel.textContent = requirement;
+      requirementLabel.classList.add('checkbox-label');
 
-    requirementsSection.appendChild(checkbox);
-    requirementsSection.appendChild(requirementLabel);
-    requirementsSection.appendChild(document.createElement('br'));
-  });
+      requirementsSection.appendChild(checkbox);
+      requirementsSection.appendChild(requirementLabel);
+      requirementsSection.appendChild(document.createElement('br'));
 
-  let applSection = document.getElementById('reqClass');
-  applSection.classList.add('requirements');
-  applSection.appendChild(requirementsSection);
-
-  const acceptRejectSection = document.createElement('div');
-    acceptRejectSection.classList.add('requirements');
-    acceptRejectSection.id = 'acceptRejectSection';
-    const acceptApplicant = document.createElement('button');
-    acceptApplicant.id = 'acceptButton';
-    acceptApplicant.textContent = 'Accept';
-    acceptApplicant.classList.add('acceptButton');
-    const rejectApplicant = document.createElement('button');
-    rejectApplicant.textContent = 'Reject';
-    rejectApplicant.id ='rejectButton';
-    rejectApplicant.classList.add('rejectButton');
-    
-    if(sessionStorage.getItem("Status") === "processing"){
-        acceptRejectSection.appendChild(acceptApplicant);
-        acceptRejectSection.appendChild(rejectApplicant);
-    }
-    else{
-        const messageContainer = document.createElement('div');
-        messageContainer.classList.add('message-container');
-    
-        const message = document.createElement('h2');
-        message.classList.add('message');
-        message.textContent = `Application has already been ${sessionStorage.getItem("Status")}.`;
-    
-        messageContainer.appendChild(message);
-        acceptRejectSection.appendChild(messageContainer);
-    }
-    acceptApplicant.addEventListener('click', () => {
-        const applicantEmail = sessionStorage.getItem('applicant_email');
-        let headersList = {
-            "Accept": "*/*"
-        }
-
-        const bodyContent = JSON.stringify({
-            "requested_amount": applicantAmount
-        });
-
-        const response = fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${applicantEmail}/accept`, { 
-            method: "POST",
-            mode: "cors",
-            headers: headersList,
-            body: bodyContent
-        }).then(response => response.json());
-        if(response.error === "Applicant amount exceeds budget"){
-            showInsufficientFundsPopup();
-        }
-        
+      console.log('Requirement:', requirement);
     });
 
-    rejectApplicant.addEventListener('click', () => {
-        const applicantEmail = sessionStorage.getItem('applicant_email');
-        let headersList = {
-            "Accept": "*/*"
-        }
-
-        fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${applicantEmail}/reject`, { 
-            method: "GET",
-            headers: headersList
-        });
-    });
-    
-    applSection.insertAdjacentElement("afterend", acceptRejectSection);
-    
-}
-
-function showTabContent(tabName) {
-    const tabs = document.querySelectorAll('.tab');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabs.forEach(tab => {
-        tab.classList.remove('active');
-    });
-    tabContents.forEach(content => {
-        content.classList.remove('active');
-    });
-
-    document.querySelector(`.tab-content.${tabName.split(' ').join('-')}`).classList.add('active');
-    document.querySelector(`.tab.${tabName}`).classList.add('active');
-}
-
-function filterStatus(status) {
-    var rows = document.getElementsByClassName('status-row');
-  
-    for (var i = 0; i < rows.length; i++) {
-      var row = rows[i];
-      var currentStatus = row.getAttribute('data-status');
-  
-      if (status === 'all' || currentStatus === status) {
-        row.style.display = '';
-      } else {
-        row.style.display = 'none';
-      }
-    }
+    let applSection = document.getElementById('reqClass');
+    applSection.innerHTML = ''; // Clear existing content
+    applSection.classList.add('requirements');
+    applSection.appendChild(requirementsSection);
+  } else {
+    console.log("No requirements found in sessionStorage.");
   }
 
-  function showInsufficientFundsPopup() {
-  // Create the popup container
-  const popupContainer = document.createElement("div");
-  popupContainer.classList.add("popup-container");
+  const acceptRejectSection = document.createElement('div');
+  acceptRejectSection.classList.add('requirements');
+  acceptRejectSection.id = 'acceptRejectSection';
+  const acceptApplicant = document.createElement('button');
+  acceptApplicant.id = 'acceptButton';
+  acceptApplicant.textContent = 'Accept';
+  acceptApplicant.classList.add('acceptButton');
+  const rejectApplicant = document.createElement('button');
+  rejectApplicant.textContent = 'Reject';
+  rejectApplicant.id = 'rejectButton';
+  rejectApplicant.classList.add('rejectButton');
 
-  // Create the popup content
-  const popupContent = document.createElement("div");
-  popupContent.classList.add("popup-content");
+  acceptRejectSection.appendChild(acceptApplicant);
+  acceptRejectSection.appendChild(rejectApplicant);
 
-  // Create the message
-  const message = document.createElement("p");
-  message.textContent = "Insufficient Funds";
+  // Ensure the accept/reject section is appended to the applicant info section
+  applicantSection.appendChild(acceptRejectSection);
 
-  // Create the link
-  const link = document.createElement("a");
-  link.href = "budget.html"; // Replace with the actual URL of the budget page
-  link.textContent = "Go to Budget Page";
+  // Ensure the sections are visible
+  document.getElementById('applicantInfo').style.display = 'block';
+  document.getElementById('FundOppCriteria').style.display = 'block';
 
-  // Append the message and link to the popup content
-  popupContent.appendChild(message);
-  popupContent.appendChild(link);
+  acceptApplicant.addEventListener('click', () => {
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json" // Ensure correct content type
+    };
 
-  // Append the popup content to the container
-  popupContainer.appendChild(popupContent);
+    const bodyContent = JSON.stringify({
+        "requested_amount": applicantAmount
+    });
 
-  // Append the popup container to the document body
-  document.body.appendChild(popupContainer);
+    fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${applicantEmail}/accept`, { 
+        method: "POST",
+        mode: "cors",
+        headers: headersList,
+        body: bodyContent
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.error === "Applicant amount exceeds budget") {
+            showInsufficientFundsPopup();
+        } else {
+            console.log('Applicant accepted:', data);
+            showInbox(); // Show inbox after successful update
+        }
+    })
+    .catch(error => console.error('Error accepting applicant:', error));
+});
 
-  // Add an event listener to close the popup when clicked outside
-  popupContainer.addEventListener("click", function(event) {
-    if (event.target === popupContainer) {
-      popupContainer.remove();
-    }
-  });
-
-
-  // Initially show the first tab content
-  showTabContent(sections[0].name);
+rejectApplicant.addEventListener('click', () => {
+    fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${applicantEmail}/reject`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Accept": "*/*"
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Applicant rejected:", data);
+        showInbox(); // Show inbox after successful update
+    })
+    .catch(error => console.error('Error rejecting applicant:', error));
+});
 }
-function showTabContent(tabName) {
-    const tabs = document.querySelectorAll('.tab');
-    const tabContents = document.querySelectorAll('.tab-content');
 
-    tabs.forEach(tab => {
-        tab.classList.remove('active');
-    });
-    tabContents.forEach(content => {
-        content.classList.remove('active');
-    });
-
-    document.querySelector(`.tab-content.${tabName.split(' ').join('-')}`).classList.add('active');
-    document.querySelector(`.tab.${tabName}`).classList.add('active');
+function showInsufficientFundsPopup() {
+  alert('Insufficient funds to approve this application.');
 }
 document.addEventListener("DOMContentLoaded", fetchApplicants);
