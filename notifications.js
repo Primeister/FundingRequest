@@ -253,14 +253,29 @@ function showModal(application) {
   acceptApplicant.classList.add('acceptButton');
   const rejectApplicant = document.createElement('button');
   rejectApplicant.textContent = 'Reject';
-  rejectApplicant.id = 'rejectButton';
+  rejectApplicant.id ='rejectButton';
   rejectApplicant.classList.add('rejectButton');
-
-  acceptRejectSection.appendChild(acceptApplicant);
-  acceptRejectSection.appendChild(rejectApplicant);
+  
+  if(sessionStorage.getItem("Status") === "processing"){
+      acceptRejectSection.appendChild(acceptApplicant);
+      acceptRejectSection.appendChild(rejectApplicant);
+  }
+  else{
+      const messageContainer = document.createElement('div');
+      messageContainer.classList.add('message-container');
+  
+      const message = document.createElement('h2');
+      message.classList.add('message');
+      message.textContent = `Application has already been ${sessionStorage.getItem("Status")}.`;
+  
+      messageContainer.appendChild(message);
+      acceptRejectSection.appendChild(messageContainer);
+  }
 
   // Ensure the accept/reject section is appended to the applicant info section
-  applicantSection.appendChild(acceptRejectSection);
+  const eliClass = document.querySelector(".requirements");
+
+  eliClass.insertAdjacentElement("afterend", acceptRejectSection);
 
   // Ensure the sections are visible
   document.getElementById('applicantInfo').style.display = 'block';
