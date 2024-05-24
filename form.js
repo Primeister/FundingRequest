@@ -51,12 +51,16 @@ async function PostForm() {
         "surname": document.getElementById("surname").value,
         "firstname": document.getElementById("firstname").value,
         "mobile": document.getElementById("mobile").value,
-        "email": document.getElementById("email").value,
+        "email":  sessionStorage.getItem("email"),
         "id_number": document.getElementById("idnumber").value,
         "dob": document.getElementById("dob").value,
         "citizenship": document.getElementById("citizenship").value,
         "funding_name": sessionStorage.getItem("FundingName"),
-        "requested_amount": document.getElementById("requested-amount").value
+        "requested_amount": document.getElementById("requested-amount").value,
+        "address": document.getElementById("address").value,
+        "info": document.getElementById("info").value,
+        "motivation": document.getElementById("motivation").value
+        
     };
 
     const notificationData = {
@@ -87,7 +91,7 @@ async function postData(data) {
         };
 
         // POST the application data to the server
-        let response = await fetch("https://fundreq.azurewebsites.net/application/post", {
+        let response = await fetch("http://localhost:3000/application/post", {
             method: "POST",
             mode: "cors",
             headers: headersList,
