@@ -91,7 +91,7 @@ async function postData(data) {
         };
 
         // POST the application data to the server
-        let response = await fetch("http://fundreq.azurewebsites.net/application/post", {
+        let response = await fetch("https://fundreq.azurewebsites.net/application/post", {
             method: "POST",
             mode: "cors",
             headers: headersList,
