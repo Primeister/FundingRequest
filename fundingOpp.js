@@ -2,16 +2,16 @@ let fundingData = {};
 let requirementData = {};
 async function fetchData() {
     try {
-        // //Get the email address from sessionStorage
-        // let email = sessionStorage.getItem('email');
-        // console.log(email)
+        //Get the email address from sessionStorage
+        let email = sessionStorage.getItem('email');
+        console.log(email)
        
-        // // Check if email exists
-        // if (!email) {
-        //     throw new Error("Email not found in sessionStorage");
-        // } 
+        // Check if email exists
+        if (!email) {
+            throw new Error("Email not found in sessionStorage");
+        } 
 
-        const response = await fetch(`https://fundreq.azurewebsites.net/fundingOpportunities/2549192@students.wits.ac.za`);
+        const response = await fetch(`https://fundreq.azurewebsites.net/fundingOpportunities/` + email);
 
         if (!response.ok) {
             throw new Error("Could not fetch resource");
