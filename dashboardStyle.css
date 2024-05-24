@@ -92,7 +92,7 @@ body{
 
 .sideNav {
   /*to hide sideBar*/
-  width: 100px;
+  width: 90px;
   height: 100%;
   position: fixed;
   top: 0;
