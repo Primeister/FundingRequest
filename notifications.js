@@ -277,10 +277,6 @@ function showModal(application) {
 
   eliClass.insertAdjacentElement("afterend", acceptRejectSection);
 
-  // Ensure the sections are visible
-  document.getElementById('applicantInfo').style.display = 'block';
-  document.getElementById('FundOppCriteria').style.display = 'block';
-
   acceptApplicant.addEventListener('click', () => {
     let headersList = {
         "Accept": "*/*",
