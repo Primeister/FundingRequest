@@ -82,6 +82,7 @@ function displayApplications(data, filter) {
         emailCell.textContent = application.email;
         let statusCell = row.insertCell();
         statusCell.textContent = application.status;
+        sessionStorage.setItem("Status", application.status);
         let modalButtonCell = row.insertCell();
         let modalButton = document.createElement('button');
         modalButton.classList.add('modalButtonClass');
@@ -234,9 +235,21 @@ function showModal(application) {
     rejectApplicant.id ='rejectButton';
     rejectApplicant.classList.add('rejectButton');
     
-    acceptRejectSection.appendChild(acceptApplicant);
-    acceptRejectSection.appendChild(rejectApplicant);
-
+    if(sessionStorage.getItem("Status") === "processing"){
+        acceptRejectSection.appendChild(acceptApplicant);
+        acceptRejectSection.appendChild(rejectApplicant);
+    }
+    else{
+        const messageContainer = document.createElement('div');
+        messageContainer.classList.add('message-container');
+    
+        const message = document.createElement('h2');
+        message.classList.add('message');
+        message.textContent = `Application has already been ${sessionStorage.getItem("Status")}.`;
+    
+        messageContainer.appendChild(message);
+        acceptRejectSection.appendChild(messageContainer);
+    }
     acceptApplicant.addEventListener('click', () => {
         const applicantEmail = sessionStorage.getItem('applicant_email');
         let headersList = {

@@ -289,53 +289,135 @@ function showModal(application) {
   applSection.appendChild(requirementsSection);
 
   const acceptRejectSection = document.createElement('div');
-  acceptRejectSection.classList.add('acceptRejectClass');
-
-  const acceptButton = document.createElement('button');
-  acceptButton.classList.add('acceptButtonClass');
-  acceptButton.textContent = 'Accept';
-
-  acceptButton.addEventListener('click', function() {
-    fetch(`https://fundreq.azurewebsites.net/applications/${applicantEmail}/accept`, { method: 'PUT' })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+    acceptRejectSection.classList.add('requirements');
+    acceptRejectSection.id = 'acceptRejectSection';
+    const acceptApplicant = document.createElement('button');
+    acceptApplicant.id = 'acceptButton';
+    acceptApplicant.textContent = 'Accept';
+    acceptApplicant.classList.add('acceptButton');
+    const rejectApplicant = document.createElement('button');
+    rejectApplicant.textContent = 'Reject';
+    rejectApplicant.id ='rejectButton';
+    rejectApplicant.classList.add('rejectButton');
+    
+    if(sessionStorage.getItem("Status") === "processing"){
+        acceptRejectSection.appendChild(acceptApplicant);
+        acceptRejectSection.appendChild(rejectApplicant);
+    }
+    else{
+        const messageContainer = document.createElement('div');
+        messageContainer.classList.add('message-container');
+    
+        const message = document.createElement('h2');
+        message.classList.add('message');
+        message.textContent = `Application has already been ${sessionStorage.getItem("Status")}.`;
+    
+        messageContainer.appendChild(message);
+        acceptRejectSection.appendChild(messageContainer);
+    }
+    acceptApplicant.addEventListener('click', () => {
+        const applicantEmail = sessionStorage.getItem('applicant_email');
+        let headersList = {
+            "Accept": "*/*"
         }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Application accepted:', data);
-      })
-      .catch(error => {
-        console.error('Error accepting application:', error);
-      });
+
+        const bodyContent = JSON.stringify({
+            "requested_amount": applicantAmount
+        });
+
+        const response = fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${applicantEmail}/accept`, { 
+            method: "POST",
+            mode: "cors",
+            headers: headersList,
+            body: bodyContent
+        }).then(response => response.json());
+        if(response.error === "Applicant amount exceeds budget"){
+            showInsufficientFundsPopup();
+        }
+        
+    });
+
+    rejectApplicant.addEventListener('click', () => {
+        const applicantEmail = sessionStorage.getItem('applicant_email');
+        let headersList = {
+            "Accept": "*/*"
+        }
+
+        fetch(`https://fundreq.azurewebsites.net/applications/${sessionStorage.getItem('FundingName')}/${applicantEmail}/reject`, { 
+            method: "GET",
+            headers: headersList
+        });
+    });
+
+    applSection.insertAdjacentElement("afterend", acceptRejectSection);
+    
+}
+
+function showTabContent(tabName) {
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+    tabContents.forEach(content => {
+        content.classList.remove('active');
+    });
+
+    document.querySelector(`.tab-content.${tabName.split(' ').join('-')}`).classList.add('active');
+    document.querySelector(`.tab.${tabName}`).classList.add('active');
+}
+
+function filterStatus(status) {
+    var rows = document.getElementsByClassName('status-row');
+  
+    for (var i = 0; i < rows.length; i++) {
+      var row = rows[i];
+      var currentStatus = row.getAttribute('data-status');
+  
+      if (status === 'all' || currentStatus === status) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    }
+  }
+
+  function showInsufficientFundsPopup() {
+  // Create the popup container
+  const popupContainer = document.createElement("div");
+  popupContainer.classList.add("popup-container");
+
+  // Create the popup content
+  const popupContent = document.createElement("div");
+  popupContent.classList.add("popup-content");
+
+  // Create the message
+  const message = document.createElement("p");
+  message.textContent = "Insufficient Funds";
+
+  // Create the link
+  const link = document.createElement("a");
+  link.href = "budget.html"; // Replace with the actual URL of the budget page
+  link.textContent = "Go to Budget Page";
+
+  // Append the message and link to the popup content
+  popupContent.appendChild(message);
+  popupContent.appendChild(link);
+
+  // Append the popup content to the container
+  popupContainer.appendChild(popupContent);
+
+  // Append the popup container to the document body
+  document.body.appendChild(popupContainer);
+
+  // Add an event listener to close the popup when clicked outside
+  popupContainer.addEventListener("click", function(event) {
+    if (event.target === popupContainer) {
+      popupContainer.remove();
+    }
   });
 
-  const rejectButton = document.createElement('button');
-  rejectButton.classList.add('rejectButtonClass');
-  rejectButton.textContent = 'Reject';
-
-  rejectButton.addEventListener('click', function() {
-    fetch(`https://fundreq.azurewebsites.net/applications/${applicantEmail}/reject`, { method: 'PUT' })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Application rejected:', data);
-      })
-      .catch(error => {
-        console.error('Error rejecting application:', error);
-      });
-  });
-
-  acceptRejectSection.appendChild(acceptButton);
-  acceptRejectSection.appendChild(rejectButton);
-
-  let applicantSection2 = document.getElementById('acceptReject');
-  applicantSection2.appendChild(acceptRejectSection);
 
   // Initially show the first tab content
   showTabContent(sections[0].name);
