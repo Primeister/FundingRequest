@@ -14,6 +14,7 @@
     <script src="script.js"></script>
     <script src="applications.js"></script>
     <script src="about.js"></script>
+    <script src="notifications.js"></script>
     <script>
        function filterApplications(status) {
     var rows = document.querySelectorAll("#fundingOppTable tr");
@@ -50,7 +51,7 @@
         <ul>
           <li><a href="fundmanagers.html"><img src="images/home.png" alt="dashboard-icon"/></a><p>Dashboard</p></li>
           <li onclick="advertAreaShow()"><img src="images/advertise.png" alt="advertise-icon"/><p>Advertise Funding</p></li>
-          <li><a href="#"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
+          <li><a href="#" id="inboxLink"><img src="images/inbox.png" alt="inbox-icon"/></a><p>Inbox</p></li>
           <li><a href="#"><img src="images/budget.png" alt="budget-icon"/></a><p>Budget</p></li>
           <li><a href="reporting.html"><img src="images/reports.png" alt="reports-icon"></a><p>Reports and Analytics</p></li>
           <li style="bottom:0; position:fixed;"><a href="index.html"><img src="images/logout.png" alt="logout-icon"/></a><p>Logout</p></li>
@@ -85,31 +86,31 @@
                 </form>
             </aside>
         </section>
+
+         <section class="inboxClass" id="inbox-section" style="display:none;">
+          <h2>Inbox</h2>
+          <table id="notifications-table">
+            <tbody id="notifications">
+            </tbody>
+          </table>
+        </section>
+        
+      </main>
+      <section>
+        <article class="eachApplicantMain" id="applicantInfo"  style="display:none;"></article>
+  
+        <aside class="eachApplicantMain" id="FundOppCriteria"  style="display:none;">
+          <form>
+              <label for="checkbox" id="reqClass"></label><br>
+          </form>
+      </aside>
+    </section>
     
         <section id="advertiserFormSection">
             <!-- Your form content goes here -->
         </section>
     </main>
-    >
-  
-      <section>
-          <article class="eachApplicantMain" id="applicantInfo"></article>
-      </section>
-  
-      <section>
-          <aside class="eachApplicantMain" id="FundOppCriteria">
-              <form>
-                  <label for="checkbox" id="reqClass"></label><br>
-              </form>
-          </aside>
-      </section>
-  
-      <section id="advertiserFormSection">
-          <!-- Your form content goes here -->
-      </section>
-  </main>
-  
-
+    
     <main id="aboutId" class="aboutClass">
       <!-- About section content goes here -->
     </main>
