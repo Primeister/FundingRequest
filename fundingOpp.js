@@ -1,3 +1,4 @@
+let requirementData = {};
 async function fetchData() {
     try {
         //Get the email address from sessionStorage
@@ -23,6 +24,8 @@ async function fetchData() {
             const fundingName = fundingOpportunity.FundingName;
             const deadline = fundingOpportunity.Deadline;
             const requirements = fundingOpportunity.Requirements;
+
+            requirementData[fundingName] = requirements;
 
             fundingNames.push(fundingName);
             
@@ -172,6 +175,8 @@ async function fetchData() {
             let fundingOpportunitiesSection = document.getElementById('landing-section');
             fundingOpportunitiesSection.appendChild(opportunityDiv);
         });
+        sessionStorage.setItem('RequirementData', JSON.stringify(requirementData));
+
     } catch (error) {
         console.error(error);
     }
