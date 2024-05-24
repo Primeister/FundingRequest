@@ -126,74 +126,29 @@ function showModal(application) {
     const applicantArticle = document.createElement('article');
     applicantArticle.classList.add('applicantModalClass');
 
-    const tabsContainer = document.createElement('div');
-    tabsContainer.classList.add('tabs');
+    const section = {
+        name: 'Personal Information',
+        content: `
+          <h2 class="titleClass">Personal Information</h2>
+          <p>Name: ${applicantName}</p>
+          <p>Mobile: ${applicantMobile}</p>
+          <p>Email: ${applicantEmail}</p>
+          <p>ID number: ${applicantID}</p>
+          <p>Date of birth: ${applicantDOB}</p>
+          <p>Citizenship: ${applicantCitizen}</p>
+          <p>Amount Requested: R${applicantAmount}</p>
+        `
+    };
 
-    const sections = [
-        { name: 'Personal Information', content: `
-            <h2 class="titleClass">Personal Information</h2>
-            <p>Name: ${applicantName}</p>
-            <p>Mobile: ${applicantMobile}</p>
-            <p>Email: ${applicantEmail}</p>
-            <p>ID number: ${applicantID}</p>
-            <p>Date of birth: ${applicantDOB}</p>
-            <p>Citizenship: ${applicantCitizen}</p>
-            <p>Amount Requested: R${applicantAmount}</p>
-        ` },
-        { name: 'Educational Background', content: `
-            <h2 class="titleClass">Educational Background</h2>
-            <!-- Add educational background fields -->
-        ` },
-        { name: 'Professional Experience', content: `
-            <h2 class="titleClass">Professional Experience</h2>
-            <!-- Add professional experience fields -->
-        ` },
-        { name: 'Project/Proposal Details', content: `
-            <h2 class="titleClass">Project/Proposal Details</h2>
-            <!-- Add project/proposal details fields -->
-        ` },
-        { name: 'Budget and Financial Information', content: `
-            <h2 class="titleClass">Budget and Financial Information</h2>
-            <!-- Add budget and financial information fields -->
-        ` },
-        { name: 'Supporting Documents', content: `
-            <h2 class="titleClass">Supporting Documents</h2>
-            <!-- Add supporting documents fields -->
-        ` },
-        { name: 'References or Referrals', content: `
-            <h2 class="titleClass">References or Referrals</h2>
-            <!-- Add references or referrals fields -->
-        ` },
-        { name: 'Declaration and Consent', content: `
-            <h2 class="titleClass">Declaration and Consent</h2>
-            <!-- Add declaration and consent fields -->
-        ` }
-    ];
+    const sectionDiv = document.createElement('div');
+  sectionDiv.innerHTML = section.content;
+  applicantArticle.appendChild(sectionDiv);
 
-    sections.forEach(section => {
-        const tab = document.createElement('div');
-        tab.classList.add('tab');
-        tab.textContent = section.name;
-        tab.addEventListener('click', function() {
-            showTabContent(section.name);
-        });
-        tabsContainer.appendChild(tab);
-
-        const tabContent = document.createElement('div');
-        tabContent.classList.add('tab-content');
-        tabContent.innerHTML = section.content;
-        tabContent.classList.add(section.name.split(' ').join('-')); // Add class based on section name
-        applicantArticle.appendChild(tabContent);
-    });
-
-    tabsContainer.firstChild.classList.add('active'); // Activate first tab by default
-    applicantArticle.appendChild(tabsContainer);
-
-    let applicantSection = document.getElementById('applicantInfo');
-    applicantSection.innerHTML = ''; // Clear existing content
-    applicantSection.classList.add('applicantSectionClass');
-    applicantSection.appendChild(applicantArticle);
-
+  let applicantSection = document.getElementById('applicantInfo');
+  applicantSection.innerHTML = ''; // Clear existing content
+  applicantSection.classList.add('applicantSectionClass');
+  applicantSection.appendChild(applicantArticle);
+  
     // Dynamically create checkboxes for requirements
     const requirementsSection = document.createElement('aside');
     requirementsSection.classList.add('eachApplicantMain');
@@ -288,21 +243,6 @@ function showModal(application) {
     
 }
 
-function showTabContent(tabName) {
-    const tabs = document.querySelectorAll('.tab');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabs.forEach(tab => {
-        tab.classList.remove('active');
-    });
-    tabContents.forEach(content => {
-        content.classList.remove('active');
-    });
-
-    document.querySelector(`.tab-content.${tabName.split(' ').join('-')}`).classList.add('active');
-    document.querySelector(`.tab.${tabName}`).classList.add('active');
-}
-
 function filterStatus(status) {
     var rows = document.getElementsByClassName('status-row');
   
@@ -353,4 +293,3 @@ function filterStatus(status) {
     }
   });
 }
-  
