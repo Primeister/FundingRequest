@@ -44,11 +44,11 @@ function displayNotifications(notifications) {
     applicantLink.href = '#';
     applicantLink.textContent = notification.applicantName;
     applicantLink.addEventListener('click', function() {
-      const applicantInfoSection = document.getElementById('applicantInfo');
-      const eligibilityCriteriaSection = document.getElementById('FundOppCriteria');
       
-      // Unhide the sections
+      const applicantInfoSection = document.getElementById('applicantInfo');
       applicantInfoSection.style.display = 'block';
+
+      const eligibilityCriteriaSection = document.getElementById('FundOppCriteria');
       eligibilityCriteriaSection.style.display = 'block';
       
       sessionStorage.setItem("applicantName", notification.applicantName);
