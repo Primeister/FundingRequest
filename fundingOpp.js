@@ -1,4 +1,5 @@
 let requirementData = {};
+let fundingData = {};
 
 async function fetchData() {
     try {
@@ -19,8 +20,6 @@ async function fetchData() {
         
         const data = await response.json();
 
-        const fundingNames = [];
-
         data.forEach((fundingOpportunity, index) => {
             const fundingName = fundingOpportunity.FundingName;
             const deadline = fundingOpportunity.Deadline;
@@ -28,12 +27,12 @@ async function fetchData() {
 
             requirementData[fundingName] = requirements;
 
-            fundingNames.push(fundingName);
-            
-            console.log(fundingNames);
-
-            // After collecting all the funding names
-            sessionStorage.setItem('FundingNames', JSON.stringify(fundingNames));
+            // Store funding names by type
+            if (!fundingData[fundingType]) {
+                fundingData[fundingType] = []; // Initialize array if it doesn't exist
+            }
+            fundingData[fundingType].push(fundingName);
+            console.log("data to be stored: " + fundingData)
 
             const opportunityDiv = document.createElement('div');
             opportunityDiv.classList.add('opportunitySection');
@@ -176,6 +175,8 @@ async function fetchData() {
             let fundingOpportunitiesSection = document.getElementById('landing-section');
             fundingOpportunitiesSection.appendChild(opportunityDiv);
         });
+        // After collecting all the funding names
+        sessionStorage.setItem('FundingData', JSON.stringify(fundingData));
         sessionStorage.setItem('RequirementData', JSON.stringify(requirementData));
 
     } catch (error) {
