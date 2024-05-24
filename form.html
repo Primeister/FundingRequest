@@ -1,49 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Funding Application Form</title>
     <link rel="stylesheet" href="form.css" />
-    <link rel="stylesheet" href="dashboardResponsive.css"/>
-</head>
-<body>
+    <link rel="stylesheet" href="dashboardResponsive.css" />
+  </head>
+  <body>
     <header class="nav1">
-        <img src="images/FundXWF.png" alt="logo" />
-        <nav class="topNav">
-            <ul>
-                <li><a href="#" id="showPageLink">About</a></li>
-                <li><a href="howitworks.html">How It Works</a></li>
-                <li><a href="help.html">Help</a></li>
-            </ul>
-        </nav>
+      <img src="images/FundXWF.png" alt="logo" />
+      <nav class="topNav">
+        <ul>
+          <li><a href="#" id="showPageLink">About</a></li>
+          <li><a href="howitworks.html">How It Works</a></li>
+          <li><a href="help.html">Help</a></li>
+        </ul>
+      </nav>
     </header>
 
     <div class="form-container">
-        <div class="classMain-section">
-            <h1>Application Form</h1>
-            <form id="advertiserFormSection" enctype="multipart/form-data">
-                <fieldset>
-                    <legend>Applicant Information</legend>
-                    <input type="text" id="surname" name="surname" placeholder="Surname" required />
-                    <input type="text" id="firstname" name="firstname" placeholder="First Name/s" required />
-                    <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required />
-                    <input type="email" id="email" name="email" placeholder="Email" required />
-                    <input type="text" id="idnumber" name="idnumber" placeholder="ID Number" required />
-                    <input type="date" id="dob" name="dob" placeholder="Date of Birth" required />
-                    <input type="text" id="citizenship" name="citizenship" placeholder="Citizenship" required />
-                    <input type="number" id="requested-amount" placeholder="Requested Amount" name="requested-amount" required />
-                    <button id="submitBtn" type="submit">Submit</button>
-                </fieldset>
-            </form>
-        </div>
+      <div class="classMain-section">
+        <h1>Application Form</h1>
+        <form id="advertiserFormSection" enctype="multipart/form-data">
+          <fieldset>
+            <label for="firstname">First Name</label>
+            <input type="text" id="firstname" name="firstname" required />
+
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" name="surname" required />
+
+            <label for="idnumber">ID Number</label>
+            <input type="idnumber" id="idnumber" name="idnumber" required />
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required />
+
+            <label for="citizenship">Citizenship</label>
+            <input type="text" id="citizenship" name="citizenship" required />
+
+
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" id="mobile" name="mobile" required />
+
+            <label for="address">Home Address</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+
+            <label for="info">Additional Information </label>
+            <textarea
+              id="info"
+              name="info"
+              rows="3"
+              required
+            ></textarea>
+
+            <label for="motivation">Motivation</label>
+            <textarea
+              id="motivation"
+              name="motivation"
+              rows="3"
+              required
+            ></textarea>
+            <label for="requested-amount">Requested Amount</label>
+            <input
+              type="number"
+              id="requested-amount"
+              name="requested-amount"
+              required
+            />
+            <button id="submitBtn" type="submit">Submit</button>
+          </fieldset>
+        </form>
+      </div>
     </div>
 
     <footer class="footer">
-        <p>&copy; 2024 Fund X</p>
+      <p>&copy; 2024 Fund X</p>
     </footer>
 
     <script src="form.js"></script>
-</body>
+  </body>
 </html>
-
