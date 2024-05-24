@@ -244,6 +244,16 @@ function showModal(application) {
     console.log("No requirements found in sessionStorage.");
   }
 
+  const existingButtons = document.getElementById('acceptRejectSection');
+    if (existingButtons) {
+        existingButtons.remove();
+    }
+
+    const existingMessage = document.querySelector('.message-container');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+
   const acceptRejectSection = document.createElement('div');
   acceptRejectSection.classList.add('requirements');
   acceptRejectSection.id = 'acceptRejectSection';
