@@ -42,11 +42,13 @@ document.addEventListener("DOMContentLoaded", function(){
         blockButton.textContent = "block"; // Set the button text
         blockButton.style.backgroundColor = "red";
         blockButton.style.width = "100px";
+        blockButton.id = person.name;
     
         var unblockButton = document.createElement("button");
         unblockButton.textContent = "unblock"; // Set the button textlelet 
         unblockButton.style.backgroundColor = "green";
         unblockButton.style.width = "100px";
+        unblockButton.id = person.surname;
             
         let personId = person.id.toString();
         // Define the onclick function for the button
@@ -59,8 +61,13 @@ document.addEventListener("DOMContentLoaded", function(){
             var result = confirm("Are you sure you want to block?");
             if (result){
                 updateApplicantPermission(data, personId);
+
+                document.getElementById(person.name).remove();
+                document.getElementById(profile.id).appendChild(unblockButton);
                 
             }
+
+
 
             
             
