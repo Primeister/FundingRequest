@@ -1,4 +1,5 @@
 let requirementData = {};
+
 async function fetchData() {
     try {
         //Get the email address from sessionStorage
@@ -10,7 +11,7 @@ async function fetchData() {
             throw new Error("Email not found in sessionStorage");
         } 
 
-        const response = await fetch(`https://fundreq.azurewebsites.net/fundingOpportunities/` + email);
+        const response = await fetch(`https://fundreq.azurewebsites.net/fundingOpportunities/`+ email);
 
         if (!response.ok) {
             throw new Error("Could not fetch resource");
