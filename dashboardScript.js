@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", function(){
     //get references to the main and about class section
     var mainSection = document.querySelector(".classMain");
     var aboutSection = document.querySelector(".aboutClass");
-
+    const image = document.getElementById("image");
+    image.src = sessionStorage.getItem("image");
     //get references to the about links ans other links
     var aboutLink = document.querySelector("#showPageLink");
     var otherLinks = document.querySelector(".topNav a");

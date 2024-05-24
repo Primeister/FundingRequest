@@ -17,9 +17,10 @@ const apiLogin = "https://fundreq.azurewebsites.net/login";
 function homepage(data) {
     let userType = data.userType;
     let email = data.email;
-
+    let image = data.image;
     sessionStorage.setItem('username', data.name + ' ' + data.surname);
     sessionStorage.setItem('email', email);
+    sessionStorage.setItem('image', image);
     
 
 
@@ -100,10 +101,10 @@ googleSignin.addEventListener("click", () => {
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const user = result.user;
-	let name = (user.displayName).split(" ");
-	let firstName = name[0], surname = name[1];
-	let data = {name: firstName, surname: surname, email: user.email, userType: "applicants"}
-	register(data);
+    let name = (user.displayName).split(" ");
+    let firstName = name[0], surname = name[1];
+    let data = {name: firstName, surname: surname, email: user.email, userType: "applicants", image: user.photoURL};
+    register(data);
   });
   
 });
@@ -115,7 +116,7 @@ googleSigninFund.addEventListener("click", () => {
     const user = result.user;
 	let name = (user.displayName).split(" ");
 	let firstName = name[0], surname = name[1];
-	let data = {name: firstName, surname: surname, email: user.email, userType: "funders"}
+	let data = {name: firstName, surname: surname, email: user.email, userType: "funders", image: user.photoURL};
 	register(data);
   });
 });
@@ -128,7 +129,7 @@ googleSigninFund.addEventListener("click", () => {
 	console.log(user);
 	let name = (user.displayName).split(" ");
 	let firstName = name[0], surname = name[1];
-	let data = {name: firstName, surname: surname, email: user.email}
+	let data = {name: firstName, surname: surname, email: user.email, image: user.photoURL};
 	login(data);
   });
   

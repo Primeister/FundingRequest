@@ -348,7 +348,7 @@ function showModal(application) {
             headers: headersList
         });
     });
-
+    
     applSection.insertAdjacentElement("afterend", acceptRejectSection);
     
 }
