@@ -1,18 +1,17 @@
-let requirementData = {};
 let fundingData = {};
-
+let requirementData = {};
 async function fetchData() {
     try {
-        //Get the email address from sessionStorage
-        let email = sessionStorage.getItem('email');
-        console.log(email)
+        // //Get the email address from sessionStorage
+        // let email = sessionStorage.getItem('email');
+        // console.log(email)
        
-        // Check if email exists
-        if (!email) {
-            throw new Error("Email not found in sessionStorage");
-        } 
+        // // Check if email exists
+        // if (!email) {
+        //     throw new Error("Email not found in sessionStorage");
+        // } 
 
-        const response = await fetch(`https://fundreq.azurewebsites.net/fundingOpportunities/`+ email);
+        const response = await fetch(`https://fundreq.azurewebsites.net/fundingOpportunities/2549192@students.wits.ac.za`);
 
         if (!response.ok) {
             throw new Error("Could not fetch resource");
@@ -24,8 +23,10 @@ async function fetchData() {
             const fundingName = fundingOpportunity.FundingName;
             const deadline = fundingOpportunity.Deadline;
             const requirements = fundingOpportunity.Requirements;
+            const fundingType = fundingOpportunity.FundingType;
 
             requirementData[fundingName] = requirements;
+            
 
             // Store funding names by type
             if (!fundingData[fundingType]) {
@@ -34,6 +35,7 @@ async function fetchData() {
             fundingData[fundingType].push(fundingName);
             console.log("data to be stored: " + fundingData)
 
+            
             const opportunityDiv = document.createElement('div');
             opportunityDiv.classList.add('opportunitySection');
 
@@ -49,7 +51,7 @@ async function fetchData() {
 
             seeMoreButton.addEventListener('click', function() {
                 sessionStorage.setItem('FundingName', fundingName);
-                sessionStorage.setItem('Requirements', requirements);
+                // sessionStorage.setItem('Requirements', requirements);
                 window.location.href = "applications.html";
             });
 
@@ -200,9 +202,6 @@ async function fetchFundManagerStatus() {
         const data = await response.json();
         const fundManagerStatus = document.getElementById('fundManagerStatus');
         fundManagerStatus.textContent = `Status: ${data.status}`;
-        if(!(data.status == "approved")){
-            document.getElementById("advertLink").remove();
-        }
     } catch (error) {
         console.error('Error fetching fund manager status:', error);
         const fundManagerStatus = document.getElementById('fundManagerStatus');
