@@ -91,8 +91,6 @@ function displayApplications(data, filter) {
         modalButton.addEventListener('click', function() {
             sessionStorage.setItem("applicant_email", application.email);
             showModal(application);
-            // table.style.display = 'none';
-            // tabContainer.style.display = 'none'; // Hide the container when the button is clicked
             document.getElementById('tabsandtableID').style.display = 'none'; // Hide the container when the button is clicked
             const modalContent = document.querySelector('.applicantModalClass');
             modalContent.style.display = 'block'; // Show the modal content when the button is clicked
@@ -141,13 +139,13 @@ function showModal(application) {
     };
 
     const sectionDiv = document.createElement('div');
-  sectionDiv.innerHTML = section.content;
-  applicantArticle.appendChild(sectionDiv);
+    sectionDiv.innerHTML = section.content;
+    applicantArticle.appendChild(sectionDiv);
 
-  let applicantSection = document.getElementById('applicantInfo');
-  applicantSection.innerHTML = ''; // Clear existing content
-  applicantSection.classList.add('applicantSectionClass');
-  applicantSection.appendChild(applicantArticle);
+    let applicantSection = document.getElementById('applicantInfo');
+    applicantSection.innerHTML = ''; // Clear existing content
+    applicantSection.classList.add('applicantSectionClass');
+    applicantSection.appendChild(applicantArticle);
   
     // Dynamically create checkboxes for requirements
     const requirementsSection = document.createElement('aside');
@@ -240,7 +238,6 @@ function showModal(application) {
     });
 
     applSection.insertAdjacentElement("afterend", acceptRejectSection);
-    
 }
 
 function filterStatus(status) {
@@ -258,7 +255,7 @@ function filterStatus(status) {
     }
   }
 
-  function showInsufficientFundsPopup() {
+function showInsufficientFundsPopup() {
   // Create the popup container
   const popupContainer = document.createElement("div");
   popupContainer.classList.add("popup-container");
@@ -293,3 +290,4 @@ function filterStatus(status) {
     }
   });
 }
+
