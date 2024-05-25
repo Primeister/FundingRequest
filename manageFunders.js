@@ -42,11 +42,13 @@ document.addEventListener("DOMContentLoaded", function(){
         blockButton.textContent = "block"; // Set the button text
         blockButton.style.backgroundColor = "red";
         blockButton.style.width = "100px";
+        blockButton.id = person.name + "2";
     
         var unblockButton = document.createElement("button");
         unblockButton.textContent = "unblock"; // Set the button textlelet 
         unblockButton.style.backgroundColor = "green";
         unblockButton.style.width = "100px";
+        unblockButton.id = person.surname + "2";
             
         let personId = person.id.toString();
         // Define the onclick function for the button
@@ -59,6 +61,9 @@ document.addEventListener("DOMContentLoaded", function(){
             var result = confirm("Are you sure you want to block?");
             if (result){
                 updateFunderPermission(data, personId);
+
+                document.getElementById(person.name + "2").remove();
+                document.getElementById(profile.id).appendChild(unblockButton);
                 
             }
 
@@ -75,6 +80,9 @@ document.addEventListener("DOMContentLoaded", function(){
             var result = confirm("Are you sure you want to unblock?");
             if (result){
                 updateFunderPermission(data, personId);
+
+                document.getElementById(person.surname + "2").remove();
+                document.getElementById(profile.id).appendChild(blockButton);
                 
             }
             

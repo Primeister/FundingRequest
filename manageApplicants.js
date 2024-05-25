@@ -83,6 +83,9 @@ document.addEventListener("DOMContentLoaded", function(){
             if (result){
                 updateApplicantPermission(data, personId);
                 
+                document.getElementById(person.surname).remove();
+                document.getElementById(profile.id).appendChild(blockButton);
+                
             }
             
         };
