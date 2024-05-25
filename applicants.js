@@ -84,7 +84,6 @@ let requestOptions = {
     mode: "cors"
 };
 
-let email = sessionStorage.getItem('email');
 
 fetch('https://fundreq.azurewebsites.net/applicants/' + email)
     .then(res => {
