@@ -84,165 +84,181 @@ let requestOptions = {
     mode: "cors"
 };
 
+let email = sessionStorage.getItem('email');
+
+fetch('https://fundreq.azurewebsites.net/applicants/' + email)
+    .then(res => {
+        return res.json();
+    }).then( person =>{
+        
+       if(person.permission == "allowed"){
 
 
-let response = fetch("https://fundreq.azurewebsites.net/getOpportunity/education", requestOptions)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(opp => {
-            let opportunityDiv = document.createElement('div');
-            opportunityDiv.classList.add('opportunity');
-
-            // Create the inner div with class "title"
-            let titleDiv = document.createElement('div');
-            titleDiv.classList.add('title');
-
-            // Create the h2 element with class "name"
-            let nameHeading = document.createElement('h2');
-            nameHeading.classList.add('name');
-            nameHeading.textContent = opp.FundingName; // Set text content
-
-            // Create the h4 element with class "deadline"
-            let deadlineHeading = document.createElement('h4');
-            deadlineHeading.classList.add('deadline');
-            deadlineHeading.textContent = "Closes: "+opp.Deadline; // Set text content
-
-            // Append the h2 and h4 elements to the "title" div
-            titleDiv.appendChild(nameHeading);
-            titleDiv.appendChild(deadlineHeading);
-
-            // Append the "title" div to the "opportunity" div
-            opportunityDiv.appendChild(titleDiv);
-
-            // Append the "opportunity" div to the document body or any other parent element
-            bursaryOpp.appendChild(opportunityDiv);
-            opportunityDiv.addEventListener('click', function() {
-                // Your event handler code here
-                popup.style.display = "block";
-                descriptionParagraph.textContent = opp.FundingDescription;
-                reqParagraph.textContent = opp.Requirements;
-                sessionStorage.setItem("FundingName", opp.FundingName);
-                sessionStorage.setItem("id", opp.id);
+        let response = fetch("https://fundreq.azurewebsites.net/getOpportunity/education", requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data)
+            data.forEach(opp => {
+                let opportunityDiv = document.createElement('div');
+                opportunityDiv.classList.add('opportunity');
+    
+                // Create the inner div with class "title"
+                let titleDiv = document.createElement('div');
+                titleDiv.classList.add('title');
+    
+                // Create the h2 element with class "name"
+                let nameHeading = document.createElement('h2');
+                nameHeading.classList.add('name');
+                nameHeading.textContent = opp.FundingName; // Set text content
+    
+                // Create the h4 element with class "deadline"
+                let deadlineHeading = document.createElement('h4');
+                deadlineHeading.classList.add('deadline');
+                deadlineHeading.textContent = "Closes: "+opp.Deadline; // Set text content
+    
+                // Append the h2 and h4 elements to the "title" div
+                titleDiv.appendChild(nameHeading);
+                titleDiv.appendChild(deadlineHeading);
+    
+                // Append the "title" div to the "opportunity" div
+                opportunityDiv.appendChild(titleDiv);
+    
+                // Append the "opportunity" div to the document body or any other parent element
+                bursaryOpp.appendChild(opportunityDiv);
+                opportunityDiv.addEventListener('click', function() {
+                    // Your event handler code here
+                    popup.style.display = "block";
+                    descriptionParagraph.textContent = opp.FundingDescription;
+                    reqParagraph.textContent = opp.Requirements;
+                    sessionStorage.setItem("FundingName", opp.FundingName);
+                    sessionStorage.setItem("id", opp.id);
+                });
             });
-        });
+        
+        
+        
+        })
+        .catch(error => console.error('Error:', error));
     
+    let funding = fetch("https://fundreq.azurewebsites.net/getOpportunity/business", requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data)
+            data.forEach(opp => {
+                let opportunityDiv = document.createElement('div');
+                opportunityDiv.classList.add('opportunity');
     
+                // Create the inner div with class "title"
+                let titleDiv = document.createElement('div');
+                titleDiv.classList.add('title');
     
-    })
-    .catch(error => console.error('Error:', error));
-
-let funding = fetch("https://fundreq.azurewebsites.net/getOpportunity/business", requestOptions)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(opp => {
-            let opportunityDiv = document.createElement('div');
-            opportunityDiv.classList.add('opportunity');
-
-            // Create the inner div with class "title"
-            let titleDiv = document.createElement('div');
-            titleDiv.classList.add('title');
-
-            // Create the h2 element with class "name"
-            let nameHeading = document.createElement('h2');
-            nameHeading.classList.add('name');
-            nameHeading.textContent = opp.FundingName; // Set text content
-
-            // Create the h4 element with class "deadline"
-            let deadlineHeading = document.createElement('h4');
-            deadlineHeading.classList.add('deadline');
-            deadlineHeading.textContent = "Closes: "+opp.Deadline; // Set text content
-
-            // Append the h2 and h4 elements to the "title" div
-            titleDiv.appendChild(nameHeading);
-            titleDiv.appendChild(deadlineHeading);
-
-            // Append the "title" div to the "opportunity" div
-            opportunityDiv.appendChild(titleDiv);
-
-            // Append the "opportunity" div to the document body or any other parent element
-            businessOpp.appendChild(opportunityDiv);
-            opportunityDiv.addEventListener('click', function() {
-                // Your event handler code here
-                popup.style.display = "block";
-                descriptionParagraph.textContent = opp.FundingDescription;
-                reqParagraph.textContent = opp.Requirements;
-                sessionStorage.setItem("FundingName", opp.FundingName);
-                sessionStorage.setItem("id", opp.id);
+                // Create the h2 element with class "name"
+                let nameHeading = document.createElement('h2');
+                nameHeading.classList.add('name');
+                nameHeading.textContent = opp.FundingName; // Set text content
+    
+                // Create the h4 element with class "deadline"
+                let deadlineHeading = document.createElement('h4');
+                deadlineHeading.classList.add('deadline');
+                deadlineHeading.textContent = "Closes: "+opp.Deadline; // Set text content
+    
+                // Append the h2 and h4 elements to the "title" div
+                titleDiv.appendChild(nameHeading);
+                titleDiv.appendChild(deadlineHeading);
+    
+                // Append the "title" div to the "opportunity" div
+                opportunityDiv.appendChild(titleDiv);
+    
+                // Append the "opportunity" div to the document body or any other parent element
+                businessOpp.appendChild(opportunityDiv);
+                opportunityDiv.addEventListener('click', function() {
+                    // Your event handler code here
+                    popup.style.display = "block";
+                    descriptionParagraph.textContent = opp.FundingDescription;
+                    reqParagraph.textContent = opp.Requirements;
+                    sessionStorage.setItem("FundingName", opp.FundingName);
+                    sessionStorage.setItem("id", opp.id);
+                });
             });
-        });
+        
+        
+        
+        })
+        .catch(error => console.error('Error:', error));
     
+    let event = fetch("https://fundreq.azurewebsites.net/getOpportunity/event", requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data)
+            data.forEach(opp => {
+                let opportunityDiv = document.createElement('div');
+                opportunityDiv.classList.add('opportunity');
     
+                // Create the inner div with class "title"
+                let titleDiv = document.createElement('div');
+                titleDiv.classList.add('title');
     
-    })
-    .catch(error => console.error('Error:', error));
-
-let event = fetch("https://fundreq.azurewebsites.net/getOpportunity/event", requestOptions)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(opp => {
-            let opportunityDiv = document.createElement('div');
-            opportunityDiv.classList.add('opportunity');
-
-            // Create the inner div with class "title"
-            let titleDiv = document.createElement('div');
-            titleDiv.classList.add('title');
-
-            // Create the h2 element with class "name"
-            let nameHeading = document.createElement('h2');
-            nameHeading.classList.add('name');
-            nameHeading.textContent = opp.FundingName; // Set text content
-
-            // Create the h4 element with class "deadline"
-            let deadlineHeading = document.createElement('h4');
-            deadlineHeading.classList.add('deadline');
-            deadlineHeading.textContent = "Closes: "+opp.Deadline; // Set text content
-
-            // Append the h2 and h4 elements to the "title" div
-            titleDiv.appendChild(nameHeading);
-            titleDiv.appendChild(deadlineHeading);
-
-            // Append the "title" div to the "opportunity" div
-            opportunityDiv.appendChild(titleDiv);
-
-            // Append the "opportunity" div to the document body or any other parent element
-            eventOpp.appendChild(opportunityDiv);
-            opportunityDiv.addEventListener('click', function() {
-                // Your event handler code here
-                popup.style.display = "block";
-                descriptionParagraph.textContent = opp.FundingDescription;
-                reqParagraph.textContent = opp.Requirements;
-                sessionStorage.setItem("FundingName", opp.FundingName);
-                sessionStorage.setItem("id", opp.id);
+                // Create the h2 element with class "name"
+                let nameHeading = document.createElement('h2');
+                nameHeading.classList.add('name');
+                nameHeading.textContent = opp.FundingName; // Set text content
+    
+                // Create the h4 element with class "deadline"
+                let deadlineHeading = document.createElement('h4');
+                deadlineHeading.classList.add('deadline');
+                deadlineHeading.textContent = "Closes: "+opp.Deadline; // Set text content
+    
+                // Append the h2 and h4 elements to the "title" div
+                titleDiv.appendChild(nameHeading);
+                titleDiv.appendChild(deadlineHeading);
+    
+                // Append the "title" div to the "opportunity" div
+                opportunityDiv.appendChild(titleDiv);
+    
+                // Append the "opportunity" div to the document body or any other parent element
+                eventOpp.appendChild(opportunityDiv);
+                opportunityDiv.addEventListener('click', function() {
+                    // Your event handler code here
+                    popup.style.display = "block";
+                    descriptionParagraph.textContent = opp.FundingDescription;
+                    reqParagraph.textContent = opp.Requirements;
+                    sessionStorage.setItem("FundingName", opp.FundingName);
+                    sessionStorage.setItem("id", opp.id);
+                });
             });
-        });
+        
+        
+        
+        })
+        .catch(error => console.error('Error:', error));
     
-    
-    
-    })
-    .catch(error => console.error('Error:', error));
+    //Vutshila you must continue from here
+    applyButton.addEventListener('click', function() {
+        window.location.href = "form.html";
+    });
+       }
+        
+    });
 
-//Vutshila you must continue from here
-applyButton.addEventListener('click', function() {
-    window.location.href = "form.html";
-});
+    
+
+
+
 
 
 
