@@ -3,20 +3,32 @@
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Features](#features)
-3. [Prerequisites](#prerequisites)
-4. [Installation](#installation)
-5. [Running the Application](#running-the-application)
-6. [Usage](#usage)
-7. [Project Structure](#project-structure)
-8. [Testing](#testing)
+3. [Instructions for Running the Project](#instructions-for-running-the-project)
+   - [Prerequisites](#prerequisites)
+   - [Installation](#installation)
+   - [Setting Up Environment Variables](#setting-up-environment-variables)
+   - [Setting Up the Database](#setting-up-the-database)
+   - [Starting the Server](#starting-the-server)
+4. [Usage](#usage)
+5. [Project Structure](#project-structure)
+6. [Testing](#testing)
+7. [Technologies Used](#technologies-used)
+   - [Frontend](#frontend)
+   - [Backend](#backend)
+   - [Database](#database)
+   - [API Development & Testing](#api-development--testing)
+   - [Deployment](#deployment)
+   - [Version Control](#version-control)
+   - [UML Diagrams](#uml-diagrams)
+   - [IDE](#ide)
+8. [Contributors](#contributors)
 9. [Contributing](#contributing)
-10. [License](#license)
-11. [Contact](#contact)
+10. [Contact](#contact)
 
 ## Introduction
 The Funding Requests Management System is a web-based application that allows organizations to advertise their funding opportunities and manage the applications they receive. It supports various types of funding opportunities, including educational, business, and events.
 
-## Overview of Features
+## Features
 - **Funding Opportunities Ads**: Enable organizations to advertise funding opportunities.
 - **Applications**: Allow users to submit applications for funding opportunities.
 - **Funding Review**: Enable fund managers to review and approve/reject applications.
@@ -27,6 +39,7 @@ The Funding Requests Management System is a web-based application that allows or
 - **Notifications**: Send relevant users notifications on updates to their applications.
 
 ## Instructions for Running the Project
+
 ### Prerequisites
 Before you begin, ensure you have met the following requirements:
 - [Node.js](https://nodejs.org/) (version 14.x or higher)
