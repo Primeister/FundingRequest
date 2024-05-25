@@ -1,10 +1,20 @@
 # FundX
 
-## Introduction
-Several organizations, such as national lotteries and large companies, contribute to society by funding various initiatives and individuals. These funding opportunities can range from small event sponsorships to substantial grants for long-term projects like bursaries and research funds. Some funding initiatives also offer direct benefits to organizations, such as marketing exposure or exclusive rights.
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Prerequisites](#prerequisites)
+4. [Installation](#installation)
+5. [Running the Application](#running-the-application)
+6. [Usage](#usage)
+7. [Project Structure](#project-structure)
+8. [Testing](#testing)
+9. [Contributing](#contributing)
+10. [License](#license)
+11. [Contact](#contact)
 
-## Objectives
-The project will be developed using Agile methodology, incorporating Continuous Integration and Continuous Deployment (CI/CD) principles, and following a test-driven approach. The objective is to design, develop, and operationalize a publicly available, web-based application that fulfills the following requirements:
+## Introduction
+The Funding Requests Management System is a web-based application that allows organizations to advertise their funding opportunities and manage the applications they receive. It supports various types of funding opportunities, including educational, business, and events.
 
 ## Overview of Features
 - **Funding Opportunities Ads**: Enable organizations to advertise funding opportunities.
@@ -15,18 +25,6 @@ The project will be developed using Agile methodology, incorporating Continuous 
 - **User Verification**: Implement user verification through a third-party identity provider with three roles: Applicants, Fund Managers, and Platform Admin.
 - **User Management**: Allow admins to manage users, review and approve fund managers, block users, manage access, change permissions, etc.
 - **Notifications**: Send relevant users notifications on updates to their applications.
-- **Bonus**: Allow users to upload documents and scan them to pre-populate forms.
-
-## Detailed Requirements
-| Requirement                    | Extra info/limitations                                                  |
-|--------------------------------|-------------------------------------------------------------------------|
-| **User Verification**          | - Use a 3rd party identity provider.<br>- Implement 3 roles: Applicants, Fund Managers, and Platform Admin. |
-| **User Management**            | - Admins should be able to manage users, review and approve fund managers, block users, manage access, change permissions, etc. |
-| **Funding Opportunities Ads & Review** | - Once approved, fund managers should be able to advertise funding opportunities.<br>- Fund managers should be able to review and approve/reject applications. |
-| **Applications**               | - The public should be able to create accounts, submit applications, upload and view attachments, follow up on applications, and see status updates. |
-| **Budgeting**                  | - Fund managers should be able to see how much money is in the system and manage it accordingly. |
-| **Reporting**                  | - At least 3 views of reports should be available on a dashboard:<br>  1. Funds in the system and usage over time.<br>  2. Applications data.<br>  3. Custom view.<br>- Reports should be exportable as CSV or PDF. |
-| **Notifications**              | - Relevant users should receive notifications on updates to their applications. |
 
 ## Instructions for Running the Project
 ### Prerequisites
@@ -172,12 +170,11 @@ FundingRequest/
 
 ## Contributing
 Contributions are welcome! Please follow these steps:
-
-1.Fork the repository.
-2.Create a new branch (git checkout -b feature-branch).
-3.Make your changes and commit them (git commit -m 'Add new feature').
-4.Push to the branch (git push origin feature-branch).
-5.Open a Pull Request.
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes and commit them (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a Pull Request.
 
 ## Contact
 For any questions or feedback, feel free to contact any of the contributors:
