@@ -84,6 +84,19 @@ let requestOptions = {
     mode: "cors"
 };
 
+let permissions = "string";
+
+fetch('https://fundreq.azurewebsites.net/applicants/' + email)
+    .then(res => {
+        return res.json();
+    }).then( data =>{
+        
+       permissions = data.permission;
+        
+    });
+
+if(permissions == "allowed"){
+
 let response = fetch("https://fundreq.azurewebsites.net/getOpportunity/education", requestOptions)
     .then(response => {
         if (!response.ok) {
@@ -241,7 +254,7 @@ let event = fetch("https://fundreq.azurewebsites.net/getOpportunity/event", requ
 applyButton.addEventListener('click', function() {
     window.location.href = "form.html";
 });
-
+}
 
 
 
