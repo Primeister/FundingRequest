@@ -45,31 +45,25 @@ async function drawCharts() {
         const filteredData = filterData(data, fundingNames);
         const allCategories = [...new Set(filteredData.map(item => item.category.split(": ")[0]))];
 
-        // Draw line chart for each funding type
-        drawLineChart(filteredData, fundingNames, allCategories);
+        fundingNames.forEach(fundingName => {
+            const filteredFundingData = filterData(filteredData, [fundingName]);
 
-        // Draw pie chart for each funding type
-        drawPieChart(filteredData);
+            // Draw line chart for each funding name
+            drawLineChart(filteredFundingData, fundingName, allCategories);
 
-        // Draw bar chart for each funding type
-        drawBarChart(filteredData);
+            // Draw pie chart for each funding name
+            drawPieChart(filteredFundingData, fundingName);
+
+            // Draw bar chart for each funding name
+            drawBarChart(filteredFundingData, fundingName);
+        });
     }
 }
 
-function drawLineChart(filteredData, fundingNames, allCategories) {
-    const datasets = fundingNames.map(fundingName => {
-        const filteredFundingData = filterData(filteredData, [fundingName]);
-        const aggregatedData = aggregateData(filteredFundingData);
-        const chartData = prepareChartData(aggregatedData, allCategories);
-
-        return {
-            label: fundingName,
-            data: chartData.data,
-            fill: false,
-            borderColor: getRandomColor(),
-            tension: 0.1
-        };
-    });
+function drawLineChart(filteredData, fundingName, allCategories) {
+    const filteredFundingData = filterData(filteredData, [fundingName]);
+    const aggregatedData = aggregateData(filteredFundingData);
+    const chartData = prepareChartData(aggregatedData, allCategories);
 
     const container = document.getElementById('lineChartContainer');
     const canvas = document.createElement('canvas');
@@ -82,7 +76,13 @@ function drawLineChart(filteredData, fundingNames, allCategories) {
         type: 'line',
         data: {
             labels: allCategories,
-            datasets: datasets
+            datasets: [{
+                label: fundingName,
+                data: chartData.data,
+                fill: false,
+                borderColor: getRandomColor(),
+                tension: 0.1
+            }]
         },
         options: {
             responsive: true,
@@ -92,14 +92,14 @@ function drawLineChart(filteredData, fundingNames, allCategories) {
                 },
                 title: {
                     display: true,
-                    text: 'Funding Report'
+                    text: ` ${fundingName}`
                 }
             }
         }
     });
 }
 
-function drawPieChart(filteredData) {
+function drawPieChart(filteredData, fundingName) {
     const aggregatedData = aggregateData(filteredData);
     const labels = Object.keys(aggregatedData);
     const totalFundingAmounts = Object.values(aggregatedData);
@@ -128,7 +128,7 @@ function drawPieChart(filteredData) {
                 },
                 title: {
                     display: true,
-                    text: 'Total Funding by Opportunity'
+                    text: `${fundingName}`
                 }
             },
             tooltips: {
@@ -144,7 +144,7 @@ function drawPieChart(filteredData) {
     });
 }
 
-function drawBarChart(filteredData) {
+function drawBarChart(filteredData, fundingName) {
     const aggregatedData = aggregateData(filteredData);
     const labels = Object.keys(aggregatedData);
     const totalFundingAmounts = Object.values(aggregatedData);
@@ -161,7 +161,7 @@ function drawBarChart(filteredData) {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Total Funds (in R)',
+                label: 'Funds (in R)',
                 data: totalFundingAmounts,
                 backgroundColor: labels.map(() => getRandomColor()),
             }]
@@ -174,7 +174,7 @@ function drawBarChart(filteredData) {
                 },
                 title: {
                     display: true,
-                    text: 'Total Funds by Opportunity'
+                    text: `${fundingName}`
                 }
             },
             scales: {
@@ -182,15 +182,13 @@ function drawBarChart(filteredData) {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Total Funds (in R)'
+                        text: 'Funds (in R)'
                     }
                 }
             }
         }
     });
 }
-
-
 
 function getRandomColor() {
     const letters = '0123456789ABCDEF';
