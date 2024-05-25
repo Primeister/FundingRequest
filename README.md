@@ -3,16 +3,17 @@
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Features](#features)
-3. [Instructions for Running the Project](#instructions-for-running-the-project)
+3. [Repositories](#repositories)
+4. [Instructions for Running the Project](#instructions-for-running-the-project)
    - [Prerequisites](#prerequisites)
    - [Installation](#installation)
    - [Setting Up Environment Variables](#setting-up-environment-variables)
    - [Setting Up the Database](#setting-up-the-database)
    - [Starting the Server](#starting-the-server)
-4. [Usage](#usage)
-5. [Project Structure](#project-structure)
-6. [Testing](#testing)
-7. [Technologies Used](#technologies-used)
+5. [Usage](#usage)
+6. [Project Structure](#project-structure)
+7. [Testing](#testing)
+8. [Technologies Used](#technologies-used)
    - [Frontend](#frontend)
    - [Backend](#backend)
    - [Database](#database)
@@ -21,9 +22,9 @@
    - [Version Control](#version-control)
    - [UML Diagrams](#uml-diagrams)
    - [IDE](#ide)
-8. [Contributors](#contributors)
-9. [Contributing](#contributing)
-10. [Contact](#contact)
+9. [Contributors](#contributors)
+10. [Contributing](#contributing)
+11. [Contact](#contact)
 
 ## Introduction
 The Funding Requests Management System is a web-based application that allows organizations to advertise their funding opportunities and manage the applications they receive. It supports various types of funding opportunities, including educational, business, and events.
@@ -38,6 +39,12 @@ The Funding Requests Management System is a web-based application that allows or
 - **User Management**: Allow admins to manage users, review and approve fund managers, block users, manage access, change permissions, etc.
 - **Notifications**: Send relevant users notifications on updates to their applications.
 
+## Repositories
+This project is divided into two repositories to separate the frontend and backend components:
+
+1. **Frontend Repository**: [Frontend Repository Link](https://github.com/Primeister/FundingRequest)
+2. **Backend Repository**: [Backend Repository Link](https://github.com/Primeister/FundingRequest-Backend)
+
 ## Instructions for Running the Project
 
 ### Prerequisites
@@ -48,45 +55,58 @@ Before you begin, ensure you have met the following requirements:
 - A code editor like [VS Code](https://code.visualstudio.com/)
 
 ### Installation
-1. **Clone the Repository**:
+1. **Clone the Repositories**:
    ```sh
    git clone https://github.com/Primeister/FundingRequest.git
+   git clone https://github.com/Primeister/FundReq.git
    ```
-2. **Navigate to the Project Directory**:
+2. **Navigate to the Project Directories**:
    ```sh
    cd FundingRequest
    ```
+   In a separate terminal:
+   ```sh
+   cd FundReq
+   ```
 3. **Install Dependencies**:
+   In both project directories, run:
    ```sh
    npm install
    ```
 
 ### Setting Up Environment Variables
-Create a `.env` file in the root directory and add the following environment variables:
+In each repository, create a `.env` file in the root directory and add the following environment variables:
+
+For the frontend repository:
+```plaintext
+PORT=5000
+```
+
+For the backend repository:
 ```plaintext
 PORT=3000
-DATABASE_URL=sqlite://./data/database.sqlite
-JWT_SECRET=your_jwt_secret
+DATABASE_URL=https://fundreq.azurewebsites.net
 ```
 
 ### Setting Up the Database
 1. **Initialize the Database**:
-   Run the following commands to set up the SQLite3 database:
+   Run the following commands in the backend repository to set up the SQLite3 database:
    ```sh
    npx sequelize-cli db:migrate
    npx sequelize-cli db:seed:all
    ```
 
 ### Starting the Server
-1. **Start the Application**:
+1. **Start the Backend Server**:
+   In a terminal, navigate to the backend directory and run:
    ```sh
    npm start
    ```
-   The application will be running at `http://localhost:3000`.
+   The backend server will be running at `http://localhost:3000`.
 
 ## Usage
 1. **Open the Application**:
-   Go to `http://localhost:3000` in your web browser.
+   Go to `http://localhost:5000` in your web browser.
 2. **Create an Account**:
    Create an account to start submitting or managing funding requests.
 3. **Explore Features**:
@@ -95,6 +115,7 @@ JWT_SECRET=your_jwt_secret
    - Track budget and generate reports
 
 ## Project Structure
+### Frontend Repository
 ```
 FundingRequest/
 ├── .github/workflows/
@@ -141,8 +162,23 @@ FundingRequest/
 ├── style.css
 ```
 
+### Backend Repository
+```
+FundingRequest-Backend/
+├── .github/workflows/
+│   └── ci.yml
+├── node_modules/
+├── README.md
+├── database.db
+├── index.js
+├── package-lock.json
+├── package.json
+├── server.js
+```
+
 ## Testing
 1. **Run Tests**:
+   In both repositories, you can run:
    ```sh
    npm test
    ```
