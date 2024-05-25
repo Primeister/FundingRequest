@@ -55,7 +55,7 @@ function displayNotifications(notifications) {
       sessionStorage.setItem("FundingName", notification.fundOppName);
       console.log("Funding Name: " + notification.fundOppName);
       console.log("Applicant Name: " + notification.applicantName);
-
+      
       fetchApplicants(notification.fundOppName);
     });
 
@@ -407,6 +407,7 @@ function displayNotifications(notifications) {
       console.log("Applicant Name: " + notification.applicantName);
 
       fetchApplicants(notification.fundOppName);
+      markAsRead(notification);
     });
 
     applicantCell.appendChild(applicantLink);
@@ -483,7 +484,7 @@ function showInbox() {
 }
 
 function countUnreadNotifications(notifications) {
-  const unreadCount = notifications.filter(notification => !notification.read).length;
+  const unreadCount = notifications.filter(notification => notification.status === 0).length;
   const inboxLink = document.getElementById('inboxLink');
   let countElement = document.getElementById('unread-count');
 
@@ -696,3 +697,33 @@ function showInsufficientFundsPopup() {
   alert('Insufficient funds to approve this application.');
 }
 document.addEventListener("DOMContentLoaded", fetchApplicants);
+
+async function markAsRead(notificationData){
+    let body = {
+      "fundManagerEmail": sessionStorage.getItem("email"),
+      "fundOppName": sessionStorage.getItem("FundingName"),
+      "applicantName": sessionStorage.getItem("applicantName")
+    }
+    console.log("body:");
+    console.log(body);
+    let bodyContent = JSON.stringify(body);
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json"
+    };
+
+    // POST the notification data to the server
+    let response = await fetch("https://fundreq.azurewebsites.net/notifications/update", {
+        method: "POST",
+        mode: "cors",
+        headers: headersList,
+        body: bodyContent
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to add change status");
+    }
+
+    let result = await response.json();
+    console.log(result.message);
+}
