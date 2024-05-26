@@ -109,6 +109,8 @@ function showApproveFunder(){
     document.querySelector(".classMain").style.display = "none";
     document.querySelector(".aboutClass").style.display = "none";
     document.getElementById("approve-fundManagers").style.display = "block";
+    document.getElementById("manage-applicants").style.display = "none";
+    document.getElementById("manage-funders").style.display = "none";
 }
 
 function openManageFunders(){
@@ -123,6 +125,7 @@ function showMain(){
     document.querySelector(".aboutClass").style.display = "none";
     document.getElementById("approve-fundManagers").style.display = "none";
     document.getElementById("manage-funders").style.display = "none";
+    document.getElementById("manage-applicants").style.display = "none";
 }
 
 function openManageApplicants(){
