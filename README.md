@@ -100,6 +100,7 @@ DATABASE_URL=https://fundreq.azurewebsites.net
 1. **Start the Backend Server**:
    In a terminal, navigate to the backend directory and run:
    ```sh
+   npm install sqlite3
    npm start
    ```
    The backend server will be running at `http://localhost:3000`.
