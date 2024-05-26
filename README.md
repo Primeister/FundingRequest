@@ -228,8 +228,8 @@ Contributions are welcome! Please follow these steps:
 
 ## Contact
 For any questions or feedback, feel free to contact any of the contributors:
-- Prince Dlomo: [princehumantorch57@gmail.com]
-- Athini Mgagule: [athinimgagule1@students.wits.ac.za]
-- Khumoetsile Marope: [khumoetsilemarope1@students.wits.ac.za]
-- Vutshila Mashimbyi: [vutshilamashimbyi1@students.wits.ac.za]
-- Siphosakhe Mkhwanazi: [siphosakhemkhwanazi1@students.wits.ac.za]
+- Prince Dlomo: [2332600@students.wits.ac.za]
+- Athini Mgagule: [2549192@students.wits.ac.za]
+- Khumoetsile Marope: [1884585@students.wits.ac.za]
+- Vutshila Mashimbyi: [2562071@students.wits.ac.za]
+- Siphosakhe Mkhwanazi: [2583003@students.wits.ac.za]
